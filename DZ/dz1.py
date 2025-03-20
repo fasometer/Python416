@@ -402,6 +402,7 @@
 # reg = r"[\w\-\_\d\.]+@[\w\.]+"
 # print(re.findall(reg, st))
 
+print("ДЗ через репозиторий")
 num = [5, -5, 5, -5, -5, 5, 5, -5]
 
 
@@ -420,3 +421,5 @@ def sum_neg(lst):
 
 print(num)
 print("Всего отрицательных чисел в списке:", sum_neg(num))
+
+
