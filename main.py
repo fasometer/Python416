@@ -2981,17 +2981,17 @@
 #
 # print(count_item(names))
 
-# def negative_number(n):
-#     if not n:
-#         return 0
-#     cnt = 0
-#     if n[0] < 0:
-#         cnt += 1
-#     return cnt + negative_number(n[1:])
-#
-#
-# lst = [-2, 3, 8, -11, -4, 6]
-#
-# print(negative_number(lst))
+def negative_number(n):
+    if not n:
+        return 0
+    cnt = 0
+    if n[0] < 0:
+        cnt += 1
+    return cnt + negative_number(n[1:])
 
-#
+
+lst = [-2, 3, 8, -11, -4, 6]
+
+print(negative_number(lst))
+
+print("Hello in local")
