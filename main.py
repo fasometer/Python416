@@ -2994,6 +2994,23 @@
 #
 # print(negative_number(lst))
 
-print("Hello in local")
-print("new code")
+# print("Hello in local")
+# print("new code")
 
+# Работа с файлами
+
+# f = open("text.txt")
+# # f = open(r"C:\Users\1\Desktop\pyton\text.txt")
+# print(*f)
+# print(f)
+# print(f.mode)
+# print(f.name)
+# print(f.encoding)
+# print(f.closed)
+# f.close()
+# print(f.closed)
+
+f = open("text.txt")
+print(f.read(3))
+print(f.read())
+f.close()
