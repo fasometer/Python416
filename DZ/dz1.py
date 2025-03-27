@@ -402,24 +402,34 @@
 # reg = r"[\w\-\_\d\.]+@[\w\.]+"
 # print(re.findall(reg, st))
 
-print("ДЗ через репозиторий")
-num = [5, -5, 5, -5, -5, 5, 5, -5]
+# print("ДЗ через репозиторий")
+# num = [5, -5, 5, -5, -5, 5, 5, -5]
+#
+#
+# def sum_neg(lst):
+#     res = 0
+#     if len(lst) == 0:
+#         return 0
+#     else:
+#         # print(lst, "=> lst[0]:", lst[0])
+#         if lst[0] < 0:
+#             res = 1
+#         else:
+#             res = 0
+#     return res + sum_neg(lst[1:])
+#
+#
+# print(num)
+# print("Всего отрицательных чисел в списке:", sum_neg(num))
+lst = []
+pos1 = int(input("Введите номер исходной строки: "))
+pos2 = int(input("Введите номер строки для замены: "))
+test = "Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n"
+with open("one.txt", "w") as f:
+    f.write(test)
+with open("one.txt") as f:
+    for i in f:
+        lst.append(i)
 
-
-def sum_neg(lst):
-    res = 0
-    if len(lst) == 0:
-        return 0
-    else:
-        # print(lst, "=> lst[0]:", lst[0])
-        if lst[0] < 0:
-            res = 1
-        else:
-            res = 0
-    return res + sum_neg(lst[1:])
-
-
-print(num)
-print("Всего отрицательных чисел в списке:", sum_neg(num))
-
+print(lst)
 
