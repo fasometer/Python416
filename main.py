@@ -3010,7 +3010,149 @@
 # f.close()
 # print(f.closed)
 
-f = open("text.txt")
-print(f.read(3))
-print(f.read())
-f.close()
+# f = open("text.txt")
+# print(f.read(3))
+# print(f.read())
+# f.close()
+
+# f = open("xyz.txt", "w")  # режим запись
+# f.write("This is line 1.\nThis is line 2.\nThis is line 3.\n")
+# f.close()
+
+# f = open("xyz.txt")
+# # print(f.read())
+#
+# # print(f.readline())  # чтение одной строки
+# # print(f.readline(8))  # чтение одного абзаца или строки
+# # print(f.readline())  # чтение одного абзаца или строки
+# # print(f.readlines())  # списком строк
+#
+# f.close()
+
+# f = open("xyz.txt")
+# for line in f:
+#     print(line)
+#
+# f.close()
+
+# lines = ["This is line 1.\n", "This is line 2.\n", "This is line 3.\n"]
+#
+# f = open("lines.txt", "w")
+# f.writelines(lines)
+# f.close()
+
+# lines = [str(i) for i in range(10, 1000, 15)]
+# print(lines)
+#
+# f = open("lines.txt", "w")
+# for index in lines:
+#     f.write(index + "\t")
+# f.close()
+
+
+# file = "text2.txt"
+# f = open(file, "w")
+# f.write("Замена строки в текстовом файле; \nизменить строку в списке; \nзаписать список\n")
+# f.close()
+#
+# f = open(file, "r")
+# read_line = f.readlines()   # получили список
+# print(read_line)
+# read_line[1] = "Hello World!\n"
+# print(read_line)
+# f.close()
+#
+# f = open(file, "w")
+# f.writelines(read_line)
+# f.close()
+
+# f = open("text.txt", "r")
+# print(f.read(3))
+# print(f.tell())     # условная позиция в файле
+# print(f.seek(1))  # перемещает курсор в заданную позицию
+# print(f.read())
+# print(f.tell())
+# f.close()
+
+# f = open("text5.txt", "a+")
+# print(f.write("I am learning Python"))
+# print(f.seek(0))
+# print(f.write("--new string--"))
+# # print(f.read())
+#
+# f.close()
+
+# with open("text.txt", "w") as f:
+#     print(f.write("0123456789"))
+#     print(f.closed)  # файл открыт
+# print(f.closed)  # файл закрыт
+
+# lst = [4.5, 2.8, 3.9, 1.8, 0.3, 4.55, 5.01]
+#
+#
+# def get_line(lt):
+#     lt = list(map(str, lt))
+#     return " ".join(lt)
+#
+#
+# # print(get_line(lst))
+# with open("res.txt", "w") as f:
+#     f.write(get_line(lst))
+#
+# print("Конец программы")
+
+# with open("res.txt") as f:
+#     nums = f.read()
+#
+# print(nums)
+# print(map(float, nums.split()))  # переводим в float
+# print(list(map(float, nums.split())))
+# print(sum(map(float, nums.split())))
+
+
+# with open("res2.txt", "w") as f:
+#     f.write("Файл — именованная область данных на носителе информации, используемая как базовый объект  "
+#             "с данными в операционных системах.")   #взаимодействия
+#
+#
+# def longest_words(file):
+#     with open(file) as text:
+#         w = text.read().split()  # split разбивает строку по символу пробела и помещает в список
+#         print(w)
+#         max_lenght = len(max(w, key=len))
+#         print(max_lenght)
+#         res = [word for word in w if len(word) == max_lenght]
+#         if len(res) == 1:
+#             return res[0]
+#         return res
+#
+#
+# print(longest_words("res2.txt"))
+
+
+# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10\n"
+# with open("one.txt", "w") as f:
+#     f.write(text)
+#
+# with open("one.txt", "r") as fr, open("two.txt", "w") as fw:
+#     for line in fr:
+#         line = line.replace("Строка", "Линия -")
+#         fw.write(line)
+
+import os
+
+# print(os.getcwd())  # путь к текущей директории
+# print(os.listdir())  # список файлов и папок рядом с файлом
+# print(os.listdir(".."))  # список файлов и папок рядом с файлом
+# print(os.listdir(".venv"))  # список файлов и папок рядом с файлом
+
+# os.mkdir("folder")  # создание папки
+# os.rmdir("folder") # удаление папки
+# os.makedirs("folder1/nest2/nest3")  # создание дерева
+
+# os.remove("xyz.txt") # удалить файл
+# os.rename("two.txt", "www.txt") # переименовать
+# os.rename("www.txt","folder1/www.txt")  # перенос в заданную папку
+
+# os.rename("text5.txt","folder1/nest2/nest3/text5.txt") # перенос в заданную папку
+# os.renames("text4.txt","folder1/nest2/nest/text4.txt") # перенос в несуществующую папку и создает ее
