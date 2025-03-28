@@ -422,14 +422,22 @@
 # print(num)
 # print("Всего отрицательных чисел в списке:", sum_neg(num))
 lst = []
-pos1 = int(input("Введите номер исходной строки: "))
-pos2 = int(input("Введите номер строки для замены: "))
+
 test = "Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n"
 with open("one.txt", "w") as f:
     f.write(test)
 with open("one.txt") as f:
     for i in f:
-        lst.append(i)
+        lst.append(i.strip())
 
+pos1 = input("Введите номер исходной строки: ")
+
+while type(pos1) is not int : #and 0<= pos1 <= len(lst)
+    try:
+        pos1 = int(pos1)
+    except ValueError:
+        print("Число не целое")
+        pos1 = input("Введите целое число: ")
+pos2 = int(input("Введите номер строки для замены: "))
 print(lst)
 
