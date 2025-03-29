@@ -421,23 +421,35 @@
 #
 # print(num)
 # print("Всего отрицательных чисел в списке:", sum_neg(num))
-lst = []
 
-test = "Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n"
-with open("one.txt", "w") as f:
-    f.write(test)
-with open("one.txt") as f:
-    for i in f:
-        lst.append(i.strip())
+file = "zamena.txt"
+test = "Замена строки в текстовом файле:\nизменить строку в списке;\nзаписать список в файл;\n"
+f = open(file, "w")
+f.write(test)
+f.close()
+with open(file) as f:
+    print(f.read())
+with open(file) as f:
+    read_line = f.readlines()   # получили список
+    print("В файле строк: ", len(read_line))
 
-pos1 = input("Введите номер исходной строки: ")
+pos1 = int(input("Введите номер исходной строки: "))
+while True:
+    if 0 <= pos1 <= len(read_line):
+        break
+    else:
+        pos1 = int(input("Такой строки нет \nВведите номер исходной строки: "))
+pos2 = int(input("Номер строки для замены: "))
+while True:
+    if 0 <= pos2 <= len(read_line):
+        break
+    else:
+        pos2 = int(input("Такой строки нет \nНомер строки для замены: "))
 
-while type(pos1) is not int : #and 0<= pos1 <= len(lst)
-    try:
-        pos1 = int(pos1)
-    except ValueError:
-        print("Число не целое")
-        pos1 = input("Введите целое число: ")
-pos2 = int(input("Введите номер строки для замены: "))
-print(lst)
+read_line[pos1 - 1], read_line[pos2 - 1] = read_line[pos2 - 1], read_line[pos1 - 1]
 
+with open(file, "w") as f:
+    f.writelines(read_line)
+
+with open(file) as f:
+    print(f.read())
