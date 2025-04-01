@@ -3094,7 +3094,6 @@
 #     lt = list(map(str, lt))
 #     return " ".join(lt)
 #
-#
 # # print(get_line(lst))
 # with open("res.txt", "w") as f:
 #     f.write(get_line(lst))
@@ -3139,7 +3138,7 @@
 #         line = line.replace("Строка", "Линия -")
 #         fw.write(line)
 
-import os
+# import os
 
 # print(os.getcwd())  # путь к текущей директории
 # print(os.listdir())  # список файлов и папок рядом с файлом
@@ -3156,3 +3155,150 @@ import os
 
 # os.rename("text5.txt","folder1/nest2/nest3/text5.txt") # перенос в заданную папку
 # os.renames("text4.txt","folder1/nest2/nest/text4.txt") # перенос в несуществующую папку и создает ее
+
+# file = "test3.txt"
+# test = "Замена строки в текстовом файле:\nизменить строку в списке;\nзаписать список в файл;\n444\n555\n6666\n"
+# f = open(file, "w")
+# f.write(test)
+# f.close()
+#
+# f = open(file)
+# read_lines = f.readlines()
+# f.close()
+# pos1 = int(input("pos1 = "))
+# pos2 = int(input("pos2 = "))
+# if 0 <= pos1 < len(read_lines) and 0 <= pos2 < len(read_lines):
+#     read_lines[pos1], read_lines[pos2] = read_lines[pos2], read_lines[pos1]
+# else:
+#     print("Такой строки нет")
+#
+# print(read_lines)
+# f = open(file, "w")
+# f.writelines(read_lines)
+# f.close()
+# import os
+
+# print(os.walk("folder1"))
+# for root, dirs, files in os.walk("folder1", topdown=False):
+#     print("root ", root)
+#     print("\tdirs ", dirs)
+#     print("\tfiles ", files)
+
+# import os.path  # работает с путями
+#
+# print(os.path.split(r"c:\users\1\desktop\pyton\folder1\nest2\nest3\text.txt"))  # два кортежа
+# print(os.path.join(r"c:\users\1\desktop", "pyton", "folder1", "nest2"))  # собирает в путь даже не существующий
+# print(os.path.join("nest2", r"c:\users\1\desktop", "pyton", "folder1", ))  # собирает в путь даже не существующий
+
+
+# создание папки и файлов по указанному пути
+# import os
+#
+# dirs = [r"Work\F1", r"Work\F2\F21"]
+# # for d in dirs:
+# #     os.makedirs(d)
+#
+# files = {
+#     "Work": ["w.txt"],
+#     r"Work\F1": ["f11.txt", "f12.txt", "f13.txt"],
+#     r"Work\F2\F21": ["f211.txt", "f212.txt"]
+# }
+#
+# for d, files in files.items():
+#     for file in files:
+#         file_path = os.path.join(d, file)
+#         # print(file_path)
+#         open(file_path, "w").close()
+#
+# file_with_text = [r"Work\w.txt", r"Work\F1\f12.txt", r"Work\F2\F21\f211.txt", r"Work\F2\F21\f212.txt"]  # подготовливаем
+# # путь
+# for file in file_with_text:
+#     with open(file, "w") as f:
+#         f.write(f"Таокй  тесктв файле {file}")  # f {} запись переменной в тексте
+#
+#
+# def print_tree(root, topdown):
+#     print(f"Обход {root} {"сверху вниз" if topdown else "снизу вверх"}")
+#     for root1, directory, file_name in os.walk(root,topdown):
+#         print(root1)
+#         print(directory)
+#         print(file_name)
+#     print("-"*50)
+#
+#
+# print_tree("Work", False)
+# print_tree("Work", True)
+#
+# # Work\w.txt
+# # Work\F1\f11.txt
+# # Work\F1\f12.txt
+# # Work\F1\f13.txt
+# # Work\F2\F21\f211.txt
+# # Work\F2\F21\f212.txt
+
+# import os
+# import time
+# # print(os.path.exists(r"c:\users\1\desktop\pyton\folder1\nest2\nest3\text.txt"))     # ПРОВЕРКА наличия пути
+# # print(os.path.exists(r"c:\users\1\desktop\pyton\folder1\nest\nest3\text.txt"))
+# # print(os.path.isfile(r"c:\users\1\desktop\pyton\folder1\nest2\nest3\text.txt"))  # проверка на файл
+# # print(os.path.isfile(r"c:\users\1\desktop\pyton\folder1\nest2\nest3"))  # проверка на файл
+# # print(os.path.isdir(r"c:\users\1\desktop\pyton\folder1\nest2\nest3"))  # проверка на папку
+#
+# file = "1.py"
+#
+# print(os.path.getsize(file))  # размер в байтах
+# print(os.path.getatime(file))  # время последнего доступа к файлу
+# print(os.path.getmtime(file))  # время последнего изменения файла
+# print(os.path.getctime(file))  # время создания файлу в секундах
+#
+# kb = os.path.getsize(file)
+# a = os.path.getatime(file)
+# m = os.path.getmtime(file)
+# c = os.path.getctime(file)
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(a)))  # используем модуль времени
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(m)))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(c)))
+# print(kb // 1024)   # в килобайтах
+
+
+# class Point:
+#     x = 1
+#     y = 2
+#
+#
+# p1 = Point()
+#
+# print(p1.x,p1.y )
+# p1.x = 10
+# p1.y = 20
+# # Point.x = 100
+# print(p1.x, p1.y )
+# print(p1.__dict__)
+#
+# p2 = Point()
+# print(p2.x, p2.y)
+# print(Point.__dict__)
+
+class Point:
+    """Класс для предоставление координат на плоскости"""
+    x = 1
+    y = 2
+
+    def set_coord(self, x1, y1):
+        self.x = x1
+        self.y = y1
+        print("Устанавливаем координаты ")
+
+
+p1 = Point()
+print(Point.__doc__)
+print(type(p1))
+# p1.x = 5
+# p1.y = 10
+p1.set_coord(5, 10)
+print(p1.__dict__)
+Point.set_coord(p1, 20, 30)
+print(p1.__dict__)
+p2 = Point()
+p2.set_coord(100, 200)
+print(p2.__dict__)
