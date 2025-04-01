@@ -422,34 +422,48 @@
 # print(num)
 # print("Всего отрицательных чисел в списке:", sum_neg(num))
 
-file = "zamena.txt"
-test = "Замена строки в текстовом файле:\nизменить строку в списке;\nзаписать список в файл;\n444\n555\n6666\n"
-f = open(file, "w")
-f.write(test)
-f.close()
-with open(file) as f:
-    print(f.read())
-with open(file) as f:
-    read_line = f.readlines()   # получили список
-    print("В файле строк: ", len(read_line))
+# file = "zamena.txt"
+# test = "Замена строки в текстовом файле:\nизменить строку в списке;\nзаписать список в файл;\n444\n555\n6666\n"
+# f = open(file, "w")
+# f.write(test)
+# f.close()
+# with open(file) as f:
+#     print(f.read())
+# with open(file) as f:
+#     read_line = f.readlines()   # получили список
+#     print("В файле строк: ", len(read_line))
+#
+# pos1 = int(input("Введите номер исходной строки: "))
+# while True:
+#     if 0 <= pos1 <= len(read_line):
+#         break
+#     else:
+#         pos1 = int(input("Такой строки нет \nВведите номер исходной строки: "))
+# pos2 = int(input("Номер строки для замены: "))
+# while True:
+#     if 0 <= pos2 <= len(read_line):
+#         break
+#     else:
+#         pos2 = int(input("Такой строки нет \nНомер строки для замены: "))
+#
+# read_line[pos1 - 1], read_line[pos2 - 1] = read_line[pos2 - 1], read_line[pos1 - 1]
+#
+# with open(file, "w") as f:
+#     f.writelines(read_line)
+#
+# with open(file) as f:
+#     print(f.read())
 
-pos1 = int(input("Введите номер исходной строки: "))
-while True:
-    if 0 <= pos1 <= len(read_line):
-        break
-    else:
-        pos1 = int(input("Такой строки нет \nВведите номер исходной строки: "))
-pos2 = int(input("Номер строки для замены: "))
-while True:
-    if 0 <= pos2 <= len(read_line):
-        break
-    else:
-        pos2 = int(input("Такой строки нет \nНомер строки для замены: "))
+import os
+import time
 
-read_line[pos1 - 1], read_line[pos2 - 1] = read_line[pos2 - 1], read_line[pos1 - 1]
-
-with open(file, "w") as f:
-    f.writelines(read_line)
-
-with open(file) as f:
-    print(f.read())
+file = input("Введите путь :")
+print(file)
+# file = r"test\f1\new.txt"
+if os.path.exists(file):  # ПРОВЕРКА наличия пути
+    tpl = os.path.split(file)  # два кортежа
+    s = os.path.getatime(file)
+    print(tpl[1], " (", tpl[0], ") "," - ", "last access ",
+          time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s)), sep="")
+else:
+    print("Файла нет")
