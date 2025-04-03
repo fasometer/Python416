@@ -454,16 +454,36 @@
 # with open(file) as f:
 #     print(f.read())
 
-import os
-import time
+# import os
+# import time
+#
+# file = input("Введите путь :")
+# print(file)
+# # file = r"test\f1\new.txt"
+# if os.path.exists(file):  # ПРОВЕРКА наличия пути
+#     tpl = os.path.split(file)  # два кортежа
+#     s = os.path.getatime(file)
+#     print(tpl[1], " (", tpl[0], ") "," - ", "last access ",
+#           time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s)), sep="")
+# else:
+#     print("Файла нет")
 
-file = input("Введите путь :")
-print(file)
-# file = r"test\f1\new.txt"
-if os.path.exists(file):  # ПРОВЕРКА наличия пути
-    tpl = os.path.split(file)  # два кортежа
-    s = os.path.getatime(file)
-    print(tpl[1], " (", tpl[0], ") "," - ", "last access ",
-          time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s)), sep="")
-else:
-    print("Файла нет")
+class Car:
+    def __init__(self, model=1, yars=1, manufacter=1, power=2, color=2, price=2):
+        self.__yars = yars
+        self.__model = model
+        self.__manufacter = manufacter
+        self.__power = power
+        self.__color = color
+        self.__price = price
+
+    def print_info(self):
+        print(" Данные автомобиля ".center(40, "*"))
+        print(f"Название модели: {self.__model}\nГод выпуска: {self.__yars}\n"
+              f"Производитель: {self.__manufacter}\nМощность двигателя: {self.__power} л.с.\n"
+              f"Цвет машины: {self.__color}\nЦена: {self.__price}")
+        print("=" * 40)
+
+
+p1 = Car(3,3,3,3,3,3)
+p1.print_info()

@@ -3129,7 +3129,8 @@
 # print(longest_words("res2.txt"))
 
 
-# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10\n"
+# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\n
+# Строка №8\nСтрока №9\nСтрока №10\n"
 # with open("one.txt", "w") as f:
 #     f.write(text)
 #
@@ -3187,8 +3188,10 @@
 # import os.path  # работает с путями
 #
 # print(os.path.split(r"c:\users\1\desktop\pyton\folder1\nest2\nest3\text.txt"))  # два кортежа
-# print(os.path.join(r"c:\users\1\desktop", "pyton", "folder1", "nest2"))  # собирает в путь даже не существующий
-# print(os.path.join("nest2", r"c:\users\1\desktop", "pyton", "folder1", ))  # собирает в путь даже не существующий
+# print(os.path.join(r"c:\users\1\desktop", "pyton", "folder1", "nest2"))
+# собирает в путь даже не существующий
+# print(os.path.join("nest2", r"c:\users\1\desktop", "pyton", "folder1", ))
+# собирает в путь даже не существующий
 
 
 # создание папки и файлов по указанному пути
@@ -3210,7 +3213,8 @@
 #         # print(file_path)
 #         open(file_path, "w").close()
 #
-# file_with_text = [r"Work\w.txt", r"Work\F1\f12.txt", r"Work\F2\F21\f211.txt", r"Work\F2\F21\f212.txt"]  # подготовливаем
+# file_with_text = [r"Work\w.txt", r"Work\F1\f12.txt", r"Work\F2\F21\f211.txt", r"Work\F2\F21\f212.txt"]
+# подготовливаем
 # # путь
 # for file in file_with_text:
 #     with open(file, "w") as f:
@@ -3279,26 +3283,213 @@
 # print(p2.x, p2.y)
 # print(Point.__dict__)
 
-class Point:
-    """Класс для предоставление координат на плоскости"""
-    x = 1
-    y = 2
+# class Point:
+#     """Класс для предоставление координат на плоскости"""
+#     x = 1
+#     y = 2
+#
+#     def set_coord(self, x1, y1):
+#         self.x = x1
+#         self.y = y1
+#         print("Устанавливаем координаты ")
+#
+#
+# p1 = Point()
+# print(Point.__doc__)
+# print(type(p1))
+# # p1.x = 5
+# # p1.y = 10
+# p1.set_coord(5, 10)
+# print(p1.__dict__)
+# Point.set_coord(p1, 20, 30)
+# print(p1.__dict__)
+# p2 = Point()
+# p2.set_coord(100, 200)
+# print(p2.__dict__)
 
-    def set_coord(self, x1, y1):
-        self.x = x1
-        self.y = y1
-        print("Устанавливаем координаты ")
+class Human:
+    name = "name"
+    birthday = "00.00.0000"
+    phone = "00-00-00"
+    country = "country"
+    city = "city"
+    address = "street, house"
+
+    def print_info(self):
+        print(" Персональные данные ".center(40, "*"))
+        print(f"Имя: {self.name}\nДата рождения: {self.birthday}\n"
+              f"Номер телефона: {self.phone}\nСтрана: {self.country}\n"
+              f"Город: {self.city}\nДомашний адрес: {self.address}")
+        print("=" * 40)
+
+    def input_info(self, first_name, birthday, phone, country, city, address):
+        self.name = first_name
+        self.birthday = birthday
+        self.phone = phone
+        self.country = country
+        self.city = city
+        self.address = address
+
+    def set_name(self, name):   # устанавливаем новое имя
+        self.name = name
+
+    def get_name(self):  # получаем новое имя
+        return self.name
 
 
-p1 = Point()
-print(Point.__doc__)
-print(type(p1))
-# p1.x = 5
-# p1.y = 10
-p1.set_coord(5, 10)
-print(p1.__dict__)
-Point.set_coord(p1, 20, 30)
-print(p1.__dict__)
-p2 = Point()
-p2.set_coord(100, 200)
-print(p2.__dict__)
+h1 = Human()
+h1.print_info()
+h1.input_info("Юля", "23.05.1983", "45-46-98", "Россия", "Мосвка",
+              "Бульварб 1А")
+print(h1.country)
+h1.print_info()
+h1.set_name("Юлия")
+h1.print_info()
+print(h1.get_name())
+
+# изменение свойста
+# class Person:
+#     skill = 10
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#         # print("Инициализатор для ", self.name, self.surname)
+#
+#     def __del__(self):
+#         print("Удаление экземпляра")
+#
+#     def print_info(self):
+#         print("Данные сотрудника:", self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill, "\n")
+#
+#
+# p1 = Person("Виктор", "Резник")
+# p1.print_info()
+# p1.add_skill(3)
+#
+# del p1
+# print()
+# p2 = Person("Анна", "Долгих")
+# p2.print_info()
+# p2.add_skill(2)
+
+#   подсчет вызова класса
+# class Point:
+#     count = 0
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1  # обращение к статической переменной по имени класса
+#
+#
+# p1 = Point()
+# p2 = Point()
+# p3 = Point()
+# print(Point.count)  # обращение к статическому свойству
+# print(p1.count)     # обращение к статическому свойству
+# print(p3.count)     # обращение к статическому свойству
+
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print("Инициализация робота:", self.name)
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#         if Robot.k == 0:
+#             print(self.name, "был последний")
+#         else:
+#             print("Работающих роботов осталось", Robot.k)
+#
+#     def say_hi(self):
+#         print("Приветствую! Меня зовут", self.name)
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print("Численность роботов", Robot.k)
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print("Численность роботов", Robot.k)
+# droid3 = Robot("C30-3PO")
+# droid3.say_hi()
+# print("Численность роботов", Robot.k)
+# print("\n\nЗдесь роботы работают\n")
+# print("Роботы закончили работу. Давайте их выключим.")
+#
+# del droid3
+# del droid2
+# del droid1
+#
+# print("Численность роботов", Robot.k)
+
+# class Point:
+#
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __check_value(s):  # private защита внутри класса
+#         if isinstance(s, int) or isinstance(s, float):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def set_coord_x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#
+#     def set_coord_y(self, y):
+#         if Point.__check_value(y):
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#     def get_coord_x(self):
+#         return self.__x
+#
+#     def get_coord_y(self):
+#         return self.__y
+#
+#
+# p1 = Point("5", 10)
+# # print(p1.__dict__)
+# #
+# # # p1.z = 20  # добавили свойство за пределом класса только в экземпляре
+# # # print(p1.__x, p1.__y)
+# # p1.__x = 50
+# # p1.__y = "abc"
+# print(p1.__dict__)
+# p1.set_coord(50.5, 100)
+# print(p1.get_coord())
+# print(p1.__dict__)
+# p1.set_coord(50, "abc")
+# print(p1.__dict__)
+# p1.set_coord_x(500)
+# print(p1.__dict__)
+# p1.set_coord_y("500")
+# print(p1.__dict__)
+#
+# # p1._Point__x = "abc"
+# # print(p1._Point__x)
+# # print(p1.__dict__)
