@@ -467,6 +467,8 @@
 #           time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s)), sep="")
 # else:
 #     print("Файла нет")
+import datetime
+
 
 class Car:
     def __init__(self, model=1, yars=1, manufacter=1, power=2, color=2, price=2):
@@ -481,9 +483,77 @@ class Car:
         print(" Данные автомобиля ".center(40, "*"))
         print(f"Название модели: {self.__model}\nГод выпуска: {self.__yars}\n"
               f"Производитель: {self.__manufacter}\nМощность двигателя: {self.__power} л.с.\n"
-              f"Цвет машины: {self.__color}\nЦена: {self.__price}")
+              f"Цвет машины: {self.__color}\nЦена: {self.__price} euro")
         print("=" * 40)
 
+    def set_model(self, model):
+        if isinstance(model, str):
+            self.__model = model
+        else:
+            print("Должен быть текст")
 
-p1 = Car(3,3,3,3,3,3)
+    def set_yars(self, yars):
+        today = datetime.date.today()
+        if isinstance(yars, int) and 1900 <= yars <= today.year:
+            self.__yars = yars
+        else:
+            print("Год не похож на себя")
+
+    def set_manufacter(self, manufacter):
+        if isinstance(manufacter, str):
+            self.__manufacter = manufacter
+        else:
+            print("Должен быть текст")
+
+    def set_power(self, power):
+        if isinstance(power, int) and 10 <= power <= 2000:
+            self.__power = power
+        else:
+            print("Мощность не корректна")
+
+    def set_color(self, color):
+        if isinstance(color, str):
+            self.__color = color
+        else:
+            print("Должен быть текст")
+
+    def set_price(self, price):
+        if isinstance(price, int) and 0 <= price:
+            self.__price = price
+        else:
+            print("Цена не корректна")
+
+    def get_model(self):
+        return self.__model
+
+    def get_yars(self):
+        return self.__yars
+
+    def get_manufacter(self):
+        return self.__manufacter
+
+    def get_power(self):
+        return self.__power
+
+    def get_color(self):
+        return self.__color
+
+    def get_price(self):
+        return self.__price
+
+
+p1 = Car(3, 3, 3, 3, 3, 3)
 p1.print_info()
+p1.set_model("BMW")
+print(p1.get_model())
+p1.set_yars(2026)
+print(p1.get_yars())
+p1.set_manufacter("Germany")
+print(p1.get_manufacter())
+p1.set_power(30000)
+print(p1.get_power())
+p1.set_color("black")
+print(p1.get_color())
+p1.set_price(-30000)
+print(p1.get_price())
+# p1.print_info()
