@@ -471,10 +471,10 @@ import datetime
 
 
 class Car:
-    def __init__(self, model=1, yars=1, manufacter=1, power=2, color=2, price=2):
+    def __init__(self, model, yars, manufacturer, power, color, price):
         self.__yars = yars
         self.__model = model
-        self.__manufacter = manufacter
+        self.__manufacturer = manufacturer
         self.__power = power
         self.__color = color
         self.__price = price
@@ -482,8 +482,8 @@ class Car:
     def print_info(self):
         print(" Данные автомобиля ".center(40, "*"))
         print(f"Название модели: {self.__model}\nГод выпуска: {self.__yars}\n"
-              f"Производитель: {self.__manufacter}\nМощность двигателя: {self.__power} л.с.\n"
-              f"Цвет машины: {self.__color}\nЦена: {self.__price} euro")
+              f"Производитель: {self.__manufacturer}\nМощность двигателя: {self.__power} л.с.\n"
+              f"Цвет машины: {self.__color}\nЦена: {self.__price} rub")
         print("=" * 40)
 
     def set_model(self, model):
@@ -499,9 +499,9 @@ class Car:
         else:
             print("Год не похож на себя")
 
-    def set_manufacter(self, manufacter):
-        if isinstance(manufacter, str):
-            self.__manufacter = manufacter
+    def set_manufacturer(self, manufacturer):
+        if isinstance(manufacturer, str):
+            self.__manufacturer = manufacturer
         else:
             print("Должен быть текст")
 
@@ -529,8 +529,8 @@ class Car:
     def get_yars(self):
         return self.__yars
 
-    def get_manufacter(self):
-        return self.__manufacter
+    def get_manufacturer(self):
+        return self.__manufacturer
 
     def get_power(self):
         return self.__power
@@ -542,18 +542,18 @@ class Car:
         return self.__price
 
 
-p1 = Car(3, 3, 3, 3, 3, 3)
+p1 = Car("X7 M50i", 2021, "BMW", 530, "white", 1079000)
 p1.print_info()
-p1.set_model("BMW")
+p1.set_model("X56 OPO")
 print(p1.get_model())
 p1.set_yars(2026)
 print(p1.get_yars())
-p1.set_manufacter("Germany")
-print(p1.get_manufacter())
+p1.set_manufacturer("BMW")
+print(p1.get_manufacturer())
 p1.set_power(30000)
 print(p1.get_power())
 p1.set_color("black")
 print(p1.get_color())
 p1.set_price(-30000)
 print(p1.get_price())
-# p1.print_info()
+p1.print_info()
