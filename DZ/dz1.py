@@ -454,19 +454,20 @@
 # with open(file) as f:
 #     print(f.read())
 
-# import os
-# import time
-#
-# file = input("Введите путь :")
-# print(file)
-# # file = r"test\f1\new.txt"
-# if os.path.exists(file):  # ПРОВЕРКА наличия пути
-#     tpl = os.path.split(file)  # два кортежа
-#     s = os.path.getatime(file)
-#     print(tpl[1], " (", tpl[0], ") "," - ", "last access ",
-#           time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s)), sep="")
-# else:
-#     print("Файла нет")
+import os
+import time
+
+file = input("Введите путь :")
+print(file)
+# file = r"test\f1\new.txt"
+if os.path.exists(file):  # ПРОВЕРКА наличия пути
+    tpl = os.path.split(file)  # два кортежа
+    s = os.path.getatime(file)
+    t = time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s))
+    print(f"{tpl[1]} ({})")
+    print(tpl[1], " (", tpl[0], ") ", " - ", "last access ", t, sep="")
+else:
+    print("Файла нет")
 import datetime
 
 

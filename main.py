@@ -45,6 +45,7 @@
 # from zope.interface import named
 # from setuptools.config import read_configuration
 # from itertools import count
+# from multiprocessing.spawn import old_main_modules
 
 
 # a = 5
@@ -3306,46 +3307,46 @@
 # p2 = Point()
 # p2.set_coord(100, 200)
 # print(p2.__dict__)
-
-class Human:
-    name = "name"
-    birthday = "00.00.0000"
-    phone = "00-00-00"
-    country = "country"
-    city = "city"
-    address = "street, house"
-
-    def print_info(self):
-        print(" Персональные данные ".center(40, "*"))
-        print(f"Имя: {self.name}\nДата рождения: {self.birthday}\n"
-              f"Номер телефона: {self.phone}\nСтрана: {self.country}\n"
-              f"Город: {self.city}\nДомашний адрес: {self.address}")
-        print("=" * 40)
-
-    def input_info(self, first_name, birthday, phone, country, city, address):
-        self.name = first_name
-        self.birthday = birthday
-        self.phone = phone
-        self.country = country
-        self.city = city
-        self.address = address
-
-    def set_name(self, name):   # устанавливаем новое имя
-        self.name = name
-
-    def get_name(self):  # получаем новое имя
-        return self.name
-
-
-h1 = Human()
-h1.print_info()
-h1.input_info("Юля", "23.05.1983", "45-46-98", "Россия", "Мосвка",
-              "Бульварб 1А")
-print(h1.country)
-h1.print_info()
-h1.set_name("Юлия")
-h1.print_info()
-print(h1.get_name())
+#
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street, house"
+#
+#     def print_info(self):
+#         print(" Персональные данные ".center(40, "*"))
+#         print(f"Имя: {self.name}\nДата рождения: {self.birthday}\n"
+#               f"Номер телефона: {self.phone}\nСтрана: {self.country}\n"
+#               f"Город: {self.city}\nДомашний адрес: {self.address}")
+#         print("=" * 40)
+#
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):   # устанавливаем новое имя
+#         self.name = name
+#
+#     def get_name(self):  # получаем новое имя
+#         return self.name
+#
+#
+# h1 = Human()
+# h1.print_info()
+# h1.input_info("Юля", "23.05.1983", "45-46-98", "Россия", "Мосвка",
+#               "Бульварб 1А")
+# print(h1.country)
+# h1.print_info()
+# h1.set_name("Юлия")
+# h1.print_info()
+# print(h1.get_name())
 
 # изменение свойста
 # class Person:
@@ -3493,3 +3494,277 @@ print(h1.get_name())
 # # p1._Point__x = "abc"
 # # print(p1._Point__x)
 # # print(p1.__dict__)
+# import os
+#
+# file_path = r"C:\Users\1\Desktop\pyton\Work\w.txt"
+# if os.path.exists(file_path):
+#     direct, name = os.path.split(file_path)
+#     atime = os.path.getatime(file_path)
+#     print(f"{name} ({direct}) - время последнего доступа {atime}")
+# else:
+#     print(f"файл {file_path} не существует")
+
+# import math
+#
+#
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self.__length = length
+#         self.__width = width
+#
+#     def __check_value(c):  # проверка на число функция защищена о внешней изменения
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         return False
+#
+#     def set_width(self, width):
+#         if Rectangle.__check_value(width):
+#             self.__width = width
+#
+#     def set_length(self, length):
+#         if Rectangle.__check_value(length):  # элемент закрыт __ обращение только к классу
+#             self.__length = length
+#
+#     def get_width(self):
+#         return self.__width
+#
+#     def get_length(self):
+#         return self.__length
+#
+#     def get_area(self):
+#         return self.__length * self.__width
+#
+#     def get_perimeter(self):
+#         return 2 * (self.__length + self.__width)
+#
+#     def get_hypotenuse(self):
+#         return round(math.sqrt(self.__length ** 2 + self.__width ** 2), 2)
+#
+#     def get_draw(self):
+#         # for i in range (self.__length):
+#         #     for j in range(self.__width):
+#         #         print("*", end="")
+#         #     print()
+#         # for i in range(self.__length):
+#         #     print("*" * self.__width)
+#         print(("*" * self.__width + "\n") * self.__length)
+#
+#
+# r1 = Rectangle(4, 12)
+# r1.set_width(9)
+# r1.set_length(2)
+# print("Длина прямоугольника:", r1.get_length())
+# print("Ширина прямоугольника:", r1.get_width())
+# print("Площадь:", r1.get_area())
+# print("Перемитре", r1.get_perimeter())
+# print("Гипотенуза ", r1.get_hypotenuse())
+# r1.get_draw()
+
+# class Point:
+#     __slots__ = "x", "y"  #   защита
+#
+#     def __init__(self, x1, y1):
+#         self.x = x1
+#         self.y = y1
+#
+#
+# p1 = Point(5, 10)
+# # p1.z = 1
+# print(p1.x, p1.y)
+# # print(p1.__dict__)
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __check_value(c):  # проверка на число функция защищена о внешней изменения
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         return False
+#
+#     def __set_coord_x(self, x):
+#         print("Выхов __set_coord_x")
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("No")
+#
+#     def __get_coord_x(self):
+#         print("Вызов __get_coord")
+#         return self.__x
+#
+#     def __del_coord_x(self):
+#         print("удаление свойства")
+#         del self.__x
+#
+#     x = property(__get_coord_x, __set_coord_x, __del_coord_x)
+#
+#
+# p1 = Point(5, 10)
+# # print(p1.__set_coord_x)
+# p1.x = 50 # set
+# print(p1.x) # get
+# p1.x = "abc" # saet
+# print(p1.x) # get
+# del p1.x # del
+# print(p1.__dict__)
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     @staticmethod
+#     def __check_value(c):  # проверка на число функция защищена о внешней изменения
+#         if isinstance(c, int) or isinstance(c, float):
+#             return True
+#         return False
+#
+#     @property  # get метод он пишется первым
+#     def x(self):  # имя метода
+#         return self.__x
+#
+#     @x.setter  # set Метод
+#     def x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("No format")
+#
+#     @x.deleter  # метода удаления
+#     def x(self):
+#         del self.__x
+#
+#     # x = property(__get_coord_x, __set_coord_x, __del_coord_x) важна последовательность
+#
+#
+# p1 = Point(5, 10)
+# # print(p1.__set_coord_x)
+# p1.x = 50  # set
+# print(p1.x)  # get
+# p1.x = "abc"  # saet
+# print(p1.x)  # get
+# del p1.x  # del
+# print(p1.__dict__)
+
+# class Person:
+#     def __init__(self, name, old):
+#         self.__name = name
+#         self.__old = old
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, n):
+#         self.__name = n
+#
+#     @name.deleter
+#     def name(self):
+#         del self.__name
+#
+#     @property
+#     def old(self):
+#         return self.__old
+#
+#     @old.setter
+#     def old(self, year):
+#         self.__old = year
+#
+#     @old.deleter
+#     def old(self):
+#         del self.__old
+#
+#
+# p1 = Person("Irina",26)
+# print(p1.__dict__)
+# p1.name = "Igor"
+# p1.old = 66
+# print(p1.__dict__)
+
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#     # get_count = staticmethod(get_count)
+#
+#
+# p1 = Point()
+# p2 = Point()
+# p3 = Point()
+# p4 = Point()
+#
+# print(Point.get_count())
+# print(p2.get_count())
+
+# def inc(x):
+#     return x + 1
+#
+#
+# def dec(x):
+#     return x - 1
+#
+#
+# print(inc(10), dec(10))
+#
+#
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+#
+# ch = Change()
+# print(ch.inc(10))
+# print(Change.inc(10), Change.dec(10))
+
+class Numbers:
+    @staticmethod
+    def max(a, b, c, d):
+        mx = a
+        if b > mx:
+            mx = b
+        if c > mx:
+            mx = c
+        if d > mx:
+            mx = d
+        return mx
+
+    @staticmethod
+    def min(*args):
+        mn = args[0]
+        for i in args:
+            if i < mn:
+                mn = i
+        return mn
+
+    @staticmethod
+    def averange(*args):
+        return sum(args) / len(args)
+
+    @staticmethod
+    def factorial(n):
+        fact = 1
+        for i in range(1, n + 1):
+            fact *= i
+        return fact
+
+
+print("Максимальное число", Numbers.max(3, 5, 7, 9))
+print("минимальное число", Numbers.min(3, 5, 7, 9))
+print("Среднеарифметичкск", Numbers.averange(3, 5, 7, 9))
+print("Факториал", Numbers.factorial(5))
