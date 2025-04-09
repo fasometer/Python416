@@ -568,7 +568,7 @@ class Sqwer:
     def sq_triangle_geron(a, b, c):
         p = (a + b + c) / 2
         Sqwer.__count += 1
-        return round(math.sqrt(p * (p - a) * (p - b) * (p - c)),2)
+        return round(math.sqrt(p * (p - a) * (p - b) * (p - c)), 2)
 
     @staticmethod
     def sq_triangle_visota(a, h):
@@ -593,10 +593,10 @@ class Sqwer:
 print("Площадь вычислялась:", Sqwer.get_count())
 print("Площадь треугольника:", Sqwer.sq_triangle_geron(3, 4, 5))
 print("Площадь треугольника:", Sqwer.sq_triangle_geron(5, 6, 7))
-print("Площадь вычислялась:",Sqwer.get_count())
+print("Площадь вычислялась:", Sqwer.get_count())
 print("Площадь треугольника:", Sqwer.sq_triangle_visota(5, 6))
 print("Площадь прямоугольника:", Sqwer.sq_rectangle(6, 7))
 print("Площадь квадрата:", Sqwer.sq_square(6))
 print("Площадь квадрата:", Sqwer.sq_square(7))
 print("Площадь квадрата:", Sqwer.sq_square(8))
-print("Площадь вычислялась:",Sqwer.get_count())
+print("Площадь вычислялась:", Sqwer.get_count())
