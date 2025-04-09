@@ -454,107 +454,149 @@
 # with open(file) as f:
 #     print(f.read())
 
-import os
-import time
+# import os
+# import time
+#
+# file = input("Введите путь :")
+# print(file)
+# # file = r"test\f1\new.txt"
+# if os.path.exists(file):  # ПРОВЕРКА наличия пути
+#     tpl = os.path.split(file)  # два кортежа
+#     s = os.path.getatime(file)
+#     t = time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s))
+#     print(f"{tpl[1]} ({tpl[0]}) - last access {t}")
+#     # print(tpl[1], " (", , ") ", " - ", "", t, sep="")
+# else:
+#     print("Файла нет")
+# import datetime
+#
+#
+# class Car:
+#     def __init__(self, model, yars, manufacturer, power, color, price):
+#         self.__yars = yars
+#         self.__model = model
+#         self.__manufacturer = manufacturer
+#         self.__power = power
+#         self.__color = color
+#         self.__price = price
+#
+#     def print_info(self):
+#         print(" Данные автомобиля ".center(40, "*"))
+#         print(f"Название модели: {self.__model}\nГод выпуска: {self.__yars}\n"
+#               f"Производитель: {self.__manufacturer}\nМощность двигателя: {self.__power} л.с.\n"
+#               f"Цвет машины: {self.__color}\nЦена: {self.__price} rub")
+#         print("=" * 40)
+#
+#     def set_model(self, model):
+#         if isinstance(model, str):
+#             self.__model = model
+#         else:
+#             print("Должен быть текст")
+#
+#     def set_yars(self, yars):
+#         today = datetime.date.today()
+#         if isinstance(yars, int) and 1900 <= yars <= today.year:
+#             self.__yars = yars
+#         else:
+#             print("Год не похож на себя")
+#
+#     def set_manufacturer(self, manufacturer):
+#         if isinstance(manufacturer, str):
+#             self.__manufacturer = manufacturer
+#         else:
+#             print("Должен быть текст")
+#
+#     def set_power(self, power):
+#         if isinstance(power, int) and 10 <= power <= 2000:
+#             self.__power = power
+#         else:
+#             print("Мощность не корректна")
+#
+#     def set_color(self, color):
+#         if isinstance(color, str):
+#             self.__color = color
+#         else:
+#             print("Должен быть текст")
+#
+#     def set_price(self, price):
+#         if isinstance(price, int) and 0 <= price:
+#             self.__price = price
+#         else:
+#             print("Цена не корректна")
+#
+#     def get_model(self):
+#         return self.__model
+#
+#     def get_yars(self):
+#         return self.__yars
+#
+#     def get_manufacturer(self):
+#         return self.__manufacturer
+#
+#     def get_power(self):
+#         return self.__power
+#
+#     def get_color(self):
+#         return self.__color
+#
+#     def get_price(self):
+#         return self.__price
+#
+#
+# p1 = Car("X7 M50i", 2021, "BMW", 530, "white", 1079000)
+# p1.print_info()
+# p1.set_model("X56 OPO")
+# print(p1.get_model())
+# p1.set_yars(2026)
+# print(p1.get_yars())
+# p1.set_manufacturer("BMW")
+# print(p1.get_manufacturer())
+# p1.set_power(30000)
+# print(p1.get_power())
+# p1.set_color("black")
+# print(p1.get_color())
+# p1.set_price(-30000)
+# print(p1.get_price())
+# p1.print_info()
+import math
 
-file = input("Введите путь :")
-print(file)
-# file = r"test\f1\new.txt"
-if os.path.exists(file):  # ПРОВЕРКА наличия пути
-    tpl = os.path.split(file)  # два кортежа
-    s = os.path.getatime(file)
-    t = time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(s))
-    print(f"{tpl[1]} ({})")
-    print(tpl[1], " (", tpl[0], ") ", " - ", "last access ", t, sep="")
-else:
-    print("Файла нет")
-import datetime
+
+class Sqwer:
+    __count = 0
+
+    @staticmethod
+    def sq_triangle_geron(a, b, c):
+        p = (a + b + c) / 2
+        Sqwer.__count += 1
+        return round(math.sqrt(p * (p - a) * (p - b) * (p - c)),2)
+
+    @staticmethod
+    def sq_triangle_visota(a, h):
+        Sqwer.__count += 1
+        return a * h / 2
+
+    @staticmethod
+    def sq_rectangle(a, b):
+        Sqwer.__count += 1
+        return a * b
+
+    @staticmethod
+    def sq_square(a):
+        Sqwer.__count += 1
+        return a ** 2
+
+    @staticmethod
+    def get_count():
+        return Sqwer.__count
 
 
-class Car:
-    def __init__(self, model, yars, manufacturer, power, color, price):
-        self.__yars = yars
-        self.__model = model
-        self.__manufacturer = manufacturer
-        self.__power = power
-        self.__color = color
-        self.__price = price
-
-    def print_info(self):
-        print(" Данные автомобиля ".center(40, "*"))
-        print(f"Название модели: {self.__model}\nГод выпуска: {self.__yars}\n"
-              f"Производитель: {self.__manufacturer}\nМощность двигателя: {self.__power} л.с.\n"
-              f"Цвет машины: {self.__color}\nЦена: {self.__price} rub")
-        print("=" * 40)
-
-    def set_model(self, model):
-        if isinstance(model, str):
-            self.__model = model
-        else:
-            print("Должен быть текст")
-
-    def set_yars(self, yars):
-        today = datetime.date.today()
-        if isinstance(yars, int) and 1900 <= yars <= today.year:
-            self.__yars = yars
-        else:
-            print("Год не похож на себя")
-
-    def set_manufacturer(self, manufacturer):
-        if isinstance(manufacturer, str):
-            self.__manufacturer = manufacturer
-        else:
-            print("Должен быть текст")
-
-    def set_power(self, power):
-        if isinstance(power, int) and 10 <= power <= 2000:
-            self.__power = power
-        else:
-            print("Мощность не корректна")
-
-    def set_color(self, color):
-        if isinstance(color, str):
-            self.__color = color
-        else:
-            print("Должен быть текст")
-
-    def set_price(self, price):
-        if isinstance(price, int) and 0 <= price:
-            self.__price = price
-        else:
-            print("Цена не корректна")
-
-    def get_model(self):
-        return self.__model
-
-    def get_yars(self):
-        return self.__yars
-
-    def get_manufacturer(self):
-        return self.__manufacturer
-
-    def get_power(self):
-        return self.__power
-
-    def get_color(self):
-        return self.__color
-
-    def get_price(self):
-        return self.__price
-
-
-p1 = Car("X7 M50i", 2021, "BMW", 530, "white", 1079000)
-p1.print_info()
-p1.set_model("X56 OPO")
-print(p1.get_model())
-p1.set_yars(2026)
-print(p1.get_yars())
-p1.set_manufacturer("BMW")
-print(p1.get_manufacturer())
-p1.set_power(30000)
-print(p1.get_power())
-p1.set_color("black")
-print(p1.get_color())
-p1.set_price(-30000)
-print(p1.get_price())
-p1.print_info()
+print("Площадь вычислялась:", Sqwer.get_count())
+print("Площадь треугольника:", Sqwer.sq_triangle_geron(3, 4, 5))
+print("Площадь треугольника:", Sqwer.sq_triangle_geron(5, 6, 7))
+print("Площадь вычислялась:",Sqwer.get_count())
+print("Площадь треугольника:", Sqwer.sq_triangle_visota(5, 6))
+print("Площадь прямоугольника:", Sqwer.sq_rectangle(6, 7))
+print("Площадь квадрата:", Sqwer.sq_square(6))
+print("Площадь квадрата:", Sqwer.sq_square(7))
+print("Площадь квадрата:", Sqwer.sq_square(8))
+print("Площадь вычислялась:",Sqwer.get_count())
