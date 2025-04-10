@@ -3732,39 +3732,214 @@
 # print(ch.inc(10))
 # print(Change.inc(10), Change.dec(10))
 
-class Numbers:
-    @staticmethod
-    def max(a, b, c, d):
-        mx = a
-        if b > mx:
-            mx = b
-        if c > mx:
-            mx = c
-        if d > mx:
-            mx = d
-        return mx
+# class Numbers:
+#     @staticmethod
+#     def max(a, b, c, d):
+#         mx = a
+#         if b > mx:
+#             mx = b
+#         if c > mx:
+#             mx = c
+#         if d > mx:
+#             mx = d
+#         return mx
+#
+#     @staticmethod
+#     def min(*args):
+#         mn = args[0]
+#         for i in args:
+#             if i < mn:
+#                 mn = i
+#         return mn
+#
+#     @staticmethod
+#     def averange(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(n):
+#         fact = 1
+#         for i in range(1, n + 1):
+#             fact *= i
+#         return fact
+#
+#
+# print("Максимальное число", Numbers.max(3, 5, 7, 9))
+# print("минимальное число", Numbers.min(3, 5, 7, 9))
+# print("Среднеарифметическое", Numbers.averange(3, 5, 7, 9))
+# print("Факториал", Numbers.factorial(5))
+
+# class Date:
+#     def __init__(self, day, moth, year):
+#         self.day = day
+#         self.moth = moth
+#         self.year = year
+#
+#     @classmethod
+#     def from_string(cls, string_date):
+#         day, month, year = map(int, string_date.split("."))  # [23, 01, 2025] есть map и int
+#         date = cls(day, month, year)  # создание экземпляра класса
+#         return date
+#
+#     def string_to_db(self):
+#         return f"{self.year}-{self.moth}-{self.day}"
+#
+#
+# # string_date = "23.01.2025"
+# # day, month, year = map(int, string_date.split("."))  # [23, 01, 2025] есть map и int
+# # d = Date(day, month, year)
+# d = Date.from_string("23.01.2025")
+# print(d.string_to_db())
+# d1 = Date.from_string("235.01.2025")
+# print(d1.string_to_db())
+
+# class Account:
+#     rate_usd = 0.013
+#     rate_eur = 0.011
+#     suffix = "RUB"
+#     suffix_usd = "USD"
+#     suffix_eur = "EUR"
+#
+#     def __init__(self, num, surname, percent, value):
+#         self.num = num
+#         self.surname = surname
+#         self.percent = percent
+#         self.value = value
+#         print(f"Счет №{self.num} принадлежащий {self.surname} был открыт.")
+#         print("*" * 50)
+#
+#     def __del__(self):  # магические методы
+#         print("*" * 50)
+#         print(f"Счет №{self.num} принадлежащий {self.surname} был закрыт.")
+#
+#     @staticmethod  # переврд в доллары или евро статические
+#     def convert(value, rate):
+#         return value * rate
+#
+#     @classmethod
+#     def set_usd_rate(cls, rate):
+#         cls.rate_usd = rate
+#
+#     @classmethod
+#     def set_eur_rate(cls, rate):  # изменение статического метода методом класса
+#         cls.rate_eur = rate
+#
+#     def confert_to_usd(self):
+#         usd_val = Account.convert(self.value, Account.rate_usd)
+#         print(f"Состояние счета: {usd_val} {Account.suffix_usd}")
+#
+#     def convert_to_euro(self):
+#         eur_val = Account.convert(self.value, Account.rate_eur)
+#         print(f"Состояние счета: {eur_val} {Account.suffix_eur}")
+#
+#     def edit_owner(self, surname):
+#         self.surname = surname
+#
+#     def add_precents(self):
+#         self.value += self.value * self.percent
+#         print("проценты были начислены")
+#         self.print_balans()
+#
+#     def withdraw_money(self, val):
+#         if val >= self.value:
+#             print(f"Нет суммы {val} {Account.suffix}")
+#         else:
+#             self.value -= val
+#             print(f"{val} {Account.suffix} было снято")
+#         self.print_balans()
+#
+#     def add_money(self, val):
+#         self.value += val
+#         print(f"{val} {Account.suffix} было добавлено")
+#         self.print_balans()
+#
+#     def print_balans(self):
+#         print(f"Текущий баланс {self.value} {Account.suffix}")
+#
+#     def print_info(self):
+#         print("Информация о счете")
+#         print("-" * 20)
+#         print(f"# {self.num}")
+#         print(f"Владелец: {self.surname}")
+#         self.print_balans()
+#         print(f"Проценты: {self.percent:.0%}")  # расчет процента с точностью до ,0 за счет f строки
+#         print("-" * 20)
+#
+#
+# acc = Account("12345", "Долгих", 0.03, 1000)
+# # acc.print_balans()
+# acc.print_info()
+# acc.confert_to_usd()
+# acc.convert_to_euro()
+# print()
+# Account.set_usd_rate(2)
+# acc.confert_to_usd()
+# Account.set_eur_rate(3)
+# acc.convert_to_euro()
+# print()
+# acc.edit_owner("Дюма")
+# acc.print_info()
+# print()
+# acc.add_precents()
+# print()
+# acc.withdraw_money(100)
+# print()
+# acc.withdraw_money(5000)
+# print()
+# acc.add_money(5000)
+# print()
+# acc.withdraw_money(3000)
+# print()
+
+# проверки на ввод данных
+import re
+
+
+class UserData:
+    def __init__(self, fio, old, ps, weight):
+        self.verify_fio(fio)
+        self.verify_old(old)
+        self.verify_weight(weight)
+        self.verify_ps(ps)
+
+        self.__fio = fio
+        self.__old = old
+        self.__password = ps
+        self.weight = weight
 
     @staticmethod
-    def min(*args):
-        mn = args[0]
-        for i in args:
-            if i < mn:
-                mn = i
-        return mn
+    def verify_fio(fio):
+        if not isinstance(fio, str):
+            raise TypeError("ФИО должно быть строкой")
+        f = fio.split()  # ['Волков', 'Игорь', 'Николаевич']
+        if len(f) != 3:
+            raise TypeError("ФИО неверный формат")
+        letters = "".join(re.findall(r"[a-zа-яё-]", fio, flags=re.IGNORECASE))  # ВолковИгорьНиколаевич
+        for s in f:
+            # print(s.strip(letters))     # удаляет все что несовпдает с переменной
+            if len(s.strip(letters)) != 0:
+                raise TypeError("В ФИО Можно использовать только буквы и дефис")
 
     @staticmethod
-    def averange(*args):
-        return sum(args) / len(args)
+    def verify_old(old):
+        if not isinstance(old, int) or not 14 <= old <= 100:
+            raise TypeError("Возраст должен быть числом От 14 до 100")
 
     @staticmethod
-    def factorial(n):
-        fact = 1
-        for i in range(1, n + 1):
-            fact *= i
-        return fact
+    def verify_weight(w):
+        if not isinstance(w, float) or w < 20:
+            raise TypeError("Вес должен быть вещественным число от 20")
+
+    @staticmethod
+    def verify_ps(ps):
+        if not isinstance(ps, str):
+            raise TypeError("Паспорт должен быть строкой")
+        s = ps.split()  # ['1234', '564789']
+        if len(s) != 2 or len(s[0]) != 4 or len(s[1]) != 6:
+            raise TypeError("Неверный формат паспорта")
+        for p in s:
+            if not p.isdigit():  # проверяет цифры в строке
+                raise TabError("Серия должна быть цифрой")
 
 
-print("Максимальное число", Numbers.max(3, 5, 7, 9))
-print("минимальное число", Numbers.min(3, 5, 7, 9))
-print("Среднеарифметичкск", Numbers.averange(3, 5, 7, 9))
-print("Факториал", Numbers.factorial(5))
+p1 = UserData("Волков-POI Игорь Николаевич", 26, "1234 564789", 80.8)
