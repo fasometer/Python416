@@ -3905,7 +3905,7 @@ class UserData:
         self.__fio = fio
         self.__old = old
         self.__password = ps
-        self.weight = weight
+        self.__weight = weight
 
     @staticmethod
     def verify_fio(fio):
