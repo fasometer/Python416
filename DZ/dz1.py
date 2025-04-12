@@ -558,45 +558,268 @@
 # p1.set_price(-30000)
 # print(p1.get_price())
 # p1.print_info()
-import math
+# import math
+#
+#
+# class Sqwer:
+#     __count = 0
+#
+#     @staticmethod
+#     def sq_triangle_geron(a, b, c):
+#         p = (a + b + c) / 2
+#         Sqwer.__count += 1
+#         return round(math.sqrt(p * (p - a) * (p - b) * (p - c)), 2)
+#
+#     @staticmethod
+#     def sq_triangle_visota(a, h):
+#         Sqwer.__count += 1
+#         return a * h / 2
+#
+#     @staticmethod
+#     def sq_rectangle(a, b):
+#         Sqwer.__count += 1
+#         return a * b
+#
+#     @staticmethod
+#     def sq_square(a):
+#         Sqwer.__count += 1
+#         return a ** 2
+#
+#     @staticmethod
+#     def get_count():
+#         return Sqwer.__count
+#
+#
+# print("Площадь вычислялась:", Sqwer.get_count())
+# print("Площадь треугольника:", Sqwer.sq_triangle_geron(3, 4, 5))
+# print("Площадь треугольника:", Sqwer.sq_triangle_geron(5, 6, 7))
+# print("Площадь вычислялась:", Sqwer.get_count())
+# print("Площадь треугольника:", Sqwer.sq_triangle_visota(5, 6))
+# print("Площадь прямоугольника:", Sqwer.sq_rectangle(6, 7))
+# print("Площадь квадрата:", Sqwer.sq_square(6))
+# print("Площадь квадрата:", Sqwer.sq_square(7))
+# print("Площадь квадрата:", Sqwer.sq_square(8))
+# print("Площадь вычислялась:", Sqwer.get_count())
+
+class Account:
+    rate_usd = 0.013
+    rate_eur = 0.011
+    suffix = "RUB"
+    suffix_usd = "USD"
+    suffix_eur = "EUR"
+
+    def __init__(self, num, surname, percent, value):
+        self.__num = num
+        self.__surname = surname
+        self.__percent = percent
+        self.__value = value
+        print(f"Счет №{self.__num} принадлежащий {self.__surname} был открыт.")
+        print("*" * 50)
+
+    def __del__(self):  # магические методы
+        print("*" * 50)
+        print(f"Счет №{self.__num} принадлежащий {self.__surname} был закрыт.")
+
+    @staticmethod  # переврд в доллары или евро статические
+    def convert(value, rate):
+        return value * rate
+
+    @classmethod
+    def set_usd_rate(cls, rate):
+        cls.rate_usd = rate
+
+    @classmethod
+    def set_eur_rate(cls, rate):  # изменение статического метода методом класса
+        cls.rate_eur = rate
+
+    @property
+    def num(self):
+        return self.__num
+
+    @num.setter
+    def num(self, n):
+        self.__num = n
+
+    @property
+    def surname(self):
+        return self.__surname
+
+    @surname.setter
+    def surname(self, n):
+        self.__surname = n
+
+    @property
+    def percent(self):
+        return self.__percent
+
+    @percent.setter
+    def percent(self, n):
+        self.__percent = n
+
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, n):
+        self.__value = n
+
+    def confert_to_usd(self):
+        usd_val = Account.convert(self.__value, Account.rate_usd)
+        print(f"Состояние счета: {usd_val} {Account.suffix_usd}")
+
+    def convert_to_euro(self):
+        eur_val = Account.convert(self.__value, Account.rate_eur)
+        print(f"Состояние счета: {eur_val} {Account.suffix_eur}")
+
+    def edit_owner(self, surname):
+        self.__surname = surname
+
+    def add_precents(self):
+        self.__value += self.__value * self.__percent
+        print("проценты были начислены")
+        self.print_balans()
+
+    def withdraw_money(self, val):
+        if val >= self.__value:
+            print(f"Нет суммы {val} {Account.suffix}")
+        else:
+            self.__value -= val
+            print(f"{val} {Account.suffix} было снято")
+        self.print_balans()
+
+    def add_money(self, val):
+        self.__value += val
+        print(f"{val} {Account.suffix} было добавлено")
+        self.print_balans()
+
+    def print_balans(self):
+        print(f"Текущий баланс {self.__value} {Account.suffix}")
+
+    def print_info(self):
+        print("Информация о счете")
+        print("-" * 20)
+        print(f"# {self.__num}")
+        print(f"Владелец: {self.__surname}")
+        self.print_balans()
+        print(f"Проценты: {self.__percent:.0%}")  # расчет процента с точностью до ,0 за счет f строки
+        print("-" * 20)
 
 
-class Sqwer:
-    __count = 0
-
-    @staticmethod
-    def sq_triangle_geron(a, b, c):
-        p = (a + b + c) / 2
-        Sqwer.__count += 1
-        return round(math.sqrt(p * (p - a) * (p - b) * (p - c)), 2)
-
-    @staticmethod
-    def sq_triangle_visota(a, h):
-        Sqwer.__count += 1
-        return a * h / 2
-
-    @staticmethod
-    def sq_rectangle(a, b):
-        Sqwer.__count += 1
-        return a * b
-
-    @staticmethod
-    def sq_square(a):
-        Sqwer.__count += 1
-        return a ** 2
-
-    @staticmethod
-    def get_count():
-        return Sqwer.__count
+acc = Account("12345", "Долгих", 0.03, 1000)
+acc.print_info()
+# acc.__del__()
+print()
+acc.value = 5000
+acc.surname = "Петров"
+acc.num = 987654
+acc.percent = 0.05
+acc.print_info()
+# acc.__del__()
+print()
 
 
-print("Площадь вычислялась:", Sqwer.get_count())
-print("Площадь треугольника:", Sqwer.sq_triangle_geron(3, 4, 5))
-print("Площадь треугольника:", Sqwer.sq_triangle_geron(5, 6, 7))
-print("Площадь вычислялась:", Sqwer.get_count())
-print("Площадь треугольника:", Sqwer.sq_triangle_visota(5, 6))
-print("Площадь прямоугольника:", Sqwer.sq_rectangle(6, 7))
-print("Площадь квадрата:", Sqwer.sq_square(6))
-print("Площадь квадрата:", Sqwer.sq_square(7))
-print("Площадь квадрата:", Sqwer.sq_square(8))
-print("Площадь вычислялась:", Sqwer.get_count())
+class Account_1:
+    rate_usd = 0.013
+    rate_eur = 0.011
+    suffix = "RUB"
+    suffix_usd = "USD"
+    suffix_eur = "EUR"
+
+    def __init__(self, num, surname, percent, value):
+        self.__num = num
+        self.__surname = surname
+        self.__percent = percent
+        self.__value = value
+        print(f"Счет №{self.__num} принадлежащий {self.__surname} был открыт.")
+        print("*" * 50)
+
+    def __del__(self):  # магические методы
+        print("*" * 50)
+        print(f"Счет №{self.__num} принадлежащий {self.__surname} был закрыт.")
+
+    @staticmethod  # переврд в доллары или евро статические
+    def convert(value, rate):
+        return value * rate
+
+    @classmethod
+    def set_usd_rate(cls, rate):
+        cls.rate_usd = rate
+
+    @classmethod
+    def set_eur_rate(cls, rate):  # изменение статического метода методом класса
+        cls.rate_eur = rate
+
+    def get_num(self):
+        return self.__num
+
+    def set_num(self, n):
+        self.__num = n
+
+    def get_surname(self):
+        return self.__surname
+
+    def set_surname(self, n):
+        self.__surname = n
+
+    def get_percent(self):
+        return self.__percent
+
+    def set_percent(self, n):
+        self.__percent = n
+
+    def get_value(self):
+        return self.__value
+
+    def set_value(self, n):
+        self.__value = n
+
+    def confert_to_usd(self):
+        usd_val = Account_1.convert(self.__value, Account_1.rate_usd)
+        print(f"Состояние счета: {usd_val} {Account_1.suffix_usd}")
+
+    def convert_to_euro(self):
+        eur_val = Account_1.convert(self.__value, Account_1.rate_eur)
+        print(f"Состояние счета: {eur_val} {Account_1.suffix_eur}")
+
+    def edit_owner(self, surname):
+        self.__surname = surname
+
+    def add_precents(self):
+        self.__value += self.__value * self.__percent
+        print("проценты были начислены")
+        self.print_balans()
+
+    def withdraw_money(self, val):
+        if val >= self.__value:
+            print(f"Нет суммы {val} {Account_1.suffix}")
+        else:
+            self.__value -= val
+            print(f"{val} {Account_1.suffix} было снято")
+        self.print_balans()
+
+    def add_money(self, val):
+        self.__value += val
+        print(f"{val} {Account_1.suffix} было добавлено")
+        self.print_balans()
+
+    def print_balans(self):
+        print(f"Текущий баланс {self.__value} {Account_1.suffix}")
+
+    def print_info(self):
+        print("Информация о счете")
+        print("-" * 20)
+        print(f"# {self.__num}")
+        print(f"Владелец: {self.__surname}")
+        self.print_balans()
+        print(f"Проценты: {self.__percent:.0%}")  # расчет процента с точностью до ,0 за счет f строки
+        print("-" * 20)
+
+
+acc1 = Account_1("123450", "Дол", 0.02, 100)
+acc1.print_info()
+acc1.set_value(15000)
+acc1.set_surname("Петровa")
+acc1.set_num(9876540)
+acc1.set_percent(0.15)
+acc1.print_info()
