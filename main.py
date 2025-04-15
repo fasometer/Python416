@@ -46,6 +46,7 @@
 # from setuptools.config import read_configuration
 # from itertools import count
 # from multiprocessing.spawn import old_main_modules
+# from html.parser import endendtag
 
 
 # a = 5
@@ -3892,54 +3893,251 @@
 # print()
 
 # проверки на ввод данных
-import re
+# import re
+#
+#
+# class UserData:
+#     def __init__(self, fio, old, ps, weight):
+#         self.fio = fio  # вызов сеттера
+#         self.old = old
+#         self.password = ps
+#         self.weight = weight
+#
+#     @staticmethod
+#     def verify_fio(fio):
+#         if not isinstance(fio, str):
+#             raise TypeError("ФИО должно быть строкой")
+#         f = fio.split()  # ['Волков', 'Игорь', 'Николаевич']
+#         if len(f) != 3:
+#             raise TypeError("ФИО неверный формат")
+#         letters = "".join(re.findall(r"[a-zа-яё-]", fio, flags=re.IGNORECASE))  # ВолковИгорьНиколаевич
+#         for s in f:
+#             # print(s.strip(letters))     # удаляет все что несовпдает с переменной
+#             if len(s.strip(letters)) != 0:
+#                 raise TypeError("В ФИО Можно использовать только буквы и дефис")
+#
+#     @staticmethod
+#     def verify_old(old):
+#         if not isinstance(old, int) or not 14 <= old <= 100:
+#             raise TypeError("Возраст должен быть числом От 14 до 100")
+#
+#     @staticmethod
+#     def verify_weight(w):
+#         if not isinstance(w, float) or w < 20:
+#             raise TypeError("Вес должен быть вещественным число от 20")
+#
+#     @staticmethod
+#     def verify_ps(ps):
+#         if not isinstance(ps, str):
+#             raise TypeError("Паспорт должен быть строкой")
+#         s = ps.split()  # ['1234', '564789']
+#         if len(s) != 2 or len(s[0]) != 4 or len(s[1]) != 6:
+#             raise TypeError("Неверный формат паспорта")
+#         for p in s:
+#             if not p.isdigit():  # проверяет цифры в строке
+#                 raise TabError("Серия должна быть цифрой")
+#
+#     @property
+#     def fio(self):
+#         return self.__fio
+#
+#     @fio.setter
+#     def fio(self, fio):
+#         self.verify_fio(fio)
+#         self.__fio = fio
+#
+#     @property
+#     def old(self, old):
+#         return self.__old
+#
+#     @old.setter
+#     def old(self, year):
+#         self.verify_old(year)
+#         self.__old = year
+#
+#     @property
+#     def password(self):
+#         return self.__password
+#
+#     @password.setter
+#     def password(self, ps):
+#         self.verify_ps(ps)
+#         self.__password = ps
+#
+#     @property
+#     def weight(self):
+#         return self.__weight
+#
+#     @weight.setter
+#     def weight(self, weight):
+#         self.verify_weight(weight)
+#         self.__weight = weight
+#
+#
+# p1 = UserData("Волков-POI Игорь Николаевич", 26, "1234 564789", 80.8)
+# # p1.fio = "Ветров Игорь Николаевич"
+# print(p1.fio)
+# print(p1.__dict__)
+
+# наследование
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#
+# print(Point.__dict__)
+# print(issubclass(Point, object))  # является класс подклассом object
 
 
-class UserData:
-    def __init__(self, fio, old, ps, weight):
-        self.verify_fio(fio)
-        self.verify_old(old)
-        self.verify_weight(weight)
-        self.verify_ps(ps)
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self) -> str:  # спец метод для вывода строкой
+#         return f"({self.__x}, {self.__y})"
+#
+#
+# class Prop:
+#     def __init__(self, sp: Point, ep: Point, color: str = "red", width: int = 1) -> None:
+#         # объяснили какой тип у переменных
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self._width = width
+#
+#
+# class Line(Prop):
+#     def __init__(self,*args):
+#         print("Новый инициализатор")
+#         # Prop.__init__(self,*args) # вызов нициализаотраиз родительского
+#         super().__init__(*args) # вызов нициализаотраиз родительского
+#
+#     def draw_line(self):
+#         print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}")
+#
+#
+# class Rect(Prop):
+#     def draw_rect(self):
+#         print(f"Рисование прямоугольник: {self._sp}, {self._ep}, {self._color}, {self._width}")
+#
+#
+# line = Line(Point(1, 2), Point(10, 20), "green", 5)
+# line.draw_line()
+#
+# rect = Rect(Point(10, 30), Point(70, 80))
+# rect.draw_rect()
 
-        self.__fio = fio
-        self.__old = old
-        self.__password = ps
-        self.__weight = weight
+# class Figure:
+#     def __init__(self, color):
+#         self.__color = color
+#
+#     @property
+#     def color(self):
+#         return self.__color
+#
+#     @color.setter
+#     def color(self, c):
+#         self.__color = c
+#
+#
+# class Rectangle(Figure):
+#     def __init__(self, width, height, color):
+#         self.__width = width
+#         self.__height = height
+#         super().__init__(color)
+#
+#     @property
+#     def width(self):
+#         return self.__width
+#
+#     @width.setter
+#     def width(self, w):
+#         if isinstance(w, int) and w > 0:
+#             self.__width = w
+#         else:
+#             raise ValueError("Ширина только положительно число")
+#
+#     @property
+#     def height(self):
+#         return self.__height
+#
+#     @height.setter
+#     def height(self, h):
+#         if isinstance(h, int) and h > 0:
+#             self.__height = h
+#         else:
+#             raise ValueError("Высота только положительно число")
+#
+#     def area(self):
+#         print(f"Площадь {self.color} прямоуголника: ", end=" ")
+#         return self.__width * self.__height
+#
+#
+# rect = Rectangle(10, 20, "green")
+#
+# print(rect.area())
+# print(rect.__dict__)
 
-    @staticmethod
-    def verify_fio(fio):
-        if not isinstance(fio, str):
-            raise TypeError("ФИО должно быть строкой")
-        f = fio.split()  # ['Волков', 'Игорь', 'Николаевич']
-        if len(f) != 3:
-            raise TypeError("ФИО неверный формат")
-        letters = "".join(re.findall(r"[a-zа-яё-]", fio, flags=re.IGNORECASE))  # ВолковИгорьНиколаевич
-        for s in f:
-            # print(s.strip(letters))     # удаляет все что несовпдает с переменной
-            if len(s.strip(letters)) != 0:
-                raise TypeError("В ФИО Можно использовать только буквы и дефис")
+# class Rect:
+#     def __init__(self, wight, hieht):
+#         self.width = wight
+#         self.hieght = hieht
+#
+#     def show_rect(self):
+#         print(f"Прямуглник: \nШирина {self.width}\nВысота: {self.hieght}")
+#
+#
+# class RectFon(Rect):
+#     def __init__(self, wight, hieht, background):
+#         super().__init__(wight, hieht)
+#         self.fon = background
+#
+#     def show_rect(self):
+#         super().show_rect()  # доступ к родительскому классу
+#         print("Фон:", self.fon)
+#
+#
+# class RectBorder(Rect):
+#     ...
+#
+#
+# shape1 = RectFon(400, 200, "yellow")
+# shape1.show_rect()
+# print()
+# shape2 = RectBorder(600,200,"1px", "solid", "red")
+# shape2.show_rect()
 
-    @staticmethod
-    def verify_old(old):
-        if not isinstance(old, int) or not 14 <= old <= 100:
-            raise TypeError("Возраст должен быть числом От 14 до 100")
+# class Vector(list):
+#     def __str__(self):
+#         return " ".join(map(str, self))
+#
+#
+# v = Vector([1,2,3,4])
+# print(v)
+# print(type(v))
 
-    @staticmethod
-    def verify_weight(w):
-        if not isinstance(w, float) or w < 20:
-            raise TypeError("Вес должен быть вещественным число от 20")
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-    @staticmethod
-    def verify_ps(ps):
-        if not isinstance(ps, str):
-            raise TypeError("Паспорт должен быть строкой")
-        s = ps.split()  # ['1234', '564789']
-        if len(s) != 2 or len(s[0]) != 4 or len(s[1]) != 6:
-            raise TypeError("Неверный формат паспорта")
-        for p in s:
-            if not p.isdigit():  # проверяет цифры в строке
-                raise TabError("Серия должна быть цифрой")
+    def set_coord(self, x=None, y=None):
+        if y is None:
+            self.x = x
+        elif x is None:
+            self.y = y
+        else:
+            self.x = x
+            self.y = y
 
 
-p1 = UserData("Волков-POI Игорь Николаевич", 26, "1234 564789", 80.8)
+p1 = Point(5, 6)
+print(p1.__dict__)
+p1.set_coord(20, 30)
+print(p1.__dict__)
+p1.set_coord(50)
+print(p1.__dict__)
+p1.set_coord(y=100)
+print(p1.__dict__)
