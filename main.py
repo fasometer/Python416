@@ -4044,8 +4044,8 @@
 #
 # class Rectangle(Figure):
 #     def __init__(self, width, height, color):
-#         self.__width = width
-#         self.__height = height
+#         self.width = width
+#         self.height = height
 #         super().__init__(color)
 #
 #     @property
@@ -4100,44 +4100,287 @@
 #
 #
 # class RectBorder(Rect):
-#     ...
+#     def __init__(self, wight, hieht, thin, typed, color):
+#         super().__init__(wight, hieht)
+#         self.thin = thin
+#         self.typed = typed
+#         self.color = color
+#
+#     def show_rect(self):
+#         super().show_rect()  # доступ к родительскому классу
+#         print(f"Толщина рамки : {self.thin}\n Тип рамки {self.typed}\n Цвет рамки{self.color}")
 #
 #
 # shape1 = RectFon(400, 200, "yellow")
 # shape1.show_rect()
 # print()
-# shape2 = RectBorder(600,200,"1px", "solid", "red")
+# shape2 = RectBorder(600, 200, "1px", "solid", "red")
 # shape2.show_rect()
 
+# использование уже существующих классов
 # class Vector(list):
 #     def __str__(self):
-#         return " ".join(map(str, self))
+#         return " ".join(map(str, self)) # преобразование в строку
 #
 #
 # v = Vector([1,2,3,4])
-# print(v)
+# print(v) # вывод строки с пробелами
 # print(type(v))
 
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+# возможность ввода только одного значения
+# class Point:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def set_coord(self, x=None, y=None): # присваиваем None тоесть его нет
+#         # для игнорирования одного из значений, но потом проверяем его
+#         if y is None:
+#             self.x = x
+#         elif x is None:
+#             self.y = y
+#         else:
+#             self.x = x
+#             self.y = y
+#
+#
+# p1 = Point(5, 6)
+# print(p1.__dict__)
+# p1.set_coord(20, 30)
+# print(p1.__dict__)
+# p1.set_coord(50)
+# print(p1.__dict__)
+# p1.set_coord(y=100)
+# print(p1.__dict__)
 
-    def set_coord(self, x=None, y=None):
-        if y is None:
-            self.x = x
-        elif x is None:
-            self.y = y
-        else:
-            self.x = x
-            self.y = y
+# Абстракный метод без раализации
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):
+#         return f"({self.x}, {self.y})"
+#
+#
+# class Prop:
+#     def __init__(self, sp, ep, color, width):
+#         self.sp = sp
+#         self.ep = ep
+#         self.color = color
+#         self.width = width
+#
+#     def draw(self):     # абстрактный метод
+#         raise NotImplementedError("В  дочернем классе должен быть метод draw()")  # ошибка нереализованного элемента
+#
+#
+# class Line(Prop):
+#     ...
+#     # def draw(self):
+#     #     print(f"Рисование линии: {self.sp}, {self.ep}, {self.color}, {self.width}")
+#
+#
+# class Rect(Prop):
+#     def draw(self):
+#         print(f"Рисование прямоугольника: {self.sp}, {self.ep}, {self.color}, {self.width}")
+#
+#
+# class Ellipse(Prop):
+#     def draw(self):
+#         print(f"Рисование эллипса: {self.sp}, {self.ep}, {self.color}, {self.width}")
+#
+#
+# shapes = list()
+# shapes.append(Line(Point(0,0), Point(10,10), "yellow",4))
+# shapes.append(Line(Point(0,0), Point(10,10), "red",6))
+# shapes.append(Rect(Point(50,50), Point(70,70), "blue",10))
+# shapes.append(Ellipse(Point(80,80), Point(100,100), "green",3))
+#
+# for i in shapes:
+#     i.draw()
+
+#   второй метод импорт абстрактного метода
+# from abc import ABC, abstractmethod
+#
+#
+# class Chess(ABC): # абстрактный класс
+#     def draw(self):
+#         print("Нарисовал шах доску")
+#
+#     @abstractmethod # абсьрактный меьтод
+#     def move(self):
+#         print("Метод move()в базовом классе")
+#
+#
+# class Queen(Chess):
+#     def move(self):
+#         super().move()
+#         print("Ферьз пермещен на клетку e2")
+#
+#
+# # q = Chess()
+# q = Queen()
+# q.draw()
+# q.move()
+# from math import pi
+#
+#
+# class Table:
+#     def __init__(self, width=None, length=None, radius=None):
+#         if radius is None:
+#             if length is None:
+#                 self.width = self.length = width
+#             else:
+#                 self.width = width
+#                 self.length = length
+#         # elif length is None and radius is None:  повторяется условие
+#         #     self.width = self.length = width
+#         else:
+#             self.radius = radius
+#
+#     def calc_area(self):
+#         raise NotImplementedError("в дочернем классе должен быть calc_area()")
+#
+#
+# class RectangleTable(Table):
+#     def calc_area(self):
+#         return self.width * self.length
+#
+#
+# class RoundTable(Table):
+#     def calc_area(self):
+#         return round(pi * self.radius ** 2,2)
+#
+#
+# t = RectangleTable(10,20)
+# print(t.__dict__)
+# print(t.calc_area())
+# t1 = RectangleTable(20)
+# print(t1.__dict__)
+# print(t1.calc_area())
+# t2 = RoundTable(radius=20)
+# print(t2.__dict__)
+# print(t2.calc_area())
+
+#   Интерфейсы
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Father(ABC):
+#     @abstractmethod
+#     def display1(self):
+#         pass
+#
+#     @abstractmethod
+#     def display2(self):
+#         pass
+#
+#
+# class Child(Father):
+#     def display1(self):
+#         print("Child Class")
+#
+#
+# class GrandChild(Child):
+#     def display2(self):
+#         print("GrandChild Class")
+#
+#
+# # c = Child()
+# gc = GrandChild()
+# gc.display1()
+# gc.display2()
+
+# Вложенные классы
+# class MyOuter:
+#     age = 18
+#
+#     def __init__(self, name):
+#         self.name = name
+#
+#     @staticmethod
+#     def outer_static_metod():
+#         print("Статический метод")
+#
+#     def outer_obj_metod(self):
+#         print("Метод экземпляра")
+#
+#     class MyInner:
+#         def __init__(self, inner_inner, obj):
+#             self.inner_inner = inner_inner
+#             self.obj = obj
+#
+#         def inner_method(self):
+#             print("Метод внутреннего класса", MyOuter.age, self.obj.name)
+#             MyOuter.outer_static_metod()
+#             self.obj.outer_obj_metod()
+#
+#
+# out = MyOuter("Внешний")
+# print(out.name)
+# inner = out.MyInner("Внутренний", out)  # обрашение к внутреннему классу
+# # inner1 = MyOuter.MyInner("Внутренний")  # обрашение к внутреннему классу
+# print(inner.inner_inner)
+# # print(inner1.inner_inner)
+# inner.inner_method()
+# class LightColor:
+#     def __init__(self):
+#         self.name = "LightGreen"
+#
+#     def display(self):
+#         print("Name: ", self.name)
+#
+#
+# class Color:
+#     def __init__(self):
+#         self.name = "green"
+#         self.lg = LightColor()  # обращение к внешнему классу
+#         self.dg = self.DarkColor()  # обращение к внутреннему классу
+#
+#     def show(self):
+#         print("Name: ", self.name)
+#
+#     class DarkColor:
+#         def __init__(self):
+#             self.name = "DarkGreen"
+#
+#         def display(self):
+#             print("Name: ", self.name)
+#
+#
+# outer = Color()
+# outer.show()
+# print(outer.name)
+# g = outer.lg  # доступ к вложенному классу
+# g.display()
+# g1 = outer.dg
+# g1.display()
+
+class Computer:
+    def __init__(self):
+        self.name = "PC001"
+        self.os = self.OS()
+        self.cpu = self.CPU()
+
+    class OS:
+        def system(self):
+            return "Windows 10"
+
+    class CPU:
+        def make(self):
+            return "Intel"
+
+        def model(self):
+            return "Core-i9"
 
 
-p1 = Point(5, 6)
-print(p1.__dict__)
-p1.set_coord(20, 30)
-print(p1.__dict__)
-p1.set_coord(50)
-print(p1.__dict__)
-p1.set_coord(y=100)
-print(p1.__dict__)
+comp = Computer()
+my_os = comp.os
+my_cpu = comp.cpu
+
+print(comp.name)
+print(my_os.system())
+print(my_cpu.make())
+print(my_cpu.model())
