@@ -824,39 +824,46 @@
 # acc1.set_percent(0.15)
 # acc1.print_info()
 
-class Rect:
-    def __init__(self, wight, height):
-        self.width = wight
-        self.height = height
+# class Rect:
+#     def __init__(self, wight, height):
+#         self.width = wight
+#         self.height = height
+#
+#     def show_rect(self):
+#         print(f"Прямоугольник: \nШирина: {self.width}\nВысота: {self.height}")
+#
+#
+# class RectFon(Rect):
+#     def __init__(self, wight, height, background):
+#         super().__init__(wight, height)
+#         self.fon = background
+#
+#     def show_rect(self):
+#         super().show_rect()  # доступ к родительскому классу
+#         print("Фон:", self.fon)
+#
+#
+# class RectBorder(Rect):
+#     def __init__(self, wight, height, wight_border, type_border, color_border):
+#         super().__init__(wight, height)  # доступ к init родительского класса
+#         self.wight = wight_border
+#         self.type = type_border
+#         self.color = color_border
+#
+#     def show_rect(self):
+#         super().show_rect()  # доступ к методу родительского класса
+#         print(f"Ширина рамки: {self.wight}\nТип рамки: {self.type}\nЦвет рамки: {self.color}")
+#
+#
+# shape1 = RectFon(400, 200, "yellow")
+# shape1.show_rect()
+# print()
+# shape2 = RectBorder(600, 400, "1px", "solid", "blue")
+# shape2.show_rect()
 
-    def show_rect(self):
-        print(f"Прямоугольник: \nШирина: {self.width}\nВысота: {self.height}")
+class Student:
+    def __init__(self, name):
+        self.name = name
 
-
-class RectFon(Rect):
-    def __init__(self, wight, height, background):
-        super().__init__(wight, height)
-        self.fon = background
-
-    def show_rect(self):
-        super().show_rect()  # доступ к родительскому классу
-        print("Фон:", self.fon)
-
-
-class RectBorder(Rect):
-    def __init__(self, wight, height, wight_border, type_border, color_border):
-        super().__init__(wight, height)  # доступ к init родительского класса
-        self.wight = wight_border
-        self.type = type_border
-        self.color = color_border
-
-    def show_rect(self):
-        super().show_rect()  # доступ к методу родительского класса
-        print(f"Ширина рамки: {self.wight}\nТип рамки: {self.type}\nЦвет рамки: {self.color}")
-
-
-shape1 = RectFon(400, 200, "yellow")
-shape1.show_rect()
-print()
-shape2 = RectBorder(600, 400, "1px", "solid", "blue")
-shape2.show_rect()
+    def show(self):
+        print(f"{self.name},=>")
