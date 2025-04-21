@@ -864,6 +864,28 @@
 class Student:
     def __init__(self, name):
         self.name = name
+        self.nout = self.Nout()
 
     def show(self):
-        print(f"{self.name},=>")
+        return self.name
+
+    class Nout:
+        def __init__(self):
+            self.name = "HP"
+            self.cpu = "i7"
+            self.ram = "16"
+
+        def show(self):
+            return self.name, self.cpu, self.ram
+
+        # def show(self):
+        #     return print(f"{self.name}, {self.cpu}, {self.ram}")
+
+
+st = Student("Roman")
+n = st.nout
+print(f"{st.show()} => ",end="")
+print(*n.show(), sep=" ,")
+st1 = Student("Vladimir")
+n1 = st.nout
+print(f"{st1.show()} => ", (', '.join(n1.show())))
