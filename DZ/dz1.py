@@ -861,31 +861,88 @@
 # shape2 = RectBorder(600, 400, "1px", "solid", "blue")
 # shape2.show_rect()
 
-class Student:
-    def __init__(self, name):
-        self.name = name
-        self.nout = self.Nout()
+# class Student:
+#     def __init__(self, name):
+#         self.name = name
+#         self.nout = self.Nout()
+#
+#     def show(self):
+#         return self.name
+#
+#     class Nout:
+#         def __init__(self):
+#             self.name = "HP"
+#             self.cpu = "i7"
+#             self.ram = "16"
+#
+#         def show(self):
+#             return self.name, self.cpu, self.ram
+#
+#         # def show(self):
+#         #     return print(f"{self.name}, {self.cpu}, {self.ram}")
+#
+#
+# st = Student("Roman")
+# n = st.nout
+# print(f"{st.show()} => ",end="")
+# print(*n.show(), sep=" ,")
+# st1 = Student("Vladimir")
+# n1 = st.nout
+# print(f"{st1.show()} => ", (', '.join(n1.show())))
 
-    def show(self):
-        return self.name
+# число секунд в дне 24* 60 * 60 = 86400
 
-    class Nout:
-        def __init__(self):
-            self.name = "HP"
-            self.cpu = "i7"
-            self.ram = "16"
+class Clock:
+    __DAY = 86400
 
-        def show(self):
-            return self.name, self.cpu, self.ram
+    def __init__(self, sec: int):
+        if not isinstance(sec, int):
+            raise ValueError("секунды число!!")
+        self.sec = sec % self.__DAY
 
-        # def show(self):
-        #     return print(f"{self.name}, {self.cpu}, {self.ram}")
+    def get_format_time(self):
+        s = self.sec % 60
+        m = (self.sec // 60) % 60
+        h = (self.sec // 3600) % 24
+        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+
+    @staticmethod
+    def __get_form(x):
+        return str(x) if x > 9 else "0" + str(x)
+
+    def __add__(self, other):
+        if not isinstance(other,Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return Clock(self.sec + other.sec)
+
+    def __eq__(self, other):
+        if not isinstance(other,Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return self.sec == other.sec
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
-st = Student("Roman")
-n = st.nout
-print(f"{st.show()} => ",end="")
-print(*n.show(), sep=" ,")
-st1 = Student("Vladimir")
-n1 = st.nout
-print(f"{st1.show()} => ", (', '.join(n1.show())))
+# cl = Clock(1)
+# print(cl.get_format_time())
+# c2 = Clock(200)
+# print(c2.get_format_time())
+# c3 = cl + c2
+# print(c3.get_format_time())
+# c4 = Clock(300)
+# c3 = cl + c2 + c4
+# print(c3.get_format_time())
+# cl += c2
+# print(cl.get_format_time())
+c1 = Clock(200)
+c2 = Clock(100)
+if c1 == c2:
+    print("время равно")
+else:
+    print("Время разное")
+
+if c1 != c2:
+    print("время разное")
+else:
+    print("Время равно")

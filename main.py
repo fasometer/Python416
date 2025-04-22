@@ -47,6 +47,7 @@
 # from itertools import count
 # from multiprocessing.spawn import old_main_modules
 # from html.parser import endendtag
+from tkinter.font import names
 
 
 # a = 5
@@ -4358,29 +4359,350 @@
 # g1 = outer.dg
 # g1.display()
 
-class Computer:
-    def __init__(self):
-        self.name = "PC001"
-        self.os = self.OS()
-        self.cpu = self.CPU()
+# class Computer:
+#     def __init__(self):
+#         self.name = "PC001"
+#         self.os = self.OS()
+#         self.cpu = self.CPU()
+#
+#     class OS:
+#         def system(self):
+#             return "Windows 10"
+#
+#     class CPU:
+#         def make(self):
+#             return "Intel"
+#
+#         def model(self):
+#             return "Core-i9"
+#
+#
+# comp = Computer()
+# my_os = comp.os
+# my_cpu = comp.cpu
+#
+# print(comp.name)
+# print(my_os.system())
+# print(my_cpu.make())
+# print(my_cpu.model())
+#
+# class Studen:
+#     def __init__(self, name):
+#         self.name = name
+#         self.note = self.Notebook()
+#
+#     def show(self):
+#         print(self.name, end="")
+#         self.note.show()
+#
+#     class Notebook:
+#         def __init__(self):
+#             self.brand = "HP"
+#             self.cpu = "i7"
+#             self.ram = 16
+#
+#         def show(self):
+#             print(f"{self.brand}, {self.cpu}, {self.ram}")
+#
+#
+# s1 = Studen("Roman")
+# s2 = Studen("Vladimir")
 
-    class OS:
-        def system(self):
-            return "Windows 10"
+# class Cat:
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def __str__(self):  # строковый вывод содержимого
+#         return f"{self.name}"
+#
+#     def __repr__(self): # строковый вывод содержимого
+#         return f"{self.__class__}:{self.name}"
+#
+#
+# cat = Cat("Пушок")
+# print(cat)   #вывод
+# import math
+#
+#
+# class Point:
+#     __slots__ = ("x", "y", "__length")
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         self.length = math.sqrt(x * x + y * y)
+#
+#     @property
+#     def length(self):
+#         return self.__length
+#
+#     @length.setter
+#     def length(self, value):
+#         self.__length = value
+#
+#
+# p1 = Point(10, 20)
+# # print(p1.__dict__)
+# # p1.z = 30
+# # print(p1.__dict__)
+# p1.length = 10  # get
+# print(p1.length)
+#
+# class Point:
+#     __slots__ = ("x", "y")  # уменьшает размер класса
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point2d:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# p1 = Point(10, 20)
+# p2 = Point2d(10, 20)
+# print("p1= ", p1.__sizeof__())
+# print("p2= ", p2.__sizeof__() + p2.__dict__.__sizeof__())
 
-    class CPU:
-        def make(self):
-            return "Intel"
+# class Point:
+#     __slots__ = ("x", "y")  # уменьшает размер класса и блокирует даваление свойств
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point3D(Point):
+#     __slots__ = "z",  # уменьшает размер класса а теперь добвала к родительскому классу кортеж
+#
+#     def __init__(self, x, y, z):
+#         super().__init__(x, y)
+#         self.z = z
+#
+#
+# pt = Point(1, 2)
+# pt3 = Point3D(10, 20, 30)
+# # pt3.z = 30
+# print(pt3.x, pt3.y, pt3.z)
+# # print(pt3.__dict__)
 
-        def model(self):
-            return "Core-i9"
+#   Множественное наследование
+
+# class Creature:
+#     def __init__(self, name):
+#         self.name = name
+#
+#
+# class Animal(Creature):
+#     def sleep(self):
+#         print(self.name + " is slepping")
+#
+#
+# class Pet(Creature):
+#     def play(self):
+#         print(self.name + " Is playing")
+#
+#
+# class Dog(Animal, Pet):
+#     def bark(self):
+#         print(self.name + " is barking")
+#
+#
+# dog = Dog("Buddy")
+# dog.bark()
+# dog.sleep()
+# dog.play()
+
+# class A:
+#     def __init__(self):
+#         print("Инициализатор А")
+#
+#
+# class B(A):
+#     def __init__(self):
+#         print("Инициализатор B")
+#
+#
+# class C(A):
+#     def __init__(self):
+#         print("Инициализатор C")
+#
+#
+# class D(B, C):
+#     def __init__(self):
+#         print("Инициализатор D")
+#
+#
+# d = D()
+# print(D.mro())  # порядок наследования
+# # print(D.__mro__)
+
+# class A:
+#     def __init__(self):
+#         print("Инициализатор А")
+#
+#
+# class AA:
+#     def __init__(self):
+#         print("Инициализатор АA")
+#
+#
+# class B(A):
+#     def __init__(self):
+#         print("Инициализатор B")
+#
+#
+# class C(AA):
+#     def __init__(self):
+#         print("Инициализатор C")
+#
+#
+# class D(B, C):
+#     def __init__(self):
+#         print("Инициализатор D")
+#
+#
+# print(D.mro())
+#
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self):
+#         return f"({self.__x} , {self.__y}"
+#
+#
+# class Styles:
+#     def __init__(self, color="red", width=1):
+#         print(("Bybwb Styles"))
+#         self.color = color
+#         self.width = width
+#
+#
+# class Pos:
+#     def __init__(self, sp: Point, ep: Point, *arcs):
+#         print("Ини pos")
+#         self.sp = sp
+#         self.ep = ep
+#         # Styles.__init__(self, *arcs)  #* - много данных
+#         super().__init__(*arcs)  # обращение к инит родителя над собой
+#
+#
+# class Line(Pos, Styles):
+#     def draw(self):
+#         print(f"Рисование: {self.sp}, {self.ep}, {self.color} ,{self.width}")
+#
+#
+# l1 = Line(Point(10, 20), Point(100, 100), "green", 5)
+# l1.draw()
+
+# class Goods:
+#     def __init__(self, name, weigth, price):
+#         print("Init Goods")
+#         self.name = name
+#         self.weigth = weigth
+#         self.price = price
+#         super().__init__()
+#
+#     def print_info(self):
+#         print(f"{self.name}, {self.weigth}, {self.price}")
+#
+#
+# class MixinLog:
+#     ID = 0
+#
+#     def __init__(self):
+#         print("Init MixinLog")
+#         MixinLog.ID += 1
+#         self.id = MixinLog.ID
+#
+#     def save_sell_log(self):
+#         print(f"{self.id}: товар был продан в 17:15")
+#
+#
+# class Notebook(Goods, MixinLog):
+#     pass
+#
+#
+# n = Notebook("HP", 1.5, 35000)
+# n2 = Notebook("HP", 1.5, 35000)
+# n.print_info()
+# n.save_sell_log()
+# n2.save_sell_log()
+
+# Перегрузка операторов
+
+# число секунд в дне 24* 60 * 60 = 86400
+
+# class Clock:
+#     __DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("секунды число!!")
+#         self.sec = sec % self.__DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __add__(self, other):
+#         if not isinstance(other,Clock):
+#             raise ArithmeticError("правый тоже должен быть тип Clock")
+#         return Clock(self.sec + other.sec)
+#
+#     def __eq__(self, other):
+#         if not isinstance(other,Clock):
+#             raise ArithmeticError("правый тоже должен быть тип Clock")
+#         return self.sec == other.sec
+#
+#     def __ne__(self, other):
+#         return not self.__eq__(other)
+#
+#
+# # cl = Clock(1)
+# # print(cl.get_format_time())
+# # c2 = Clock(200)
+# # print(c2.get_format_time())
+# # c3 = cl + c2
+# # print(c3.get_format_time())
+# # c4 = Clock(300)
+# # c3 = cl + c2 + c4
+# # print(c3.get_format_time())
+# # cl += c2
+# # print(cl.get_format_time())
+# c1 = Clock(200)
+# c2 = Clock(100)
+# if c1 == c2:
+#     print("время равно")
+# else:
+#     print("Время разное")
+#
+# if c1 != c2:
+#     print("время разное")
+# else:
+#     print("Время равно")
+
+class Student:
+    def __init__(self, name, *marks):
+        self.name = name
+        self.marks = list(marks)
+
+    def __getitem__(self, item):
+        return self.marks[item]
 
 
-comp = Computer()
-my_os = comp.os
-my_cpu = comp.cpu
+s1 = Student("Сергей", 5, 5, 3, 4, 5, 5)
+print(s1.marks[2])
+print(s1[5])
 
-print(comp.name)
-print(my_os.system())
-print(my_cpu.make())
-print(my_cpu.model())
