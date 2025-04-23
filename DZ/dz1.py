@@ -910,33 +910,90 @@ class Clock:
     def __get_form(x):
         return str(x) if x > 9 else "0" + str(x)
 
-    def __add__(self, other):
-        if not isinstance(other,Clock):
+    def __add__(self, other):  # сумма
+        if not isinstance(other, Clock):
             raise ArithmeticError("правый тоже должен быть тип Clock")
         return Clock(self.sec + other.sec)
 
-    def __eq__(self, other):
-        if not isinstance(other,Clock):
+    def __sub__(self, other):  # разность
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return Clock(self.sec - other.sec)
+
+    def __mul__(self, other):  # умножение
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return Clock(self.sec * other.sec)
+
+    def __floordiv__(self, other):  # деление
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return Clock(self.sec // other.sec)
+
+    def __mod__(self, other):  # остаток от деления
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return Clock(self.sec % other.sec)
+
+    def __eq__(self, other):    # равно
+        if not isinstance(other, Clock):
             raise ArithmeticError("правый тоже должен быть тип Clock")
         return self.sec == other.sec
 
-    def __ne__(self, other):
+    def __ne__(self, other):    # не равно
         return not self.__eq__(other)
 
+    def __lt__(self, other):    # меньше
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return self.sec < other.sec
 
-# cl = Clock(1)
-# print(cl.get_format_time())
-# c2 = Clock(200)
-# print(c2.get_format_time())
-# c3 = cl + c2
-# print(c3.get_format_time())
-# c4 = Clock(300)
-# c3 = cl + c2 + c4
-# print(c3.get_format_time())
-# cl += c2
-# print(cl.get_format_time())
-c1 = Clock(200)
-c2 = Clock(100)
+    def __gt__(self, other):    # больше
+        return not self.__lt__(other)
+
+    def __le__(self, other):    # меньше или равно
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return self.sec <= other.sec
+
+    def __ge__(self, other):    # больше или равно
+        if not isinstance(other, Clock):
+            raise ArithmeticError("правый тоже должен быть тип Clock")
+        return self.sec >= other.sec
+
+
+c1 = Clock(6)
+c2 = Clock(2)
+print("c1:", c1.get_format_time())
+print("c2:", c2.get_format_time())
+print("c1 - c2:", (c1 - c2).get_format_time())
+print("c1 * c2:", (c1 * c2).get_format_time())
+print("c1 // c2:", (c1 // c2).get_format_time())
+print("c1 % c2:", (c1 % c2).get_format_time())
+c1 -= c2
+print("c1 -= c2:", c1.get_format_time())
+c1 = Clock(6)
+c2 = Clock(2)
+print("c1:", c1.get_format_time())
+print("c2:", c2.get_format_time())
+c1 *= c2
+print("c1 *= c2:", c1.get_format_time())
+c1 = Clock(6)
+c2 = Clock(2)
+print("c1:", c1.get_format_time())
+print("c2:", c2.get_format_time())
+c1 //= c2
+print("c1 //= c2:", c1.get_format_time())
+c1 = Clock(6)
+c2 = Clock(5)
+print("c1:", c1.get_format_time())
+print("c2:", c2.get_format_time())
+c1 %= c2
+print("c1 %= c2:", c1.get_format_time())
+c1 = Clock(6)
+c2 = Clock(5)
+print("c1:", c1.get_format_time())
+print("c2:", c2.get_format_time())
 if c1 == c2:
     print("время равно")
 else:
@@ -946,3 +1003,21 @@ if c1 != c2:
     print("время разное")
 else:
     print("Время равно")
+if c1 > c2:
+    print("c1 > c2 True")
+else:
+    print("c1 > c2 False")
+if c1 < c2:
+    print("c1 < c2 True")
+else:
+    print("c1 < c2 False")
+c1 = Clock(6)
+c2 = Clock(8)
+if c1 <= c2:
+    print("c1 <= c2 True")
+else:
+    print("c1 <= c2 False")
+if c1 >= c2:
+    print("c1 >= c2 True")
+else:
+    print("c1 >= c2 False")
