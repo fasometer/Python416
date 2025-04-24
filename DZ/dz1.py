@@ -1023,6 +1023,24 @@
 # else:
 #     print("c1 >= c2 False")
 from math import sqrt
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):
+    def __init__(self, color):
+        self.color = color
+
+    @abstractmethod
+    def info(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+    @abstractmethod
+    def square(self):
+        pass
 
 
 class Rectangle:
