@@ -47,8 +47,7 @@
 # from itertools import count
 # from multiprocessing.spawn import old_main_modules
 # from html.parser import endendtag
-from tkinter.font import names
-
+# from tkinter.font import names
 
 # a = 5
 # b = 7
@@ -4693,16 +4692,292 @@ from tkinter.font import names
 # else:
 #     print("Время равно")
 
-class Student:
-    def __init__(self, name, *marks):
-        self.name = name
-        self.marks = list(marks)
+# class Student:
+#     def __init__(self, name, *marks):
+#         self.name = name
+#         self.marks = list(marks)
+#
+#     def __getitem__(self, item):  # скобки квадратные
+#         if 0 <= item < len(self.marks):
+#             return self.marks[item]
+#         else:
+#             raise IndexError("Неверный индекс")
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, int) or key < 0:
+#             raise TypeError("Индекс целое положительное число")
+#         if key >= len(self.marks):
+#             off = key + 1 - len(self.marks) # OFF = 20 +1 -6  => 15 расширили список до нужного значения
+#             self.marks.extend([None] * off)
+#
+#         self.marks[key] = value
+#
+#     def __delitem__(self, key):
+#         if not isinstance(key, int):
+#             raise TypeError("Индекс целое число")
+#         del self.marks[key]
+#
+#
+# s1 = Student("Сергей", 5, 5, 3, 4, 5, 5)
+# print(s1.marks[2])
+# print(s1[5])
+# s1[20] = 4
+# del s1[2]
+# print(s1.marks)
 
-    def __getitem__(self, item):
-        return self.marks[item]
+# class Clock:
+#     __DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("секунды число!!")
+#         self.sec = sec % self.__DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if item == "Hour":
+#             return (self.sec // 3600) % 24
+#         if item == "min":
+#             return (self.sec // 60) % 60
+#         if item == "sec":
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение целое число!!")
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         if key == "Hour":
+#             self.sec = s + 60 * m + value * 3600
+#         if key == "min":
+#             self.sec = s + 60 * value + h * 3600
+#         if key == "sec":
+#             self.sec = value + 60 * m + h * 3600
+#
+#
+# c1 = Clock(8000)
+# print(c1.get_format_time())
+# c1["Hour"] = 10
+# c1["min"] = 20
+# c1["sec"] = 40
+# print(c1["Hour"], c1["min"], c1["sec"])
+# from random import choice, randint
+#
+#
+# class Cat:
+#     def __init__(self, name, age, pol):
+#         self.name = name
+#         self.age = age
+#         self.pol = pol
+#
+#     def __str__(self):
+#         if self.pol == "M":
+#             return f"{self.name} is good boy"
+#         elif self.pol == "F":
+#             return f"{self.name} is good girl!!!"
+#         else:
+#             return f"{self.name} is good Kitty!!!"
+#
+#     def __repr__(self):  # так как создали список
+#         return f"Cat(name={self.name},age={self.age}, pol={self.pol})"
+#
+#     def __add__(self, other):
+#         if self.pol != other.pol:
+#             return [Cat("No name", 0, choice(["M", "F"])) for _ in range(1, randint(2, 9))]
+#             # от 1 до 8
+#         else:
+#             raise TypeError("Type not supported!")
+#
+#
+# cat1 = Cat("Tom", 4, "M")
+# cat2 = Cat("Elsa", 5, "F")
+# # cat3 = Cat("Murzik",3,"M")
+# print(cat1)
+# print(cat2)
+# # print(cat3)
+# print(cat1 + cat2)
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def perimeter(self):
+#         return 2 * (self.w + self.h)
+#
+#
+# class Sqaue:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def perimeter(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def perimeter(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# s1 = Sqaue(10)
+# s2 = Sqaue(20)
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.perimeter())    # полиморфизм
+
+# class Animal:  # инициализатор одинаковый для обоих классов и выведен в отдельный класс
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#
+# class Cat(Animal):
+#     def info(self):
+#         print(f"Я кот. Меня зовут {self.name}. Мои возраст {self.age}")
+#
+#     def make_sound(self):
+#         print(f"{self.name} мяукает")
+#
+#
+# class Dog(Animal):
+#     def info(self):
+#         print(f"Я собака. Меня зовут {self.name}. Мои возраст {self.age}")
+#
+#     def make_sound(self):
+#         print(f"{self.name} гавкает")
+#
+#
+# cat = Cat("Пушок", 2.5)
+# dog = Dog("Мухтар", 4)
+#
+# for animal in cat, dog:  # циклом по кортежу
+#     animal.info()
+#     animal.make_sound()
+# from abc import ABC,abstractmethod
+#
+#
+# class Human(ABC):
+#     def __init__(self, name, surname, age):
+#         self.name = name
+#         self.surname = surname
+#         self.age = age
+#
+#     @abstractmethod
+#     def info(self):
+#         print(f"\n{self.surname} {self.name} {self.age}", end=" ")
+#
+#
+# class Student(Human):
+#     def __init__(self, name, surname, age, speciality, groups, rating):
+#         super().__init__(name, surname, age)
+#         self.speciality = speciality
+#         self.groups = groups
+#         self.rating = rating
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.speciality} {self.groups} {self.rating}", end=" ")
+#
+#
+# class Teacher(Human):
+#     def __init__(self, name, surname, age, specialyty, experience):
+#         super().__init__(name, surname, age)
+#         self.specialyty = specialyty
+#         self.experience = experience
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.specialyty} {self.experience}", end=" ")
+#
+#
+# class Graduate(Student):
+#     def __init__(self, name, surname, age, speciality, groups, rating, topic):
+#         super().__init__(name, surname, age, speciality, groups, rating)
+#         self.topic = topic
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.topic}")
+#
+#
+# group = [
+#     Student("Даши", "Батода", 16, "ГК", "Web11", 5),
+#     Student("Линар", "Зигаа", 32, "РПО", "ЭВ b11", 5),
+#     Teacher("Андрей", "Дан", 38, "Астрофизика", 110),
+#     Graduate("Сергец", "Шуган", 20, "Rpo", "Pdft11", 5, "Защита данных")
+# ]
+#
+# for i in group:
+#     i.info()
+
+# Функторы
+
+# class Counter:
+#     def __init__(self):
+#         self.count = 0
+#
+#     def __call__(self, *args, **kwargs):
+#         self.count += 1
+#         print(self.count)
+#
+#
+# c1 = Counter()
+# c1()
+# c1()
+# c1()
+
+def string_strip(chars):
+    def wrap(string):
+        if not isinstance(string, str):
+            raise ValueError("Аргуменьтс строка")
+
+        return string.strip(chars)
+
+    return wrap
 
 
-s1 = Student("Сергей", 5, 5, 3, 4, 5, 5)
-print(s1.marks[2])
-print(s1[5])
+s1 = string_strip("?:!.: ")
+print(s1("   Hello World ! .."))
 
+
+class StringStrip:
+    def __init__(self, chars):
+        self.chars = chars
+
+    def __call__(self, *args, **kwargs):
+        if not isinstance(args[0], str):
+            raise ValueError("Аргуменьтс строка")
+        return args[0].strip(self.chars)
+
+
+s2 = StringStrip("?:!.: ")
+print(s2("   Hello World ! .."))
