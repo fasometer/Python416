@@ -1043,53 +1043,85 @@ class Shape(ABC):
         pass
 
 
-class Rectangle:
-    def __init__(self, w, h):
+class Rectangle(Shape):
+    def __init__(self, w, h, color):
+        super().__init__(color)
         self.w = w
         self.h = h
 
     def info(self):
         print("===Прямоугольник===")
-        print(f"Длина:", {self.w})
-        print(f"Ширина:", {self.h})
+        print(f"Длина:, {self.w}")
+        print(f"Ширина:, {self.h}")
+        print(f"Цвет:, {self.color}")
 
     def perimeter(self):
-        return 2 * (self.w + self.h)
+        return print(f"Периметр: {2 * (self.w + self.h)}")
 
     def square(self):
-        return self.w * self.h
+        return print(f"Площадь: {self.w * self.h}")
+
+    def draw(self):
+        for i in range(self.h):
+            for j in range(self.w):
+                print("* ", end="")
+            print()
 
 
-class Square:
-    def __init__(self, a):
+class Square(Shape):
+    def __init__(self, a, color):
+        super().__init__(color)
         self.a = a
 
     def info(self):
         print("===Квадрат===")
-        print(f"Сторона:", {self.a})
+        print(f"Сторона:, {self.a}")
+        print(f"Цвет:, {self.color}")
 
     def perimeter(self):
-        return 4 * self.a
+        return print(f"Периметр: {4 * self.a}")
 
     def square(self):
-        return self.a ** 2
+        return print(f"Площадь: {self.a ** 2}")
+
+    def draw(self):
+        for i in range(self.a):
+            for j in range(self.a):
+                print("* ", end="")
+            print()
 
 
-class Triangle:
-    def __init__(self, a, b, c):
+class Triangle(Shape):
+    def __init__(self, a, b, c, color):
+        super().__init__(color)
         self.a = a
         self.b = b
         self.c = c
 
     def info(self):
         print("===Треугольник===")
-        print(f"Сторона 1:", {self.a})
-        print(f"Сторона 2:", {self.b})
-        print(f"Сторона 3:", {self.c})
+        print(f"Сторона 1:, {self.a}")
+        print(f"Сторона 2:, {self.b}")
+        print(f"Сторона 3:, {self.c}")
+        print(f"Цвет:, {self.color}")
 
     def perimeter(self):
-        return self.a + self.b + self.c
+        return print(f"Периметр: {self.a + self.b + self.c}")
 
     def square(self):
         p = (self.a + self.b + self.c) / 2
-        return sqrt(p * (p - self.a) * (p - self.b) * (p - self.c))
+        return print(f"Площадь: {round(sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)),2)}")
+
+
+shapes = [
+    Rectangle(3,7,"green"),
+    Square(3, "red"),
+    Triangle(11,6,6,"yellow")
+]
+
+for i in shapes:
+    i.info()
+    i.perimeter()
+    i.square()
+    i.draw()
+    print()
