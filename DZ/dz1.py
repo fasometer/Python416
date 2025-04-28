@@ -1042,6 +1042,10 @@ class Shape(ABC):
     def square(self):
         pass
 
+    @abstractmethod
+    def draw(self):
+        pass
+
 
 class Rectangle(Shape):
     def __init__(self, w, h, color):
@@ -1051,9 +1055,9 @@ class Rectangle(Shape):
 
     def info(self):
         print("===Прямоугольник===")
-        print(f"Длина:, {self.w}")
-        print(f"Ширина:, {self.h}")
-        print(f"Цвет:, {self.color}")
+        print(f"Длина: {self.w}")
+        print(f"Ширина: {self.h}")
+        print(f"Цвет: {self.color}")
 
     def perimeter(self):
         return print(f"Периметр: {2 * (self.w + self.h)}")
@@ -1075,8 +1079,8 @@ class Square(Shape):
 
     def info(self):
         print("===Квадрат===")
-        print(f"Сторона:, {self.a}")
-        print(f"Цвет:, {self.color}")
+        print(f"Сторона: {self.a}")
+        print(f"Цвет: {self.color}")
 
     def perimeter(self):
         return print(f"Периметр: {4 * self.a}")
@@ -1100,23 +1104,28 @@ class Triangle(Shape):
 
     def info(self):
         print("===Треугольник===")
-        print(f"Сторона 1:, {self.a}")
-        print(f"Сторона 2:, {self.b}")
-        print(f"Сторона 3:, {self.c}")
-        print(f"Цвет:, {self.color}")
+        print(f"Сторона 1: {self.a}")
+        print(f"Сторона 2: {self.b}")
+        print(f"Сторона 3: {self.c}")
+        print(f"Цвет: {self.color}")
 
     def perimeter(self):
         return print(f"Периметр: {self.a + self.b + self.c}")
 
     def square(self):
         p = (self.a + self.b + self.c) / 2
-        return print(f"Площадь: {round(sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)),2)}")
+        return print(f"Площадь: {round(sqrt(p * (p - self.a) * (p - self.b) * (p - self.c)), 2)}")
+
+    def draw(self):
+        for i in range(1, self.a + 1):
+            print(' ' * self.a + '*' * (i * 2 - 1))
+            self.a -= 1
 
 
 shapes = [
-    Rectangle(3,7,"green"),
+    Rectangle(7, 3, "green"),
     Square(3, "red"),
-    Triangle(11,6,6,"yellow")
+    Triangle(6, 6, 11, "yellow")
 ]
 
 for i in shapes:

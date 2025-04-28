@@ -365,21 +365,9 @@
 
 
 rows = 6
-spaces = rows - 1
-# stars = 1
+spaces = rows
 
 for i in range(1, rows + 1):
-    print((' ' * spaces) + ('*' * i) + (' ' * spaces))
-    i += 2
+    print(' ' * spaces + '*' * (i * 2 - 1))
     spaces -= 1
 
-
-def draw_triangle(rows, w):
-    for i in range(1, rows + 1):
-        for j in range(w):
-            w1 = w
-            print((" " * w1 ) + ('*' * j))
-            w1 -= 1
-
-
-draw_triangle(6, 11)
