@@ -4955,29 +4955,340 @@
 # c1()
 # c1()
 
-def string_strip(chars):
-    def wrap(string):
-        if not isinstance(string, str):
-            raise ValueError("Аргуменьтс строка")
+# def string_strip(chars):
+#     def wrap(string):
+#         if not isinstance(string, str):
+#             raise ValueError("Аргуменьтс строка")
+#
+#         return string.strip(chars)
+#
+#     return wrap
+#
+#
+# s1 = string_strip("?:!.: ")
+# print(s1("   Hello World ! .."))
+#
+#
+# class StringStrip:
+#     def __init__(self, chars):
+#         self.chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError("Аргуменьтс строка")
+#         return args[0].strip(self.chars)
+#
+#
+# s2 = StringStrip("?:!.: ")
+# print(s2("   Hello World ! .."))
 
-        return string.strip(chars)
+# from math import sqrt
+# from abc import ABC, abstractmethod
+#
+#
+# class Shape(ABC):
+#     def __init__(self, color):
+#         self.color = color
+#
+#     @abstractmethod
+#     def ger_perimeter(self):
+#         pass
+#
+#     @abstractmethod
+#     def get_area(self):
+#         pass
+#
+#     @abstractmethod
+#     def draw(self):
+#         pass
+#
+#     @abstractmethod
+#     def info(self):
+#         pass
+#
+#
+# class Square(Shape):
+#     def __init__(self, side, color):
+#         super().__init__(color)
+#         self.side = side
+#
+#     def ger_perimeter(self):
+#         return self.side * 4
+#
+#     def get_area(self):
+#         return self.side ** 2
+#
+#     def draw(self):
+#         return ("*  " * self.side + "\n") * self.side
+#
+#     def info(self):
+#         print(f"===Квадрат===\n Сторона: {self.side}\n Цвет: {self.color}\n Площадб {self.get_area()}\n"
+#               f"Перемитр {self.ger_perimeter()}\n{self.draw()}\n")
+#
+#
+# class Rectangle(Shape):
+#     def __init__(self, length, width, color):
+#         super().__init__(color)
+#         self.length = length
+#         self.width = width
+#
+#     def ger_perimeter(self):
+#         return (self.length + self.width) * 2
+#
+#     def get_area(self):
+#         return self.length * self.width
+#
+#     def draw(self):
+#         return ("*  " * self.length + "\n") * self.width
+#
+#     def info(self):
+#         print(f"===Прямоуголник===\n Длина: {self.length}\n Ширина {self.width}\nЦвет: {self.color}\n"
+#               f" Площадб {self.get_area()}\nПеремитр {self.ger_perimeter()}\n{self.draw()}\n")
+#
+#
+# class Triangle(Shape):
+#     def __init__(self, side_1, side_2, side_3, color):
+#         super().__init__(color)
+#         self.side_1 = side_1
+#         self.side_2 = side_2
+#         self.side_3 = side_3
+#
+#     def ger_perimeter(self):
+#         return self.side_1 + self.side_2 + self.side_3
+#
+#     def get_area(self):
+#         p = self.ger_perimeter() / 2
+#         return round(sqrt(p * (p - self.side_1) * (p - self.side_2) * (p - self.side_3)), 2)
+#
+#     def draw(self):
+#         rows = []
+#         for n in range(self.side_2):
+#             rows.append(" " * n + "*" * (self.side_1 - 2 * n))
+#         rows.reverse()
+#         return "\n".join(rows)
+#
+#     def info(self):
+#         print(f"===Треуголник===\n Сторона1: {self.side_1}\n Сторона2 {self.side_2}\nСторона3 {self.side_3}\n"
+#               f"Цвет: {self.color}\nПлощадб {self.get_area()}\nПеремитр {self.ger_perimeter()}\n{self.draw()}")
+#
+#
+# # sq = Square(4, "red")
+# # sq.info()
+# # rec = Rectangle(7, 3, "green")
+# # rec.info()
+# # tr = Triangle(7, 3, "green")
+# # tr.info()
+# fig = [Square(4, "red"),Rectangle(7, 3, "green"),
+#        Triangle(11,6, 3, "green")]
+# for i in fig:
+#     i.info()
 
-    return wrap
+
+# Декораторы классов
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.fn = fn
+#
+#     def __call__(self):
+#         print("Перед вызовом функции")
+#         self.fn()
+#         print("После вызова функции")
+#
+#
+# @MyDecorator
+# def func():
+#     print("text")
+#
+#
+# func()
+#
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.func = fn
+#
+#     def __call__(self, a, b):
+#         return f"Перед вызовом функции\n{self.func(a, b)}\nПосле вызова функции "
+#
+#
+# @MyDecorator
+# def func(a, b):
+#     return a * b
+#
+#
+# func(2, 5)
+#
+# class Power:
+#     def __init__(self, func): #инициализировали функцию
+#         self.func = func
+#
+#     def __call__(self, a, b):  # методом call дали () и обратились к функции и изменили ее
+#         return self.func(a, b) ** 2
+#
+#
+# @Power
+# def muktiplay(a, b):
+#     return a * b
+#
+#
+# print(muktiplay(2, 3))
 
 
-s1 = string_strip("?:!.: ")
-print(s1("   Hello World ! .."))
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.func = fn
+#
+#     def __call__(self, *args, **kwargs):
+#         return f"Перед вызовом функции\n{self.func(*args, **kwargs)}\nПосле вызова функции "
+#
+#
+# @MyDecorator
+# def func(a, b):
+#     return a * b
+#
+#
+# @MyDecorator
+# def func2(a, b, c):
+#     return a * b * c
+#
+#
+# print(func(2, 5))
+# print(func2(2, 5, 6))
+
+# class MyDecorator:
+#     def __init__(self, arc):    # "test")
+#         self.name = arc
+#
+#     def __call__(self, fn):   # func
+#         def wrap(*args, **kwargs):  #  2, 5)
+#             print(self.name)
+#             return f"Перед вызовом функции\n{fn(*args, **kwargs)}\nПосле вызова функции "
+#
+#         return wrap
+#
+#
+# @MyDecorator("test")
+# def func(a, b):
+#     return a * b
+#
+#
+# print(func(2, 5))
 
 
-class StringStrip:
-    def __init__(self, chars):
-        self.chars = chars
+# class Power:
+#     def __init__(self, arc):  # инициализировали функцию
+#         self.arc = arc
+#
+#     def __call__(self, func):  # методом call дали () и обратились к функции и изменили ее
+#         def wrapper(a, b):
+#             return func(a, b) ** self.arc
+#
+#         return wrapper
+#
+#
+# @Power(3)
+# def muktiplay(a, b):
+#     return a * b
+#
+#
+# @Power(5)
+# def muktiplay1(a, b):
+#     return a * b
+#
+#
+# print(muktiplay(2, 2))
+# print(muktiplay1(2, 2))
 
-    def __call__(self, *args, **kwargs):
-        if not isinstance(args[0], str):
-            raise ValueError("Аргуменьтс строка")
-        return args[0].strip(self.chars)
+# def dec(fn):
+#     def wrap(*args, **kwargs):
+#         print("*" * 20)
+#         fn(*args, **kwargs)
+#         print("*" * 20)
+#         print()
+#
+#     return wrap
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     @dec
+#     def info(self):
+#         return print(f"{self.name} {self.surname}")
+#
+#     @dec
+#     def method_1(self, arg):
+#         print("вывод ", arg)
+#
+#
+# p1 = Person("Dina", "Smirnov")
+# p1.info()
+# p1.method_1("Value")
+
+# Метаклассы они создают другие классы
+
+# a = 5
+# print(type(a))
+# print(type(int))
+
+# class MyList(list):
+#     def get_length(self):
+#         return len(self)
+
+# MyList = type(
+#     "MyList",  # имя класа
+#     (list,),  # наследование класса
+#     dict(get_length=lambda self: len(self))  # словарь методов атрибутов и их значений
+# )
+#
+# lst = MyList()
+# lst.append(5)
+# lst.append(7)
+# lst.append(7)
+# print(lst, lst.get_length())
 
 
-s2 = StringStrip("?:!.: ")
-print(s2("   Hello World ! .."))
+# создание модулей
+
+# import geometry.rect
+# import geometry.sq
+# import geometry.trian
+
+# from geometry import rect, sq, trian
+from geometry import *
+
+
+# if __name__ == "__main__":
+#     r1 = rect.Rectangle(1, 2)
+#     r2 = rect.Rectangle(3, 4)
+#
+#     s1 = sq.Square(10)
+#     s2 = sq.Square(20)
+#
+#     t1 = trian.Triangle(1, 2, 3)
+#     t2 = trian.Triangle(4, 5, 6)
+#
+#     shape = [r1, r2, s1, s2, t1, t2]
+#
+#     for g in shape:
+#         print(g.perimeter())
+
+def ram():
+    r1 = rect.Rectangle(1, 2)
+    r2 = rect.Rectangle(3, 4)
+
+    s1 = sq.Square(10)
+    s2 = sq.Square(20)
+
+    t1 = trian.Triangle(1, 2, 3)
+    t2 = trian.Triangle(4, 5, 6)
+
+    shape = [r1, r2, s1, s2, t1, t2]
+
+    for g in shape:
+        print(g.perimeter())
+
+
+if __name__ == "__main__":
+    ram()
