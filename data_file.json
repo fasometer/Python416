@@ -1,0 +1,17 @@
+{
+    "name": "olga",
+    "age": 35,
+    "20": null,
+    "null": "no",
+    "true": false,
+    "hobbis": [
+        "running",
+        "sigmning"
+    ],
+    "children": [
+        {
+            "firtsName": "als",
+            "age": 6
+        }
+    ]
+}
