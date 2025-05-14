@@ -1165,16 +1165,17 @@ def gen_person():
         'name': name,
         'tel': tel
     }
-    return person
+    k = tel
+    return person,k
 
 
 def write_json(person_dict):
     try:
         data = json.load(open("persons.json"))
     except FileNotFoundError:
-        data = []
-
-    data.append(person_dict)
+        data = {}
+    k = person_dict[1]
+    data[k] = person_dict[0]
 
     with open("persons.json", "w") as f:
         json.dump(data, f, indent=2)
@@ -1182,4 +1183,4 @@ def write_json(person_dict):
 
 for i in range(5):
     write_json(gen_person())
-# print(persons)
+print(gen_person())
