@@ -1183,4 +1183,4 @@ def write_json(person_dict):
 
 for i in range(5):
     write_json(gen_person())
-print(gen_person())
+# print(gen_person())
