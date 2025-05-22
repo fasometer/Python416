@@ -1215,10 +1215,17 @@ def get_data(html):
         write_csv(data)
 
 
+# def write_csv(data):
+#     with open("botinok.csv", "a") as f:
+#         writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#         writer.writerow((data["name"], data["url"], data["price"]))
+
 def write_csv(data):
-    with open("botinok.csv", "a") as f:
-        writer = csv.writer(f, delimiter=";", lineterminator="\r")
-        writer.writerow((data["name"], data["url"], data["price"]))
+    with open("botinok.csv", "w") as f:
+        writer = csv.DictWriter(f, delimiter=";", lineterminator="\r", fieldnames=data[0].keys())  # забираем все ключи
+        writer.writeheader()
+        for d in data:
+            writer.writerow(d)
 
 
 def main():
