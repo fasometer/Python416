@@ -1185,9 +1185,46 @@
 #     write_json(gen_person())
 # # print(gen_person())
 
-import csv
+# import csv
+#
+# with open("data2.csv") as f:
+#     file_reader = csv.reader(f, delimiter=";")
+#     for row in file_reader:
+#         print(row)
 
-with open("data2.csv") as f:
-    file_reader = csv.reader(f, delimiter=";")
-    for row in file_reader:
-        print(row)
+import csv
+import requests
+from bs4 import BeautifulSoup
+
+
+def get_html(url):
+    row = requests.get(url)
+    return row.text
+
+
+def get_data(html):
+    soup = BeautifulSoup(html, "html.parser")
+    blocks = soup.find_all("div", class_="main-products__lots_items")
+
+    for el in blocks:
+        name = el.find("div", class_="gr-product-name").find("a").text
+        url = el.find("div", class_="gr-product-name").find("a")["href"]
+        price = el.find("div", class_="price-current").find("strong").text
+        # print(name, url, price)
+        data = {"name": name, "url": url, "price": price}
+        write_csv(data)
+
+
+def write_csv(data):
+    with open("botinok.csv", "a") as f:
+        writer = csv.writer(f, delimiter=";", lineterminator="\r")
+        writer.writerow((data["name"], data["url"], data["price"]))
+
+
+def main():
+    url = "https://obuv-tut2000.ru/"
+    get_data(get_html(url))
+
+
+if __name__ == '__main__':
+    main()
