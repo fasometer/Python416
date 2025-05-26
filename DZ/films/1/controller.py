@@ -9,7 +9,7 @@ class Controller:
 
     def run(self):
         answer = None
-        while answer != 'q':
+        while answer != "q":
             answer = self.user_interface.wait_user_answer()
             self.check_user_answer(answer)
 

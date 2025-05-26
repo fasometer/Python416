@@ -1,14 +1,28 @@
+def add_title(title):
+    def wrapper(func):
+        def wrap(*args, **kwargs):
+            print(f"{title}".center(50,"="))
+            output = func(*args, **kwargs)
+            print("=" * 50)
+            return output
+        return wrap
+    return wrapper
+
+
 class UserInterface:
 
+    @add_title(" Редактирование данных каталога фильмов ")
     def wait_user_answer(self):
-        print("Редактирование данных каталога фильмов".center(4, "="))
-        print("Действия с фильмами:")
-        print("1 - добавление фильма")
-        print("2 - каталог фильма")
-        print("q - выход из программы")
-        print("Выберите вариант действия: ")
-        print("=" * 50)
+        # print("Редактирование данных каталога фильмов".center(4, "="))
+        print("Действия с фильмами:"
+              "\n1 - добавление фильма"
+              "\n2 - каталог фильма"
+              "\nq - выход из программы")
+        user_answer = input("Выберите вариант действия: ")
+        # print("=" * 50)
+        return user_answer
 
+    @add_title(" Добавление фильма ")
     def add_user_film(self):
         dict_film = {
             '- название фильма': None,
@@ -19,14 +33,15 @@ class UserInterface:
             '- студия': None,
             '- актеры': None
         }
-        print("Добавление фильма".center(50, "="))
+        # print("Добавление фильма".center(50, "="))
         for key in dict_film:
             dict_film[key] = input(f"Введите {key} фильма: ")
-        print("=" * 50)
+        # print("=" * 50)
         return dict_film
 
+    @add_title(" Каталог фильмов ")
     def show_all_films(self, films):
-        print("Каталог фильмов ".center(50, "="))
+        # print("Каталог фильмов ".center(50, "="))
         for ind, fimm in enumerate(films, 1):
             print(f"{ind} {fimm}")
-        print("=" * 50)
+        # print("=" * 50)
