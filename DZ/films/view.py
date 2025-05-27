@@ -16,7 +16,9 @@ class UserInterface:
         # print("Редактирование данных каталога фильмов".center(4, "="))
         print("Действия с фильмами:"
               "\n1 - добавление фильма"
-              "\n2 - каталог фильма"
+              "\n2 - каталог фильмов"
+              "\n3 - просмотр определенного фильма"
+              "\n4 - удаление фильма"
               "\nq - выход из программы")
         user_answer = input("Выберите вариант действия: ")
         # print("=" * 50)
@@ -25,7 +27,7 @@ class UserInterface:
     @add_title(" Добавление фильма ")
     def add_user_film(self):
         dict_film = {
-            '- название фильма': None,
+            '- название': None,
             '- жанр': None,
             '- режиссер': None,
             '- год выпуска': None,
@@ -45,3 +47,16 @@ class UserInterface:
         for ind, fimm in enumerate(films, 1):
             print(f"{ind} {fimm}")
         # print("=" * 50)
+
+    @add_title(" Ввод названия фильма ")
+    def get_user_film(self):
+        return input("Введите название фильма:")
+
+    @add_title(" Сообщение об ошибке ")
+    def show_incorrect_title_error(self,user_title):
+        print(f"Фильма с названием \"{user_title}\" не существует")
+
+    @add_title(" Просмотр определенного фильма")
+    def show_single_film(self,film):
+        for i in film:
+            print(f"{i} фильма - {film[i]}")
