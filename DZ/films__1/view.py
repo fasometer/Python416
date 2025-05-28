@@ -1,13 +1,11 @@
 def add_title(title):
     def wrapper(func):
         def wrap(*args, **kwargs):
-            print(f"{title}".center(50, "="))
+            print(f"{title}".center(50,"="))
             output = func(*args, **kwargs)
             print("=" * 50)
             return output
-
         return wrap
-
     return wrapper
 
 
@@ -55,14 +53,10 @@ class UserInterface:
         return input("Введите название фильма:")
 
     @add_title(" Сообщение об ошибке ")
-    def show_incorrect_title_error(self, user_title):
+    def show_incorrect_title_error(self,user_title):
         print(f"Фильма с названием \"{user_title}\" не существует")
 
     @add_title(" Просмотр определенного фильма")
-    def show_single_film(self, film):
+    def show_single_film(self,film):
         for i in film:
             print(f"{i} фильма - {film[i]}")
-
-    @add_title("Удаление фильма")
-    def remove_single_film(self, film):
-        print(f"Фильм {film} - был удален")

@@ -28,15 +28,4 @@ class Controller:
                 self.user_interface.show_incorrect_title_error(film_title)
             else:
                 self.user_interface.show_single_film(film)
-        elif answer == "4":
-            film_title = self.user_interface.get_user_film()
-            try:
-                film = self.film_model.remove_single_film(film_title)
-            except KeyError:
-                self.user_interface.show_incorrect_title_error(film_title)
-            else:
-                self.user_interface.remove_single_film(film)
-        elif answer == "q":
-            self.film_model.save_data()
-        else:
-            self.user_interface.show_incorrect_title_error(answer)
+
