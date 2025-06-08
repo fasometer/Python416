@@ -1,0 +1,127 @@
+1.	Сосчитать количество клиентов, покупающих товар.
+SELECT COUNT(Client)
+FROM Client
+
+2.	Сколько посредников поставляют товар для фирмы.
+SELECT COUNT(Seller)
+FROM Seller
+WHERE Status = 'посредник'
+
+3.	Вывести среднюю сумму сделки по проданному товару.
+SELECT ROUND(AVG(CostUnit*Count),2)
+FROM ClientGoods
+
+4.	Посчитать на какую сумму было всего поставлено товара.
+--SELECT SUM(CostUnit*Count) AS [Сумма товара]
+--SELECT SUM(CostUnit*Count) AS "Сумма товара"
+SELECT SUM(CostUnit*Count) AS 'Сумма товара'
+FROM ClientGoods
+
+5.	Определите максимальное количество закупленного товара шт.(кг)
+SELECT sg.Goods [товар],MAX(cg.Count) [продажи]
+FROM ClientGoods cg, SallerGoods sg
+WHERE cg.ID = sg.ID
+
+6.	Какая минимальная сумма покупки, на которую клиент сделал заказ.
+SELECT cl.Client[клиент],sg.Goods [товар],MIN(cg.Count)*cg.CostUnit [сумма покупки]
+FROM ClientGoods cg, SallerGoods sg, Client cl
+WHERE cg.ID = sg.ID AND cl.INNClient = cg.INNClient
+
+7.	Посчитать на какую сумму было продано товара магазинам.
+SELECT cl.Status [место продажи],SUM(cg.CostUnit)*SUM(cg.Count) [сумма продаж]
+FROM Client cl, ClientGoods cg
+WHERE cl.INNClient=cg.INNClient AND cl.Status = 'магазин'
+
+8.	Сосчитать общее количество видов закупленных фирмой вафель.
+SELECT SUM(sg.Count) [всего вафель]
+FROM SallerGoods sg
+WHERE sg.Goods GLOB '[Вафли]*'
+
+9.	Выведите среднюю цену на растительное масло (закупочную).
+SELECT AVG(sg.CostUnit) [ средняя цена]
+FROM SallerGoods sg
+WHERE sg.Goods IN
+ ('масло оливковое','масло подсолнечное','масло кукурузное' )
+
+10.	Определите сколько всего было продано килограмм яблок.
+SELECT SUM(cg.Count)
+FROM SallerGoods sg, ClientGoods cg
+WHERE sg.ID=cg.ID  AND sg.Goods GLOB'Яблоки*'
+
+11.	Определите какое количество картофеля закупили кафе.
+SELECT  cl.Status,sg.Goods,SUM(cg.Count)
+FROM Client cl,SallerGoods sg, ClientGoods cg
+WHERE cl.Status = 'кафе' AND sg.Goods GLOB 'Картофель*'
+AND cl.INNClient=cg.INNClient AND cg.ID=sg.ID
+ 
+
+12.	Посчитать сколько клиентов купили перец черный молотый.
+SELECT  COUNT(cl.Client),sg.Goods
+FROM Client cl,SallerGoods sg, ClientGoods cg
+WHERE sg.Goods ='Перец черный молотый'
+AND cl.INNClient=cg.INNClient AND cg.ID=sg.ID
+
+13.	Определить сколько наименований товара было куплено у посредников.
+SELECT  cl.Status,COUNT(sg.Goods) [Товаров], SUM(cg.Count) [Общая стоимость]
+FROM Client cl,SallerGoods sg, ClientGoods cg
+WHERE cl.INNClient=cg.INNClient AND cg.ID=sg.ID AND cl.Status = 'посредник'
+
+14.	Определить минимальную цену за единицу проданного товара.
+SELECT MIN(CostUnit) [мин. цена]
+FROM ClientGoods 
+
+15.	Определите минимальную сумму на какую было закуплено товара.
+SELECT MIN(CostUnit*Count) [мин. сумма]
+FROM ClientGoods 
+
+16.	Определить максимальную сумму за товар, проданный магазинам.
+SELECT MAX(cg.CostUnit*cg.Count) [макс. сумма], cl.Status [место продажи]
+FROM ClientGoods cg,  Client cl
+WHERE cl.INNClient = cg.INNClient and cl.Status = 'магазин'
+
+17.	Определить со сколькими фирмами сотрудничает данная фирма.
+SELECT COUNT(Client)
+FROM Client
+
+18.	Определить минимальную сумму сделки по закупке товара у производителей.
+SELECT MIN(sg.CostUnit*sg.Count) [мин. сумма сделки]
+FROM SallerGoods sg
+
+19.	Определить среднюю цену за пачку чая при покупке.
+SELECT AVG(sg.CostUnit) [средняя цена за пачку чая]
+FROM SallerGoods sg
+WHERE sg.Goods GLOB 'Чай*'
+
+20.	Определите максимальную сумму прибыли за товар, проданный посреднику.
+SELECT cl.Status[место продажи],MAX(sg.CostUnit*sg.Count-cg.CostUnit*cg.Count)
+[максимальная сумма прибыли]
+FROM Client cl, ClientGoods cg, SallerGoods sg
+WHERE cl.Status = 'посредник' 
+    AND cl.INNClient=cg.INNClient AND sg.ID = cg.ID
+
+21.	 Определите минимальную прибыль за товар, купленный у посредника.
+SELECT s.Status[продавец],MIN(sg.CostUnit*sg.Count - cg.CostUnit*cg.Count)
+FROM Seller s, ClientGoods cg, SallerGoods sg
+WHERE s.Status = 'посредник' 
+    AND s.INNSeller=sg.INNSeller AND sg.ID = cg.ID
+
+22.	 Какое количество наименований товара куплено у фирмы.
+SELECT COUNT(cg.ID)
+FROM ClientGoods cg
+
+23.	 Сколько в продаже видов печенья.
+SELECT COUNT(Goods)
+FROM SallerGoods
+WHERE Goods GLOB 'Печенье *' 
+
+24.	 Какая максимальная сумма покупки, на которую клиент сделал заказ.
+SELECT cl.Client, MAX(cg.CostUnit*cg.Count)
+FROM Client cl, ClientGoods cg
+WHERE cl.INNClient = cg.INNClient
+
+25.	 Определите среднюю прибыль от перепродажи масла.
+SELECT AVG(sg.CostUnit*sg.Count - cg.CostUnit*cg.Count) [прибыль]
+FROM SallerGoods sg, ClientGoods cg
+WHERE sg.Goods GLOB 'масло*' AND cg.ID=sg.ID
+
+26.	 Со сколькими посредниками сотрудничает фирма.
