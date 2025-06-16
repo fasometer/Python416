@@ -6200,26 +6200,128 @@
 #     DROP COLUMN home_address;
 #     """)
 
+# import sqlite3
+#
+# with sqlite3.connect("db_3.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     SELECT *
+#     FROM T1
+#     LIMIT 2, 5
+#     """)
+#
+#     # for res in cur:
+#     #     print(res)
+#
+#     # res = cur.fetchall()
+#     # print(res)
+#
+#     res2 = cur.fetchmany(2)
+#     print(res2)
+#
+#     res1 = cur.fetchone()
+#     print(res1)
+#     res = cur.fetchall()
+#     print(res)
 import sqlite3
 
-with sqlite3.connect("db_3.db") as con:
+# car_list = [
+#     ('BMW', 54000),
+#     ('Chevrol', 44000),
+#     ('Daewo', 32000),
+#     ('Citroi', 29000),
+#     ('Honda', 35000),
+# ]
+
+# with sqlite3.connect("car.db") as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     )
+#     """)
+
+# cur.executescript("""
+# DELETE FROM cars WHERE model LIKE 'B%';
+# UPDATE cars SET price = price + 100;
+# """)
+
+# cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {'Price':0})
+
+# cur.executemany("INSERT INTO cars VALUES(NULL, ?,?)",car_list)
+
+# for car in car_list:
+#     cur.execute("INSERT INTO cars VALUES(NULL, ?,?)", car)
+
+# cur.execute("INSERT INTO cars VALUES(1,'Renault',22000)")
+# cur.execute("INSERT INTO cars VALUES(2,'Volvo',29000)")
+# cur.execute("INSERT INTO cars VALUES(3,'Mers',57000)")
+# cur.execute("INSERT INTO cars VALUES(4,'Bentley',35000)")
+# cur.execute("INSERT INTO cars VALUES(5,'Audy',52000)")
+
+# con.commit() - сохраняет изменения в базе даных
+# con.close() -  закрывает базу данных
+# con = None
+# try:
+#     con = sqlite3.connect("car.db")
+#     cur = con.cursor()
+#     cur.executescript("""
+#         CREATE TABLE IF NOT EXISTS cars(
+#             car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             model TEXT,
+#             price INTEGER
+#         );
+#         BEGIN;
+#         INSERT INTO cars VALUES(NULL,'Renault',22000);
+#         UPDATE cars SET price = price + 100;
+#         """)
+#     con.commit()
+# except sqlite3.Error as e:
+#     if con:
+#         con.rollback()
+#     print("Ошибка выполнения запроса")
+# finally:
+#     if con:
+#         con.close()
+
+# with sqlite3.connect("car.db") as con:
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     );
+#     CREATE TABLE IF NOT EXISTS cost(
+#         name TEXT, tr_in INTEGER, buy INTeGER);
+#     """)
+#
+#     cur.execute("INSERT INTO cars VALUES(NULL, 'Запорожец',1000)")
+#     last_id = cur.lastrowid
+#     byy_id = 2
+#     cur.execute("INSERT INTO cost VALUES('Илья',?,?)", (last_id, byy_id))
+
+with sqlite3.connect("car.db") as con:
+    con.row_factory = sqlite3.Row  # row_factory разрешает обращение по ключам
     cur = con.cursor()
-    cur.execute("""
-    SELECT *
-    FROM T1
-    LIMIT 2, 5
+    cur.executescript("""
+    CREATE TABLE IF NOT EXISTS cars(
+        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        model TEXT,
+        price INTEGER
+    );
+    
     """)
+    cur.execute("SELECT model,price FROM cars")
 
-    # for res in cur:
-    #     print(res)
+    # rows = cur.fetchall()  # выводит список всех записей кортеж
+    # print(rows)
+    # rows2 = cur.fetchone()
+    # print(rows2)
+    # rows3 = cur.fetchmany(5)
+    # print(rows3)
 
-    # res = cur.fetchall()
-    # print(res)
-
-    res2 = cur.fetchmany(2)
-    print(res2)
-
-    res1 = cur.fetchone()
-    print(res1)
-    res = cur.fetchall()
-    print(res)
+    for res in cur:
+        print(res['model'], res['price'])
