@@ -6303,25 +6303,77 @@ import sqlite3
 #     byy_id = 2
 #     cur.execute("INSERT INTO cost VALUES('Илья',?,?)", (last_id, byy_id))
 
-with sqlite3.connect("car.db") as con:
-    con.row_factory = sqlite3.Row  # row_factory разрешает обращение по ключам
+# with sqlite3.connect("car.db") as con:
+#     con.row_factory = sqlite3.Row  # row_factory разрешает обращение по ключам
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     );
+#
+#     """)
+#     cur.execute("SELECT model,price FROM cars")
+#
+#     # rows = cur.fetchall()  # выводит список всех записей кортеж
+#     # print(rows)
+#     # rows2 = cur.fetchone()
+#     # print(rows2)
+#     # rows3 = cur.fetchmany(5)
+#     # print(rows3)
+#
+#     for res in cur:
+#         print(res['model'], res['price'])
+# def read_ava(n):
+#     try:
+#         with open(f"avatars/{n}.png", 'rb') as f:
+#             return f.read()
+#     except IOError as e:
+#         print(e)
+#         return False
+#
+# def write_ava(name, data):
+#     try:
+#         with open(name, "wb") as f:
+#             f.write(data)
+#     except IOError as e:
+#         print(e)
+#         return False
+#     return True
+#
+#
+#
+# with sqlite3.connect("car.db") as con:
+#     con.row_factory = sqlite3.Row  # row_factory разрешает обращение по ключам
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#         name TEXT,
+#         ava BLOB,
+#         score INTEGER
+#     );""")
+#     # img = read_ava(1)
+#     # if img:
+#     #     binery = sqlite3.Binary(img)
+#     #     cur.execute("INSERT INTO users VALUES('Илья',?,1000)",(binery,))
+#     cur.execute("SELECT ava FROM users")
+#     img = cur.fetchone()['ava']
+#
+#     write_ava("out.png",img)
+
+# with sqlite3.connect("car.db") as con:  # сохранения в дамп и файл данны о базе данных
+#     cur = con.cursor()
+#
+#     with open("sql_dump.sql", "w") as f:
+#
+#         for sql in con.iterdump():
+#             f.write(sql)
+#
+
+with sqlite3.connect("cars_db.db") as con:  # восстановление БД из файла
     cur = con.cursor()
-    cur.executescript("""
-    CREATE TABLE IF NOT EXISTS cars(
-        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        model TEXT,
-        price INTEGER
-    );
-    
-    """)
-    cur.execute("SELECT model,price FROM cars")
 
-    # rows = cur.fetchall()  # выводит список всех записей кортеж
-    # print(rows)
-    # rows2 = cur.fetchone()
-    # print(rows2)
-    # rows3 = cur.fetchmany(5)
-    # print(rows3)
-
-    for res in cur:
-        print(res['model'], res['price'])
+    with open("sql_dump.sql", "r") as f:
+        sql = f.read()
+        cur.executescript(sql)
