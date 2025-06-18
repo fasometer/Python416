@@ -1,0 +1,13 @@
+body{
+    background: lightseagreen;
+    margin: 0;
+    padding: 0;
+}
+.menu{
+        display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: greenyellow;
+    padding: 20px;
+    margin-top: 0;
+}
