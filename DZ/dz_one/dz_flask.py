@@ -7,6 +7,7 @@ menu = [
     {'name': "Наши проекты", "url": "project"},
     {'name': "Связаться с нами", "url": "contact"}
 ]
+project = ['Станки', 'Автоматизация', 'Сервис']
 
 
 @app.route("/")
@@ -18,6 +19,13 @@ def index():
 @app.route("/project")
 def project():
     return render_template('project.html', title='Наши проекты', menu=menu)
+
+
+@app.route("/contact", methods=["POST", "GET"])
+def contact():
+    if request.method == "POST":
+        print(request.form)
+    return render_template('contact.html', title='Связаться с нами', menu=menu)
 
 
 if __name__ == '__main__':
