@@ -27,6 +27,6 @@ def contact():
         print(request.form)
     return render_template('contact.html', title='Связаться с нами', menu=menu)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+#
+# if __name__ == '__main__':
+#     app.run(debug=True)
