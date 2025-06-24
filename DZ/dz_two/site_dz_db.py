@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Flask, render_template, flash, request, g
+from flask import Flask, render_template, flash, request, g, abort
 from DZ.dz_two.dz_database import FDataBase
 
 # конфигурация
@@ -40,11 +40,11 @@ def index():
     return render_template('index.html', menu=dbase.get_menu())
 
 
-# @app.route("/project")
-# def project():
-#     db = get_db()
-#     dbase = FDataBase(db)
-#     return render_template('project.html', menu=dbase.get_menu())
+@app.route("/project")
+def project():
+    db = get_db()
+    dbase = FDataBase(db)
+    return render_template('project.html', menu=dbase.get_menu(),posts=dbase.get_post_anonce())
 
 
 @app.route("/contact", methods=["POST", "GET"])
@@ -60,13 +60,27 @@ def contact():
 def add_post():
     db = get_db()
     dbase = FDataBase(db)
+    if request.method == "POST":
+        if len(request.form["name"]) > 4 and len(request.form["post"]) > 10:
+            res = dbase.add_post(request.form["name"], request.form["post"])
+            if not res:
+                flash("Ошибка добавления проекта", category="error")
+            else:
+                flash("Проект добавлен успешно", category="success")
+        else:
+            flash("Ошибка добавления проекта", category="error")
+
     return render_template('add_post.html', title='Добавить проект', menu=dbase.get_menu())
 
 
-@app.teardown_appcontext
-def close_db(error):
-    if hasattr(g, "link_db"):
-        g.link_db.close()
+@app.route("/post/<int:id_post>")
+def show_post(id_post):
+    db = get_db()
+    dbase = FDataBase(db)
+    title, post = dbase.get_post(id_post)
+    if not title:
+        abort(404)
+    return render_template('post.html', menu=dbase.get_menu(), title=title, post=post)
 
 
 @app.errorhandler(404)
@@ -74,6 +88,12 @@ def page_not_found(error):
     db = get_db()
     dbase = FDataBase(db)
     return render_template("page404.html", title="Страница не найдена", menu=dbase.get_menu())
+
+
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, "link_db"):
+        g.link_db.close()
 
 
 if __name__ == '__main__':
