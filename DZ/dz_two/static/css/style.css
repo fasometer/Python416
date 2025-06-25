@@ -15,6 +15,7 @@ body{
 }
 .menu a{
     font-size: large;
+    text-decoration: none;
 }
 .content{
     max-width: 1200px;
@@ -61,7 +62,7 @@ p.title a{
 }
 
 p.title:hover{
-    background: orange;
+    background: pink;
 }
 .annonce{
     margin-top: -1px;
