@@ -1,0 +1,16 @@
+body{
+    background: lightyellow;
+}
+.container{
+    margin: 0 auto;
+    width: 400px;
+}
+.container h1{
+    text-align: center;
+}
+.container form, .container h2{
+    background: greenyellow;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
