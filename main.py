@@ -517,7 +517,7 @@
 # # num1 = list()
 # # print(num1)
 #
-# # nums = [0, 3, 9, 4, 1, "one", True]
+# # nums = [0, 3, 9, 4, 1, "site_one", True]
 # # print(nums)
 # # print(nums[0])
 # # print(nums[-5])
@@ -1003,9 +1003,9 @@
 # #     print('Переменная =', res)
 # #
 #
-# # def max_value(one, two):
-# #     if one > two:
-# #         return one
+# # def max_value(site_one, two):
+# #     if site_one > two:
+# #         return site_one
 # #     else:
 # #         return two
 # #
@@ -1419,8 +1419,8 @@
 # # print(a)
 #
 # # словарь(dict) изменяемы тип данных
-# # lst = ["one", "two"]  # есть индексы
-# # d = {"first": "one", "second": "two"}  # есть значение ключа
+# # lst = ["site_one", "two"]  # есть индексы
+# # d = {"first": "site_one", "second": "two"}  # есть значение ключа
 # # print(lst[1])
 # # lst[1] = "ten"
 # # print(lst)
@@ -1439,7 +1439,7 @@
 # # d1 = {"a": "Hello", "b": "world"}
 # # print(d1)
 #
-# # d = {0: "text", "one": 0, (1, 2): [2, 3, 4, 5], 42: [9, 8], True: 1, False:0, "a": [2, 3, 4, 5], 1:"один"}
+# # d = {0: "text", "site_one": 0, (1, 2): [2, 3, 4, 5], 42: [9, 8], True: 1, False:0, "a": [2, 3, 4, 5], 1:"один"}
 # # # ключом может быть только неизменяемый тип данных ключи должны быть уникальны False = 0 дошел и перезаписал
 # # print(d)
 #
@@ -1582,7 +1582,7 @@
 #
 # # d = {
 # #     "first": {
-# #         1: "one",
+# #         1: "site_one",
 # #         2: "rwo",
 # #         3: "three"
 # #     },
@@ -1624,7 +1624,7 @@
 # # print(dl)
 #
 # # заполнение словаря из списка ключи слова значения список
-# # lst = ["one", 1, 2, 3, "two", 10, 20, "three", 15, 35, 60, "four", -20]
+# # lst = ["site_one", 1, 2, 3, "two", 10, 20, "three", 15, 35, 60, "four", -20]
 # #
 # # d = dict()
 # # s = None
@@ -1639,14 +1639,14 @@
 #
 # # zip() работает с последовательностями и объеденить по одному элементу их но показать тип создаваемого элемента
 #
-# # d = dict(zip([1, 2, 3], ["one", "two", "three"]))
+# # d = dict(zip([1, 2, 3], ["site_one", "two", "three"]))
 # # print(d)
 # #
-# # d = list(zip([1, 2, 3], ["one", "two", "three"], [True, False, True]))
+# # d = list(zip([1, 2, 3], ["site_one", "two", "three"], [True, False, True]))
 # # print(d)
 #
 # # a = [1, 2, 3]
-# # b = ["one", "two", "three"]
+# # b = ["site_one", "two", "three"]
 # # d = {k: v for k, v in zip(b, a)}
 # # print(d)
 #
@@ -1655,10 +1655,10 @@
 # # print(c)
 #
 # # двух словарей и вывод по одинаковому ключу
-# # one = {"name": "Igor", "surname": "Pavlov", "job": "Consultant"}
+# # site_one = {"name": "Igor", "surname": "Pavlov", "job": "Consultant"}
 # # two = {"name": "Irina", "surname": "Vetrova", "job": "Manager"}
 # #
-# # for (k1, v1), (k2, v2) in zip(one.items(), two.items()): # items возвращает кортеж и две переменных
+# # for (k1, v1), (k2, v2) in zip(site_one.items(), two.items()): # items возвращает кортеж и две переменных
 # #     print(k1, ">-", v1)
 # #     print(k2, ">-", v2)
 #
@@ -1705,10 +1705,10 @@
 # # a = [1, 2, 3]
 # # print(*a)
 # #
-# # one = {"один": 1, "два": 2}
+# # site_one = {"один": 1, "два": 2}
 # # two = {"три": 3, "четыре": 4}
-# # print({**one, **two})  # **- для словарей так как два значения как бы удаляют скобки
-# # print(**one)
+# # print({**site_one, **two})  # **- для словарей так как два значения как бы удаляют скобки
+# # print(**site_one)
 #
 # # colors = ["red", "yellow","green"]
 # # i = 1
@@ -1829,12 +1829,12 @@
 # #
 # #
 # # def func2(**kwargs):
-# #     print(kwargs["one"])
+# #     print(kwargs["site_one"])
 # #     print(kwargs)
 # #
 # #
 # # func1(1, 2, 3, 4, 5, 6)
-# # func2(one=123, two=456)
+# # func2(site_one=123, two=456)
 #
 #
 # # Области видимости (scope)
@@ -2649,11 +2649,11 @@
 #
 #
 # # st = "один два"
-# # one = st[:st.find(" ")]
+# # site_one = st[:st.find(" ")]
 # # two = st[st.find(" ")+1:]
-# # print(one)
+# # print(site_one)
 # # print(two)
-# # res = two + " " + one
+# # res = two + " " + site_one
 # # print(res)
 # # print(st[st.find(" ")+1:] + " " + st[:st.find(" ")])
 #
@@ -2835,15 +2835,15 @@
 # # print(re.findall(r"l", text, re.IGNORECASE))  # bигнорирет регистр
 #
 # # text ="""
-# # one
+# # site_one
 # # two
 # # """
 # #
-# # # print(re.findall(r"one.\w+", text))
-# # # print(re.findall(r"one.\w+", text, re.DOTALL)) # . - любой символ о не перенос а с флагом перенос
+# # # print(re.findall(r"site_one.\w+", text))
+# # # print(re.findall(r"site_one.\w+", text, re.DOTALL)) # . - любой символ о не перенос а с флагом перенос
 # #
-# # print(re.findall(r"one$", text))
-# # print(re.findall(r"one$", text, re.MULTILINE))  #в многострочном тексте
+# # print(re.findall(r"site_one$", text))
+# # print(re.findall(r"site_one$", text, re.MULTILINE))  #в многострочном тексте
 #
 # # print(re.findall("""
 # # [a-z.-]+  #part1
@@ -3133,10 +3133,10 @@
 #
 # # text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\n
 # # Строка №8\nСтрока №9\nСтрока №10\n"
-# # with open("one.txt", "w") as f:
+# # with open("site_one.txt", "w") as f:
 # #     f.write(text)
 # #
-# # with open("one.txt", "r") as fr, open("two.txt", "w") as fw:
+# # with open("site_one.txt", "r") as fr, open("two.txt", "w") as fw:
 # #     for line in fr:
 # #         line = line.replace("Строка", "Линия -")
 # #         fw.write(line)

@@ -1,0 +1,24 @@
+{% extends 'auto/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Портфолио автоматизаций</h1>
+
+<div class="img">
+    <img src="{% static 'auto/auto_2.jpg'%}" width="485" height="255" alt="">
+</div>
+<h2>Компании:</h2>
+<div class="block">
+    {% for comp in company%}
+    <div class="element">
+        <div><img src="{{ comp.image.url }}" width="385" height="255"alt=""></div>
+        <div class="text">
+            <h2>
+                <a href="{{ comp.url }}" target="_blank">{{ comp.title}}</a>
+            </h2>
+            <p>{{ comp.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
