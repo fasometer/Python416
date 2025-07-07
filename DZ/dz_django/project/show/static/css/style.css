@@ -2,7 +2,7 @@
 
 body{
     font-family: "Roboto", sans-serif;
-    background: #ccccff;
+    background: #0c9e97;
     padding: 0;
     margin: 0;
 
@@ -18,16 +18,14 @@ body{
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-
-.element, .count{
-    flex-basis: 360px;
-    background: lightyellow;
-    border: 6px solid #FFF;
-    margin-bottom: 60px;
-}
 .block img{
     max-width: 360px;
-    
+}
+.element, .count{
+    flex-basis: 360px;
+    background: lightblue;
+    border: 6px solid #FFF;
+    margin-bottom: 60px;
 }
 .text{
     padding: 20px;
