@@ -22,7 +22,7 @@ body{
     max-width: 350px;
 }
 .element, .count{
-    flex-basis: 360px;
+    flex-basis: 350px;
     background: lightblue;
     border: 6px solid #FFF;
     margin-bottom: 60px;
@@ -44,6 +44,7 @@ h2{
     text-align: center;
     margin-bottom: 60px;
 }
-.img img{
+.element img{
     border: 6px solid #FFF;
+    align-items: center;
 }

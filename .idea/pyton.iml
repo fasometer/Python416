@@ -6,9 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/first/password_generator_project" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/second/personal_portfolio" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DZ/site_auto" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/third/todos" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.13 (pyton)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

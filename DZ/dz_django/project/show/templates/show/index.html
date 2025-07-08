@@ -3,13 +3,13 @@
 {% block content %}
 <h1>Портфолио разработчика</h1>
 <div class="img">
-    <img src="{% static 'show/main.jpg'%}" width="350" height="350" alt="">
+    <img src="{% static 'show/main.jpg'%}" width="250" height="250" alt="">
 </div>
 <h2>Языки программирования</h2>
 <div class="block">
     {% for lang in language_prog %}
     <div class="element">
-        <div><img src="{{ lang.image.url }}" width="350" height="350" alt=""></div>
+        <div><img src="{{ lang.image.url }}" width="250" height="250" alt=""></div>
         <div class="text">
             <h2>
                 <a href="{{ lang.url }}" target="_blank">{{ lang.title }}</a>
