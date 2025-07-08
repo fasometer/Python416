@@ -19,7 +19,7 @@ body{
     justify-content: space-evenly;
 }
 .block img{
-    max-width: 360px;
+    max-width: 350px;
 }
 .element, .count{
     flex-basis: 360px;
