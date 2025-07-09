@@ -26,6 +26,8 @@ body{
     background: lightblue;
     border: 6px solid #FFF;
     margin-bottom: 60px;
+
+
 }
 .text{
     padding: 20px;
@@ -46,5 +48,11 @@ h2{
 }
 .element img{
     border: 6px solid #FFF;
-    align-items: center;
+    
+}
+.element_img{
+    
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
 }
