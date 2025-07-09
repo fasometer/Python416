@@ -7,6 +7,14 @@
    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<div class="menu">
+    <div class="wrap">
+        <ul>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'info_general' %}">Инфа</a></li>
+        </ul>
+    </div>
+</div>
 <div class="content">
   <div class="wrap">
     {% block content %}

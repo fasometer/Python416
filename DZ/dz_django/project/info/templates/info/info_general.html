@@ -1,0 +1,20 @@
+{% extends 'show/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Интересная информация</h1>
+
+{% for i in info %}
+
+<div class="element">
+    <h2 class="top">
+        <a href="{% url 'info_details' i.id %}">{{ i.title }}</a>
+    </h2>
+    <div class="info_text">
+        <h5>{{ i.date|date:'d.m.Y' }}</h5>
+        <div> {{ i.descriptions|truncatechars:300 }}</div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
