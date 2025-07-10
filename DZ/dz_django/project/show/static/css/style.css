@@ -26,8 +26,6 @@ body{
     background: lightblue;
     border: 6px solid #FFF;
     margin-bottom: 60px;
-
-
 }
 .text{
     padding: 20px;
@@ -75,7 +73,7 @@ h2{
 }
 
 .menu ul{
-      display: flex;
+    display: flex;
     flex-wrap: wrap;  
     list-style: none;
     font-size: 20px;
@@ -98,4 +96,7 @@ margin-left: 40px;
     padding: 20px;
     display: block;
     text-align: left;
+}
+h3{
+    padding-left: 20px;
 }
