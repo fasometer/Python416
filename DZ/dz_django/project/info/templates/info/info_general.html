@@ -12,7 +12,7 @@
     </h2>
     <div class="info_text">
         <h5>{{ i.date|date:'d.m.Y' }}</h5>
-        <div> {{ i.descriptions|truncatechars:300 }}</div>
+        <div> {{ i.descriptions|striptags|truncatechars:300 }}</div>
     </div>
 </div>
 

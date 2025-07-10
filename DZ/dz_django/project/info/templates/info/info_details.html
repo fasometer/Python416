@@ -5,7 +5,7 @@
 <div class="detail">
     <h1>{{ info_d.title }} </h1>
     <h5>--{{ info_d.date|date:'j E Y'  }}--</h5>
-    {{ info_d.descriptions }}
+    {{ info_d.descriptions|safe }}
 
 </div>
 
