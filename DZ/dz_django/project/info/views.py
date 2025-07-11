@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+
 from .models import Info
 
 
@@ -11,3 +12,6 @@ def info_general(request):
 def info_details(request, info_id):
     info_d = get_object_or_404(Info, pk=info_id)
     return render(request, "info/info_details.html", {'info_d': info_d})
+
+
+
