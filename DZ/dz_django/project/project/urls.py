@@ -25,6 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('info/', include('info.urls')),
+    # Auth (регистрация авторизация)
     path('reguser/', views.reg_user, name='reguser'),
+    path('logout/', views.logout_user, name='logoutuser'),
+    path('login/', views.login_user, name='loginuser'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

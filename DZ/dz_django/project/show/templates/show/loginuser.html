@@ -2,17 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1>Регистрация:</h1>
+<h1>Авторизация:</h1>
 
 <h3>{{ error }}</h3>
 
 <form method="post" class="register">
     {% csrf_token %}
 
-    {{ form }}
+   {{ form }}
     <div class="center">
-        <button class="btn">Зарегистрироваться</button>
+        <button class="btn">Авторизация</button>
     </div>
+
 </form>
 
 {% endblock %}

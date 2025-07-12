@@ -24,7 +24,27 @@ def reg_user(request):
                 login(request, user)
                 return redirect('index')
             except IntegrityError:
-                return render(request, 'show/reguser.html', {'form': UserCreationForm(), 'error':'Такое имя уже есть. Задайте другое'})
+                return render(request, 'show/reguser.html',
+                              {'form': UserCreationForm(), 'error': 'Такое имя уже есть. Задайте другое'})
         else:
             return render(request, 'show/reguser.html',
                           {'form': UserCreationForm(), 'error': 'Пароли не совпадают'})
+
+
+def logout_user(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('index')
+
+
+def login_user(request):
+    if request.method == "GET":  # при попаданиина страницу
+        return render(request, 'show/loginuser.html', {'form': AuthenticationForm()})
+    else:
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is None:
+            return render(request, 'show/loginuser.html',
+                          {'form': AuthenticationForm(), 'error': 'Неверные данные для входа'})
+        else:
+            login(request, user)
+            return redirect('index')
