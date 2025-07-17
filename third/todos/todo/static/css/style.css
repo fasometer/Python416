@@ -71,6 +71,10 @@ input{
     border: none;
     color: #FFF;
     box-shadow: none;
+
+    /* font-weight: bold; */
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .content ul{
@@ -88,4 +92,20 @@ input{
     display: block;
     padding: 20px;
    text-decoration: none;
+}
+
+.but{
+    display: flex;
+    align-items: flex-end;
+}
+ 
+.good{
+    background: teal;
+}
+.remove{
+    background: orangered;
+}
+ 
+a b {
+    color: orangered;
 }

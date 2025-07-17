@@ -1,11 +1,11 @@
 {% extends 'todo/base.html' %}
 {% block content %}
-<h1>Задачи:</h1>
+<h1>Выполнено:</h1>
 
 <ul>
     {% for todo in todos %}
     <li>
-        <a href="{% url 'viewtodo' todo.id %}">
+
         {% if todo.important %}
         <b>{{ todo.title}}</b>
         {% else%}
@@ -15,8 +15,9 @@
         {%  if todo.memo %}
         - {{ todo.memo }}
         {% endif %}
-        </a>
         <p></p>
+        Дата:{{ todo.date_completed }}
+
     </li>
     {% endfor %}
 </ul>
