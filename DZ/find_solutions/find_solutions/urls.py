@@ -23,6 +23,7 @@ urlpatterns = [
     # Auth
     path('signup/', views.signup_user, name='signupuser'),
     path('logout/', views.logout_user, name='logoutuser'),
+    path('login/', views.login_user, name='loginuser'),
 
     # Tasks
     path('current/', views.current_tasks, name='currenttasks'),

@@ -24,7 +24,8 @@
                 </li>
              {% else %}
                 <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
-                <li><a href="">Войти</a></li>
+
+                <li><a href="{% url 'loginuser' %}">Войти</a></li>
             {% endif %}
         </ul>
 
