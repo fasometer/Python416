@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import TaskForm
+from .models import Task
 
 
 # Create your views here.
@@ -49,4 +51,24 @@ def logout_user(request):
 
 
 def current_tasks(request):
-    return render(request, 'tasks/currenttasks.html')
+    tasks = Task.objects.filter(user=request.user, data_complete__isnull=True)
+    return render(request, 'tasks/currenttasks.html', {'tasks': tasks})
+
+
+def create_task(request):
+    if request.method == "GET":
+        return render(request, 'tasks/createtask.html', {'form': TaskForm()})
+    else:
+        try:
+            form = TaskForm(request.POST)
+            new_task = form.save(commit=False)
+            new_task.user = request.user
+            new_task.save()
+            return redirect('currenttasks')
+        except ValueError:
+            return render(request, 'tasks/createtask.html', {'form': TaskForm(), 'error': 'Переданы неверные данные'})
+
+
+def view_task(request, tasks_pk):
+    task = get_object_or_404(Task, pk=tasks_pk)
+    return render(request, 'tasks/viewtask.html', {'task': task})

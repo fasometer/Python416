@@ -28,4 +28,6 @@ urlpatterns = [
     # Tasks
     path('current/', views.current_tasks, name='currenttasks'),
     path('', views.home, name='home'),
+    path('create/', views.create_task, name='createtask'),
+    path('tasks/<int:tasks_pk>/', views.view_task, name='viewtask'),
 ]

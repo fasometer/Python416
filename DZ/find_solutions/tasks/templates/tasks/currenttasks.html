@@ -2,6 +2,25 @@
 
       {% block content %}
 
-<h1>Tasks</h1>
+<h1>Задачи</h1>
+
+<ul>
+      {% for task in tasks %}
+      <li>
+            <a href="{% url 'viewtask' task.id %}">
+            {% if task.important %}
+            <b>{{ task.title}}</b>
+            {% else %}
+            {{ task.title}}
+            {% endif %}
+
+            {% if task.memo %}
+             - {{ task.memo  }}
+            {% endif %}
+            </a>
+
+      </li>
+      {% endfor %}
+</ul>
 
       {% endblock %}
