@@ -16,6 +16,7 @@
                 <li class="logo">Пользователь: {{ user.username}}</li>
                 <li><a href="{% url 'createtask' %}">Создать</a></li>
                 <li><a href="{% url 'currenttasks' %}">Актуальные</a></li>
+                <li><a href="{% url 'completedtasks' %}">Выполненные</a></li>
 
                 <li>
                         <form action="{% url 'logoutuser' %}" method="post">

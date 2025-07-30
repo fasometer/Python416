@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TaskForm
 from .models import Task
+from django.utils import timezone
 
 
 # Create your views here.
@@ -71,4 +72,26 @@ def create_task(request):
 
 def view_task(request, tasks_pk):
     task = get_object_or_404(Task, pk=tasks_pk)
-    return render(request, 'tasks/viewtask.html', {'task': task})
+    if request.method == "GET":
+        form = TaskForm(instance=task)
+        return render(request, 'tasks/viewtask.html', {'task': task, 'form': form})
+    else:
+        try:
+            form = TaskForm(request.POST, instance=task)
+            form.save()
+            return redirect('currenttasks')
+        except ValueError:
+            return render(request, 'tasks/viewtask.html', {'task': task, 'form': form, 'error': "Неверные данные"})
+
+
+def complete_task(request, tasks_pk):
+    task = get_object_or_404(Task, pk=tasks_pk, user=request.user)
+    if request.method == "POST":
+        task.data_complete = timezone.now()
+        task.save()
+        return redirect('currenttasks')
+
+
+def completed_tasks(request):
+    tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
+    return render(request, 'tasks/completedtasks.html', {'tasks': tasks})

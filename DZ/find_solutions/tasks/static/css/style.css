@@ -66,3 +66,18 @@ input{
     color: #fff;
     box-shadow: none;
 }
+.content ul{
+    list-style: none;
+    padding: 0;
+}
+.content li{
+    box-shadow: 0 2px 8px 2px #008e56;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.content a{
+    color: #000;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+}

@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+      {% block content %}
+
+<h1>Завершено</h1>
+
+<ul>
+      {% for task in tasks %}
+      <li>
+
+            {% if task.important %}
+            <b>{{ task.title}}</b>
+            {% else %}
+            {{ task.title}}
+            {% endif %}
+
+            {% if task.memo %}
+             - {{ task.memo  }}
+            {% endif %}
+
+      </li>
+      {% endfor %}
+</ul>
+
+      {% endblock %}
