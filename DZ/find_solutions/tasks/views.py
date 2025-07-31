@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from .forms import TaskForm
 from .models import Task
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -45,17 +46,20 @@ def login_user(request):
             return redirect('currenttasks')
 
 
+@login_required
 def logout_user(request):
     if request.method == "POST":
         logout(request)
         return redirect('home')
 
 
+@login_required
 def current_tasks(request):
     tasks = Task.objects.filter(user=request.user, data_complete__isnull=True)
     return render(request, 'tasks/currenttasks.html', {'tasks': tasks})
 
 
+@login_required
 def create_task(request):
     if request.method == "GET":
         return render(request, 'tasks/createtask.html', {'form': TaskForm()})
@@ -70,6 +74,7 @@ def create_task(request):
             return render(request, 'tasks/createtask.html', {'form': TaskForm(), 'error': 'Переданы неверные данные'})
 
 
+@login_required
 def view_task(request, tasks_pk):
     task = get_object_or_404(Task, pk=tasks_pk)
     if request.method == "GET":
@@ -84,6 +89,7 @@ def view_task(request, tasks_pk):
             return render(request, 'tasks/viewtask.html', {'task': task, 'form': form, 'error': "Неверные данные"})
 
 
+@login_required
 def complete_task(request, tasks_pk):
     task = get_object_or_404(Task, pk=tasks_pk, user=request.user)
     if request.method == "POST":
@@ -92,6 +98,15 @@ def complete_task(request, tasks_pk):
         return redirect('currenttasks')
 
 
+@login_required
 def completed_tasks(request):
     tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
     return render(request, 'tasks/completedtasks.html', {'tasks': tasks})
+
+
+@login_required
+def delete_task(request, tasks_pk):
+    task = get_object_or_404(Task, pk=tasks_pk, user=request.user)
+    if request.method == "POST":
+        task.delete()
+        return redirect('currenttasks')

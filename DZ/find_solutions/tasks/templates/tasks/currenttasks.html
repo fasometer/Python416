@@ -7,6 +7,7 @@
 <ul>
       {% for task in tasks %}
       <li>
+            <p> {{ task.created}}</p>
             <a href="{% url 'viewtask' task.id %}">
             {% if task.important %}
             <b>{{ task.title}}</b>

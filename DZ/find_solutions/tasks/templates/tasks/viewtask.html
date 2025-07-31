@@ -5,13 +5,19 @@
 <h2>{{ task.title }}</h2>
 <h3>{{ error }}</h3>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button class="btn">Сохранить</button>
-</form>
-<form action="{% url 'completetask' task.id %}" method="post">
-    {% csrf_token %}
-    <button class="btn good">Выполнено</button>
-</form>
+<div class="but">
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn">Сохранить</button>
+    </form>
+    <form action="{% url 'completetask' task.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn good">Выполнено</button>
+    </form>
+    <form action="{% url 'deletetask' task.id %}" method="post">
+        {% csrf_token %}
+        <button class="btn remove">Удалить</button>
+    </form>
+</div>
 {% endblock %}
