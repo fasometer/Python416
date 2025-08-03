@@ -6,8 +6,10 @@
 
 <ul>
       {% for task in tasks %}
-      <li>
-            <p> {{ task.created}}</p>
+      <table border="1">
+            <tbody>
+            <tr>
+                  <td> {{ task.created}}
             <a href="{% url 'viewtask' task.id %}">
             {% if task.important %}
             <b>{{ task.title}}</b>
@@ -18,9 +20,15 @@
             {% if task.memo %}
              - {{ task.memo  }}
             {% endif %}
-            </a>
+            </a></td>
+            </tr>
+            </tbody>
 
-      </li>
+      </table>
+
+            <
+
+
       {% endfor %}
 </ul>
 
