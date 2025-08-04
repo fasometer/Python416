@@ -4,23 +4,24 @@
 
 <h1>Задачи</h1>
 
-<ul>
       {% for task in tasks %}
       <table border="1">
             <tbody>
             <tr>
-                  <td> {{ task.created}}
-            <a href="{% url 'viewtask' task.id %}">
-            {% if task.important %}
-            <b>{{ task.title}}</b>
-            {% else %}
-            {{ task.title}}
-            {% endif %}
-
-            {% if task.memo %}
-             - {{ task.memo  }}
-            {% endif %}
-            </a></td>
+                  <td>{{ task.created}}</td>
+                  <td>
+                        <a href="{% url 'viewtask' task.id %}">
+                        {% if task.important %}
+                        <b>{{ task.title}}</b>
+                        {% else %}
+                        {{ task.title}}
+                        {% endif %}
+                        </a>
+                  </td>
+                  <td> {% if task.memo %}
+                  - {{ task.memo  }}
+                  {% endif %}
+                  </td>
             </tr>
             </tbody>
 
@@ -30,6 +31,6 @@
 
 
       {% endfor %}
-</ul>
+
 
       {% endblock %}
