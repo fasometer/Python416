@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 class Task(models.Model):
     title = models.CharField(max_length=100)
     memo = models.TextField(blank=True)
+    memo_images = models.ImageField(upload_to="memo/%Y/%m/%d/", blank=True)
+    decision = models.TextField(blank=True)
+    decision_images = models.ImageField(upload_to="decision/%Y/%m/%d/", blank=True)
     created = models.DateTimeField(auto_now_add=True)
     data_complete = models.DateTimeField(blank=True, null=True)
     important = models.BooleanField(default=False)

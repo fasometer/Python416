@@ -7,6 +7,8 @@
 <form method="post" class="bg">
     {% csrf_token %}
     {{ form }}
+    {{ form.title.label }}
+    {{ form.memo }}
     <div class="center">
         <button class="btn">Создать</button>
     </div>
