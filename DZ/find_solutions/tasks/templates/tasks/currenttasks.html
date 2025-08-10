@@ -8,8 +8,8 @@
       <table border="1">
             <tbody>
             <tr>
-                  <td>{{ task.created}}</td>
-                  <td>
+                  <td class="td_1">{{ task.created}}</td>
+                  <td class="td_2">
                         <a href="{% url 'viewtask' task.id %}">
                         {% if task.important %}
                         <b>{{ task.title}}</b>
@@ -18,19 +18,14 @@
                         {% endif %}
                         </a>
                   </td>
-                  <td> {% if task.memo %}
-                  - {{ task.memo  }}
+                  <td class="td_3"> {% if task.memo %}
+                  - {{ task.memo|striptags|truncatechars:200   }}
                   {% endif %}
                   </td>
             </tr>
             </tbody>
-
       </table>
 
-            <
-
-
       {% endfor %}
-
 
       {% endblock %}

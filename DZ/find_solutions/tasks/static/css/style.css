@@ -48,6 +48,11 @@ button{
     font-size: 20px;
     cursor: pointer;
 }
+.bg{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
 .center{
     text-align: center;
 }
@@ -98,4 +103,7 @@ input{
 }
 a b{
     color: orangered;
+}
+.td_2{
+    width: 20%;
 }
