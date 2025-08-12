@@ -17,4 +17,4 @@ class ProjectForm(ModelForm):  # для страницы вывод
     class Meta:
         model = Project
         fields = ['title', 'feature_images', 'description', 'demo_link', 'source_link', 'tags']
-        widgets = {'tags':forms.CheckboxSelectMultiple()}
+        widgets = {'tags': forms.CheckboxSelectMultiple()}

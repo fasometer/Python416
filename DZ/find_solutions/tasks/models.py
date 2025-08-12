@@ -18,9 +18,17 @@ class Task(models.Model):
     decision_images = models.ImageField(upload_to="decision/%Y/%m/%d/", blank=True)
     created = models.DateField(auto_now_add=True)
     data_complete = models.DateField(blank=True, null=True)
-    line = models.CharField(max_length=100, choices=f,default='PK1')
+    lines = models.ForeignKey('Lines', on_delete=models.CASCADE, default="")
     important = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
+
+class Lines(models.Model):
+    line = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.line
