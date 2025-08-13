@@ -6,6 +6,5 @@ from django import forms
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'memo', 'memo_images', 'decision', 'decision_images', 'important', 'lines']
+        fields = ['title', 'lines', 'memo', 'memo_images', 'decision', 'decision_images', 'important']
         widgets = {'lines': forms.Select()}
-

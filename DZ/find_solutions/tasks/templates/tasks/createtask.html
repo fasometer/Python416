@@ -6,17 +6,18 @@
 <h3>{{ error }}</h3>
 <form method="post" class="bg">
     {% csrf_token %}
-    {{ form }}
-<!--    {{ form.title.label }}-->
-<!--    {{ form.title }}-->
-<!--    {{ form.memo.label }}-->
-<!--    {{ form.memo }}-->
-<!--    {{ form.memo_images.label }}-->
-<!--    {{ form.memo_images }}-->
-<!--    {{ form.line.label }}-->
-<!--    {{ form.line }}-->
-<!--    {{ form.user.label }}-->
-<!--    {{ form.user }}-->
+<!--    {{ form }}-->
+    {{ form.title.label }}
+    {{ form.title }}
+    {{ form.lines.label }}
+    {{ form.lines }}
+    {{ form.memo.label }}
+    {{ form.memo }}
+    {{ form.memo_images.label }}
+    {{ form.memo_images }}
+    {{ form.important }}
+
+
 
 
     <div class="center">

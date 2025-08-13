@@ -104,6 +104,6 @@ input{
 a b{
     color: orangered;
 }
-.td_2{
+.td_2 , .td_1{
     width: 20%;
 }

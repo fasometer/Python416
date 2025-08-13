@@ -68,6 +68,8 @@ def create_task(request):
             form = TaskForm(request.POST)
             new_task = form.save(commit=False)
             new_task.user = request.user
+            new_task.decision = ''
+
             new_task.save()
             return redirect('currenttasks')
         except ValueError:
