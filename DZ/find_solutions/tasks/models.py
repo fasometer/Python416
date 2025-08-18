@@ -2,17 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-f = (
-    ('1', 'PK1'),
-    ('2', 'PK2'),
-    ('3', 'PK3'),
-
-)
 
 
 class Task(models.Model):
     title = models.CharField(max_length=100)
     lines = models.ForeignKey('Lines', on_delete=models.CASCADE, default="")
+    place = models.ForeignKey('Place', on_delete=models.CASCADE, default="")
     memo = models.TextField(blank=True)
     memo_images = models.ImageField(upload_to="memo/%Y/%m/%d/", blank=True)
     decision = models.TextField(blank=True)
@@ -32,3 +27,10 @@ class Lines(models.Model):
 
     def __str__(self):
         return self.line
+
+
+class Place(models.Model):
+    place = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.place

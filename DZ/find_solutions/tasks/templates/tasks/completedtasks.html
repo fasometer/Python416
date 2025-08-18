@@ -3,24 +3,47 @@
       {% block content %}
 
 <h1>Завершено</h1>
+{% for task in tasks %}
+      <table border="1">
+            <tbody>
 
-<ul>
-      {% for task in tasks %}
-      <li>
+            <tr>
+                  <td class="td_1">{{ task.created}}</td>
+                  <td class="td_2">
+                        <a href="{% url 'viewtask' task.id %}">
+                        {% if task.important %}
+                        <b>{{ task.title}}</b>
+                        {% else %}
+                        {{ task.title}}
+                        {% endif %}
+                        </a>
+                  </td>
+                  <td class="td_3"> {% if task.memo %}
+                  {{ task.memo|striptags|truncatechars:200   }}
+                  {% endif %}
+                  </td>
+            </tr>
 
-            {% if task.important %}
-            <b>{{ task.title}}</b>
-            {% else %}
-            {{ task.title}}
-            {% endif %}
+            </tbody>
+      </table>
+{% endfor %}
+<!--<ul>-->
+<!--      {% for task in tasks %}-->
+<!--      <li>-->
 
-            {% if task.memo %}
-             - {{ task.memo  }}
-            {% endif %}
-            {{ task.data_complete }}
+<!--            {% if task.important %}-->
+<!--            <b>{{ task.title}}</b>-->
+<!--            {% else %}-->
+<!--            {{ task.title}}-->
+<!--            {% endif %}-->
 
-      </li>
-      {% endfor %}
-</ul>
+<!--            {% if task.memo %}-->
+<!--             - {{ task.memo  }}-->
+<!--            {% endif %}-->
+<!--            {{ task.data_complete }}-->
+
+<!--      </li>-->
+<!--      {% endfor %}-->
+<!--</ul>-->
 
       {% endblock %}

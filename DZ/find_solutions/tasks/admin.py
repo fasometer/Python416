@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, Lines
+from .models import Task, Lines, Place
 
 
 # Register your models here.
@@ -10,3 +10,4 @@ class TaskAdmin(admin.ModelAdmin):
 
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Lines)
+admin.site.register(Place)
