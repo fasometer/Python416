@@ -21,8 +21,24 @@
 
 <body>
 {% include 'projects/navbar.html' %}
+
+
+{% if messages %}
+{% for massage in messages %}
+<div style="text-align: center">
+            <div class="alert alert--{{ massage.tags }}">
+            <p class="alert__message">{{massage}}</p>
+            <button class="alert__close">⨯</button>
+          </div>
+</div>
+
+
+{%endfor%}
+{% endif %}
+
 {% block content %}
 {% endblock %}
+<script src="{% static 'uikit/app.js' %}" > </script>
 </body>
 
 </html>

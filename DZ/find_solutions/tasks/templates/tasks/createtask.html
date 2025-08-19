@@ -4,7 +4,7 @@
 
 <h1>Создание задачи</h1>
 <h3>{{ error }}</h3>
-<form method="post" class="bg">
+<form method="post" class="bg" enctype="multipart/form-data">
     {% csrf_token %}
 <!--    {{ form }}-->
     {{ form.title.label }}
