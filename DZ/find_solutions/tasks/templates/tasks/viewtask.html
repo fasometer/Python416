@@ -6,16 +6,16 @@
 <h3>{{ error }}</h3>
 
 <div class="but">
-    <form method="post" class="view_task">
+    <form method="post" class="view_task" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <button class="btn">Сохранить</button>
     </form>
-    <form action="{% url 'completetask' task.id %}" method="post">
+    <form action="{% url 'completetask' task.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <button class="btn good">Выполнено</button>
+        <button class="btn good" >Выполнено</button>
     </form>
-    <form action="{% url 'deletetask' task.id %}" method="post">
+    <form action="{% url 'deletetask' task.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <button class="btn remove">Удалить</button>
     </form>

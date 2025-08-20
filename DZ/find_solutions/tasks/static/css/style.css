@@ -110,3 +110,12 @@ a b{
 .td_2 , .td_1{
     width: 20%;
 }
+.content table {
+    width: 100%;
+}
+.view_task select,textarea, input{
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    
+}
