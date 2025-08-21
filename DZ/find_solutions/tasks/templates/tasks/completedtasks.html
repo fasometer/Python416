@@ -1,31 +1,49 @@
 {% extends 'tasks/base.html' %}
 
       {% block content %}
+    <section class="hero-section text-center">
+      <div class="container container--narrow">
+        <div class="hero-section__box">
+          <h2>CONNECT WITH <span>DEVELOPERS</span></h2>
+          <h2>FROM AROUND THE WORLD</h2>
+        </div>
 
+        <div class="hero-section__search">
+          <form class="form" action="#" method="get">
+            <div class="form__field">
+              <label for="formInput#search">Search Developers </label>
+              <input class="input input--text" id="formInput#search" type="text" name="search_query" value="{{ search_query }}"
+                placeholder="Search by developer name" />
+            </div>
+
+            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+          </form>
+        </div>
+      </div>
+    </section>
 <h1>Завершено</h1>
 {% for task in tasks %}
-      <table border="1">
-            <tbody>
-
-            <tr>
-                  <td class="td_1">{{ task.created}}</td>
-                  <td class="td_2">
-                        <a href="{% url 'viewtask' task.id %}">
+<table border="1">
+      <tbody>
+      <tr>
+            <td class="td_1">{{ task.created}}</td>
+            <td class="td_2">
+                  <a href="{% url 'viewtask' task.id %}">
                         {% if task.important %}
                         <b>{{ task.title}}</b>
                         {% else %}
                         {{ task.title}}
                         {% endif %}
                         </a>
-                  </td>
-                  <td class="td_3"> {% if task.memo %}
+            </td>
+            <td class="td_3">
+                  {% if task.memo %}
                   {{ task.memo|striptags|truncatechars:200   }}
                   {% endif %}
-                  </td>
-            </tr>
-
-            </tbody>
-      </table>
+            </td>
+      </tr>
+      </tbody>
+</table>
 {% endfor %}
 <!--<ul>-->
 <!--      {% for task in tasks %}-->

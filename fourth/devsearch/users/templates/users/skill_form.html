@@ -3,25 +3,22 @@
 {% block content %}
 
 
-
 <main class="formPage my-xl">
         <div class="content-box">
             <div class="formWrapper">
-                <a class="backButton" href="{% url 'account' %}"><img src="{%static 'images/left.png' %}" alt="left"></a>
+                <a class="backButton" href="{% url 'account' %}"><img src="{% static 'images/left.png' %}" alt="left"></a>
                 <br>
 
-                <form class="form" action="{% url 'edit-account' %}" method="POST" enctype="multipart/form-data">
+                <form class="form" method="POST">
                     {% csrf_token %}
                     {% for field in form %}
                     <!-- Input:Text -->
                     <div class="form__field">
-                        <label for="formInput#text">{{ field.label }}</label>
+                        <label for="formInput#text"> {{ field.label }}</label>
                         {{ field }}
-
                     </div>
-                    {%endfor%}
+                    {% endfor%}
 
-                    <!-- Input:Text -->
 
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
