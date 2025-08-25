@@ -7,6 +7,7 @@ from .forms import TaskForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from .utils import search_task
 
 
 # Create your views here.
@@ -102,8 +103,13 @@ def complete_task(request, tasks_pk):
 
 @login_required
 def completed_tasks(request):
-    tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
-    return render(request, 'tasks/completedtasks.html', {'tasks': tasks})
+    search_query, ts = search_task(request)
+    # tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
+    contex = {
+        'tasks': ts,
+        'search_query': search_query,
+    }
+    return render(request, 'tasks/completedtasks.html', contex)
 
 
 @login_required

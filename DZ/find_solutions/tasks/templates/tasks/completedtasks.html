@@ -5,18 +5,18 @@
       <div class="container container--narrow">
         <div class="hero-section__box">
 <!--          <h2>CONNECT WITH <span>DEVELOPERS</span></h2>-->
-          <h2>FROM AROUND THE WORLD</h2>
+          <h2>---Найдется все---   </h2>
         </div>
 
         <div class="hero-section__search">
           <form class="form" action="#" method="get">
             <div class="form__field">
-              <label for="formInput#search">Search Developers </label>
+              <label for="formInput#search">Поиск решений </label>
               <input class="input input--text" id="formInput#search" type="text" name="search_query" value="{{ search_query }}"
-                placeholder="Search by developer name" />
+                placeholder="Поиск решений " />
             </div>
 
-            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+            <input class="btn btn--sub btn--lg" type="submit" value="Поиск" />
           </form>
         </div>
       </div>
@@ -26,7 +26,7 @@
 <table border="1">
       <tbody>
       <tr>
-            <td class="td_1">{{ task.created}}</td>
+            <td class="td_1">{{ task.lines }}</td>
             <td class="td_2">
                   <a href="{% url 'viewtask' task.id %}">
                         {% if task.important %}

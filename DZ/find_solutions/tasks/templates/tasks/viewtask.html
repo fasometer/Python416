@@ -9,13 +9,8 @@
     <form method="post" class="view_task" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-
-
-
-
-
+        <button class="btn">Сохранить</button>
     </form>
-    <button class="btn">Сохранить</button>
     <form action="{% url 'completetask' task.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <button class="btn good" >Выполнено</button>
