@@ -1,25 +1,29 @@
 from django.shortcuts import render, redirect
 from .models import Project
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
-from .utils import search_projects
+from .utils import search_projects, paginate_projects
 
 
 # Create your views here.
 
 def projects(request):
     pr, search_query = search_projects(request)
+    custom_range, pr = paginate_projects(request, pr, 3)
 
     contex = {
         'projects': pr,
         'search_query': search_query,
+        # 'paginator': paginator,
+        'custom_range': custom_range,
     }
     return render(request, "projects/projects.html", contex)
 
 
 def project(request, pk):
     project_obj = Project.objects.get(id=pk)
-    return render(request, "projects/single-project.html", {'project': project_obj})
+    form = ReviewForm()
+    return render(request, "projects/single-project.html", {'project': project_obj, 'form': form})
 
 
 @login_required(login_url='login')
