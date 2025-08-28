@@ -89,15 +89,13 @@ input{
     padding: 20px;
     text-decoration: none;
 }
-.but {
+.but select,textarea, input{
     display: flex;
     align-items: flex-end;
+    font-size: 20px;
 
 }
-.but textarea{
-    width: 100%;
-    height: 122px;
-}
+
 .good{
     background: teal;
 }
@@ -115,6 +113,7 @@ a b{
 }
 .view_task select,textarea, input{
     display: flex;
+    align-items: flex-end;
     width: 100%;
     font-size: 20px;
     

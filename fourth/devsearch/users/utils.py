@@ -28,7 +28,7 @@ def paginate_profiles(request, pr, results):
     return custom_range, pr
 
 
-def search_profile(request):
+def search_profile(request): # поиск
     search_query = ''
 
     if request.GET.get('search_query'):

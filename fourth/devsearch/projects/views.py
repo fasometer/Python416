@@ -3,6 +3,7 @@ from .models import Project
 from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from .utils import search_projects, paginate_projects
+from django.contrib import messages
 
 
 # Create your views here.
@@ -17,12 +18,26 @@ def projects(request):
         # 'paginator': paginator,
         'custom_range': custom_range,
     }
+
     return render(request, "projects/projects.html", contex)
 
 
 def project(request, pk):
     project_obj = Project.objects.get(id=pk)
     form = ReviewForm()
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = project_obj
+        review.owner = request.user.profile
+        review.save()
+
+        project_obj.get_vote_count()
+
+        messages.success(request, "Your review was successfully submitted!")
+        return redirect('project', pk=project_obj.id)
+
     return render(request, "projects/single-project.html", {'project': project_obj, 'form': form})
 
 

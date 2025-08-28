@@ -20,8 +20,22 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def reviewers(self):
+        queryset = self.reveiw_set.all().values_list("owner__id", flat=True)
+        return queryset
+
+    def get_vote_count(self):
+        reviews = self.review_set.all()
+        up_vote = reviews.filter(value="up").count()
+        total_votes = reviews.count()
+
+        ratio = up_vote/ total_votes * 100
+        self.vote_total = total_votes
+        self.vote_rating = ratio
+        self.save()
+
     class Meta:
-        ordering = ['-created']
+        ordering = ['-vote_rating', '-vote_total', '-title']
 
 
 class Tag(models.Model):
