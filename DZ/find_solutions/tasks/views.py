@@ -118,3 +118,15 @@ def delete_task(request, tasks_pk):
     if request.method == "POST":
         task.delete()
         return redirect('currenttasks')
+
+
+@login_required(login_url='login')
+def inbox(request):
+    profile = request.user
+    message_request = profile.messages.all()
+    unread_count = message_request.filter(is_read=False).count()
+    context = {
+        'message_request': message_request,
+        'unread_count': unread_count
+    }
+    return render(request, 'tasks/inbox.html', context)
