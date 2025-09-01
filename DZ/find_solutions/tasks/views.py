@@ -3,11 +3,12 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import TaskForm
+from .forms import TaskForm, MessageForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .utils import search_task
+from django.contrib import messages
 
 
 # Create your views here.
@@ -130,3 +131,44 @@ def inbox(request):
         'unread_count': unread_count
     }
     return render(request, 'tasks/inbox.html', context)
+
+
+@login_required(login_url='login')
+def veiw_message(request, pk):
+    profile = request.user
+    message = profile.messages.get(id=pk)
+    if message.is_read is False:
+        message.is_read = True
+        message.save()
+    context = {
+        'message': message
+    }
+
+    # recipient = User.objects.get(id=pk)
+    # form = MessageForm()
+    #
+    # try:
+    #     sender = request.user.profile
+    # except:
+    #     sender = None
+    #
+    # if request.method == "POST":
+    #     form = MessageForm(request.POST)
+    #     if form.is_valid():
+    #         message = form.save(commit=False)
+    #         message.sender = sender
+    #         message.recipient = recipient
+    #
+    #         if sender:
+    #             message.name = sender.name
+    #             message.email = sender.email
+    #         message.save()
+    #
+    #         messages.success(request, "Yuor message was send")
+    #         return redirect('user_profile', pk=recipient.id)
+    #
+    # context = {
+    #     'recipient': recipient,
+    #     'form': form
+    # }
+    return render(request, 'tasks/message.html', context)

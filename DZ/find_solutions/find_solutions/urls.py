@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from tasks import views
 from django.conf.urls.static import static  # подключение изо
-from django.conf import settings   # подключение изо
+from django.conf import settings  # подключение изо
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +36,7 @@ urlpatterns = [
     path('completed/', views.completed_tasks, name='completedtasks'),
     path('tasks/<int:tasks_pk>/delete', views.delete_task, name='deletetask'),
     path('tasks/inbox.html', views.inbox, name='inbox'),
+    path('message/<str:pk>', views.veiw_message, name='message'),
 ]
 
 # подключение изо
