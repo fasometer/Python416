@@ -8,7 +8,11 @@
       <div class="message">
         <a class="backButton" href="{% url 'inbox'%}"><img src="{% static 'images/left.png' %}" alt="left"></a>
         <h2 class="message__subject"> {{ message.subject }}  </h2>
-          <a href="profile.html" class="message__author">{{ message.name }} </a>
+
+          <a href="#" class="message__author">{{ message.name }} <br>{{ message.email }} </a>
+
+
+
           <p class="message__date">{{ message.created }} </p>
           <div class="message__body">
           {{ message.body|linebreaksbr }}
