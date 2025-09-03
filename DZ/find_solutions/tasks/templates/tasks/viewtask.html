@@ -5,10 +5,7 @@
 <h2>{{ task.title }}</h2>
 <h3>{{ error }}</h3>
 <form class="view_task" enctype="multipart/form-data">
-                {% for f in form %}
-                 {{ f }}
-        <p></p>
-            {% endfor %}
+
 </form>
 
 <!--{{ form }}-->
@@ -16,7 +13,11 @@
 
     <form method="post" class="view_task" enctype="multipart/form-data">
         {% csrf_token %}
-
+                {% for f in form %}
+                {{ f.label }}
+                 {{ f }}
+        <p></p>
+            {% endfor %}
         <button class="btn">Сохранить</button>
     </form>
     <form action="{% url 'completetask' task.id %}" method="post" enctype="multipart/form-data">

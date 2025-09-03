@@ -69,7 +69,7 @@ def create_task(request):
         try:
             form = TaskForm(request.POST, request.FILES)
             new_task = form.save(commit=False)
-            new_task.user = request.user
+            # new_task.user = request.user
             new_task.decision = ''
 
             new_task.save()
