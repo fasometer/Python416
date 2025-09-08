@@ -7,7 +7,12 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'user', 'lines', 'place', 'memo', 'memo_images', 'decision', 'decision_images', 'important']
-        widgets = {'lines': forms.Select()}
+        widgets = {
+            'lines': forms.Select(attrs={'class': 'form-input'}),
+            # 'user':forms.Select(attrs={'class': 'form-input'}),
+            'memo': forms.Textarea(attrs={'rows': 4}),
+            'decision': forms.Textarea(attrs={'rows': 4}),
+        }
 
 
 class MessageForm(ModelForm):

@@ -4,13 +4,13 @@
 
 <h2>{{ task.title }}</h2>
 <h3>{{ error }}</h3>
-<form class="view_task" enctype="multipart/form-data">
+<!--<form class="view_task" enctype="multipart/form-data">-->
 
-</form>
+<!--</form>-->
 
 <!--{{ form }}-->
-<div class="but">
-
+<div class="but_1">
+<!--class="view_task" -->
     <form method="post" class="view_task" enctype="multipart/form-data">
         {% csrf_token %}
                 {% for f in form %}
