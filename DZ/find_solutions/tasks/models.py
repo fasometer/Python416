@@ -16,7 +16,7 @@ class Task(models.Model):
     created = models.DateField(auto_now_add=True, verbose_name="Создано")
     data_complete = models.DateField(blank=True, null=True, verbose_name="Дата решения")
     important = models.BooleanField(default=False, verbose_name="Важность")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Ответственный")
 
     def __str__(self):
         return self.title
