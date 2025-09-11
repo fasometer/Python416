@@ -31,20 +31,24 @@
 
                 <form class="form" method="POST">
                     {% csrf_token %}
-                    {% if request.user.is_authenticated  == False %}
-                    <!-- Input:Text -->
-                    <div class="form__field">
-                        <label for="formInput#text">{{ form.name.label }} </label>
-                    {{ form.name }}
-                    </div>
+<!--                    {% if request.user.is_authenticated  == False %}-->
+<!--                    &lt;!&ndash; Input:Text &ndash;&gt;-->
+<!--                    <div class="form__field">-->
+<!--                        <label for="formInput#text">{{ form.name.label }} </label>-->
+<!--                    {{ form.name }}-->
+<!--                    </div>-->
 
+<!--                    &lt;!&ndash; Input:Text &ndash;&gt;-->
+<!--                    <div class="form__field">-->
+<!--                        <label for="formInput#text">{{ form.email.label }}</label>-->
+<!--                        {{ form.email }}-->
+<!--                    </div>-->
+<!--                    {%endif%}-->
                     <!-- Input:Text -->
-                    <div class="form__field">
-                        <label for="formInput#text">{{ form.email.label }}</label>
-                        {{ form.email }}
+                     <div class="form__field">
+                        <label for="formInput#text">T{{ form.username.label }}</label>
+                     {{ form.username }}
                     </div>
-                    {%endif%}
-                    <!-- Input:Text -->
                     <div class="form__field">
                         <label for="formInput#text">T{{ form.subject.label }}</label>
                      {{ form.subject }}

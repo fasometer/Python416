@@ -126,10 +126,40 @@ def inbox(request):
     profile = request.user
     message_request = profile.messages.all()
     unread_count = message_request.filter(is_read=False).count()
+    # context = {
+    #     'message_request': message_request,
+    #     'unread_count': unread_count
+    # }
+    recipient = User.username
+    form = MessageForm()
+
+    try:
+        sender = request.user.profile
+    except:
+        sender = None
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+            message.save()
+
+            messages.success(request, "Yuor message was send")
+            return redirect('user_profile')
+
     context = {
+        'recipient': recipient,
+        'form': form,
         'message_request': message_request,
         'unread_count': unread_count
     }
+
     return render(request, 'tasks/inbox.html', context)
 
 
@@ -144,31 +174,5 @@ def veiw_message(request, pk):
         'message': message
     }
 
-    # recipient = User.objects.get(id=pk)
-    # form = MessageForm()
-    #
-    # try:
-    #     sender = request.user.profile
-    # except:
-    #     sender = None
-    #
-    # if request.method == "POST":
-    #     form = MessageForm(request.POST)
-    #     if form.is_valid():
-    #         message = form.save(commit=False)
-    #         message.sender = sender
-    #         message.recipient = recipient
-    #
-    #         if sender:
-    #             message.name = sender.name
-    #             message.email = sender.email
-    #         message.save()
-    #
-    #         messages.success(request, "Yuor message was send")
-    #         return redirect('user_profile', pk=recipient.id)
-    #
-    # context = {
-    #     'recipient': recipient,
-    #     'form': form
-    # }
+
     return render(request, 'tasks/message.html', context)
