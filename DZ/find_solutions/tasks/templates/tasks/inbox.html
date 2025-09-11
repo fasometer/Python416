@@ -4,6 +4,8 @@
 
   <!-- Main Section -->
   <main class="inbox my-xl">
+      {{ form.subject.label }}
+      <a href="#" class="btn btn--sub btn--lg">Send Message </a>
     <div class="content-box">
       <h3 class="inbox__title">New Messages(<span>{{ unread_count }}</span>)</h3>
       <ul class="messages">
@@ -46,11 +48,11 @@
                     {%endif%}
                     <!-- Input:Text -->
                     <div class="form__field">
-                        <label for="formInput#text">T{{ form.subject.label }}</label>
+                        <label for="formInput#text">{{ form.subject.label }}</label>
                      {{ form.subject }}
                     </div>
                     <div class="form__field">
-                        <label for="formInput#text">T{{ form.body.label }}</label>
+                        <label for="formInput#text">{{ form.body.label }}</label>
                      {{ form.body }}
                     </div>
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />

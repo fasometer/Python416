@@ -169,6 +169,7 @@ def veiw_message(request, pk):
     #
     # context = {
     #     'recipient': recipient,
-    #     'form': form
+    #     'form': form,
+    #     'message': message
     # }
     return render(request, 'tasks/message.html', context)
