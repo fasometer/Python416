@@ -126,20 +126,18 @@ def inbox(request):
     profile = request.user
     message_request = profile.messages.all()
     unread_count = message_request.filter(is_read=False).count()
-    # context = {
-    #     'message_request': message_request,
-    #     'unread_count': unread_count
-    # }
+
     recipient = User.username
     form = MessageForm()
 
     try:
-        sender = request.user.profile
+        sender = request.user
     except:
         sender = None
 
     if request.method == "POST":
         form = MessageForm(request.POST)
+
         if form.is_valid():
             message = form.save(commit=False)
             message.sender = sender
@@ -151,15 +149,20 @@ def inbox(request):
             message.save()
 
             messages.success(request, "Yuor message was send")
-            return redirect('user_profile')
-
+            return redirect('inbox')
+    #
+    # context = {
+    #     'recipient': recipient,
+    #     'form': form,
+    #     'message': message
+    # }
     context = {
+        'message_request': message_request,
+        'unread_count': unread_count,
         'recipient': recipient,
         'form': form,
-        'message_request': message_request,
-        'unread_count': unread_count
+        # 'message': message
     }
-
     return render(request, 'tasks/inbox.html', context)
 
 
@@ -173,6 +176,5 @@ def veiw_message(request, pk):
     context = {
         'message': message
     }
-
 
     return render(request, 'tasks/message.html', context)

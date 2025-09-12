@@ -121,11 +121,16 @@ a b{
  .but_1 select{
     font-size: 20px;
  }
+ .form-input{
+    width: 40%;
+ }
  .b5{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
  
  }
  .b4 , .b5{
-    padding: 5px;
+    margin-right: 10px;
+    width: auto;
  }
