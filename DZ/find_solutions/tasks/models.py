@@ -6,11 +6,8 @@ from django.contrib.auth.models import User
 
 
 class Task(models.Model):
-<<<<<<< HEAD
-    title = models.CharField(max_length=100, verbose_name="Тема")
-=======
     title = models.CharField(max_length=100, verbose_name="Задача")
->>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
+
     lines = models.ForeignKey('Lines', on_delete=models.CASCADE, default="", verbose_name="Линия")
     place = models.ForeignKey('Place', on_delete=models.CASCADE, default="", verbose_name="Место")
     memo = models.TextField(blank=True, verbose_name="Проблема")

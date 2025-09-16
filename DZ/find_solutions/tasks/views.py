@@ -99,7 +99,7 @@ def complete_task(request, tasks_pk):
     if request.method == "POST":
         task.data_complete = timezone.now()
         task.save()
-        return redirect('currenttasks')
+        return redirect('completedtasks')
 
 
 @login_required
@@ -177,7 +177,6 @@ def veiw_message(request, pk):
         'message': message
     }
 
-<<<<<<< HEAD
     # recipient = User.objects.get(id=pk)
     # form = MessageForm()
     #
@@ -206,6 +205,4 @@ def veiw_message(request, pk):
     #     'form': form,
     #     'message': message
     # }
-=======
->>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
     return render(request, 'tasks/message.html', context)

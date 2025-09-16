@@ -87,11 +87,17 @@ input{
 .content ul{
     list-style: none;
     padding: 0;
-    
+    margin: 0;
 }
 .content li{
-    box-shadow: 0 2px 8px 2px #008e56;
-    margin-bottom: 20px;
+    /* box-shadow: 0 2px 8px 2px #008e56; */
+    margin-bottom: 5px;
+    /* font-size: 20px; */
+}
+.helptext{
+    padding: 0 0 0 20px;
+}
+.register label{
     font-size: 20px;
 }
 .content a{
