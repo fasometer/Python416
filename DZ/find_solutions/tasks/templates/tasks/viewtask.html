@@ -4,23 +4,24 @@
 
 <h2>{{ task.title }}</h2>
 <h3>{{ error }}</h3>
-<!--<form class="view_task" enctype="multipart/form-data">-->
-
-<!--</form>-->
-
-<!--{{ form }}-->
+{{ data_complete }}
 <div class="but_1">
-<!--class="view_task" -->
     <form method="post" class="view_task" enctype="multipart/form-data">
-<!--        {% csrf_token %}-->
-<!--                {% for f in form %}-->
-<!--                {{ f.label }}-->
-<!--                 {{ f }}-->
-<!--        {% endfor %}-->
+    {% csrf_token %}
         <div class="b2">
+<<<<<<< HEAD
 
              {{ form.user.label }}
             {{ form.user }}
+=======
+            {{ form.user.label }}
+            {{ form.user }}<br>
+            {% if form.data_complete == Null %}
+                    {{form.data_complete.label }}
+                    {{form.data_complete}}
+            {% else %}
+            {% endif %}
+>>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
              {{ form.title.label }}
              {{ form.title }}
              {{ form.lines.label }}
@@ -42,16 +43,22 @@
                   {{ form.decision_images }}
              </div>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
     {{ form.important }}
         <p></p>
 
         <button class="btn">Сохранить</button>
     </form>
+    {% if form.data_complete  %}
     <form action="{% url 'completetask' task.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <button class="btn good" >Выполнено</button>
     </form>
+
+    {% endif %}
     <form action="{% url 'deletetask' task.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <button class="btn remove">Удалить</button>

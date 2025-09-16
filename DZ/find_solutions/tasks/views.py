@@ -126,9 +126,42 @@ def inbox(request):
     profile = request.user
     message_request = profile.messages.all()
     unread_count = message_request.filter(is_read=False).count()
+
+    recipient = User.username
+    form = MessageForm()
+
+    try:
+        sender = request.user
+    except:
+        sender = None
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email
+            message.save()
+
+            messages.success(request, "Yuor message was send")
+            return redirect('inbox')
+    #
+    # context = {
+    #     'recipient': recipient,
+    #     'form': form,
+    #     'message': message
+    # }
     context = {
         'message_request': message_request,
-        'unread_count': unread_count
+        'unread_count': unread_count,
+        'recipient': recipient,
+        'form': form,
+        # 'message': message
     }
     return render(request, 'tasks/inbox.html', context)
 
@@ -144,6 +177,7 @@ def veiw_message(request, pk):
         'message': message
     }
 
+<<<<<<< HEAD
     # recipient = User.objects.get(id=pk)
     # form = MessageForm()
     #
@@ -172,4 +206,6 @@ def veiw_message(request, pk):
     #     'form': form,
     #     'message': message
     # }
+=======
+>>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
     return render(request, 'tasks/message.html', context)

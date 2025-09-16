@@ -7,9 +7,8 @@
       {% for task in tasks %}
       <table border="1">
             <tbody>
-
             <tr>
-                  <td class="td_1">{{ task.created}}</td>
+                  <td class="td_1">{{ task.lines}}</td>
                   <td class="td_2">
                         <a href="{% url 'viewtask' task.id %}">
                         {% if task.important %}

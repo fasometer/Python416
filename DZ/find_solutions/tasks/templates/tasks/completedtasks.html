@@ -22,6 +22,7 @@
       </div>
     </section>
 <h1>Завершено</h1>
+
 {% for task in tasks %}
 <table border="1">
       <tbody>
@@ -45,23 +46,5 @@
       </tbody>
 </table>
 {% endfor %}
-<!--<ul>-->
-<!--      {% for task in tasks %}-->
-<!--      <li>-->
-
-<!--            {% if task.important %}-->
-<!--            <b>{{ task.title}}</b>-->
-<!--            {% else %}-->
-<!--            {{ task.title}}-->
-<!--            {% endif %}-->
-
-<!--            {% if task.memo %}-->
-<!--             - {{ task.memo  }}-->
-<!--            {% endif %}-->
-<!--            {{ task.data_complete }}-->
-
-<!--      </li>-->
-<!--      {% endfor %}-->
-<!--</ul>-->
 
       {% endblock %}

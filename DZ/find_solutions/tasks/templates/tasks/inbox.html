@@ -28,26 +28,35 @@
 
      <div class="content-box">
             <div class="formWrapper">
-                <a class="backButton" href="#"><img src="{% static 'images/left.png' %}" alt="left"></a>
-                <br>
 
                 <form class="form" method="POST">
                     {% csrf_token %}
-                    {% if request.user.is_authenticated  == False %}
-                    <!-- Input:Text -->
-                    <div class="form__field">
-                        <label for="formInput#text">{{ form.name.label }} </label>
-                    {{ form.name }}
-                    </div>
+                    {{form.name.label}}
+                    {{form.sender.label}}
+<!--                    {% if request.user.is_authenticated  == False %}-->
+<!--                    &lt;!&ndash; Input:Text &ndash;&gt;-->
+<!--                    <div class="form__field">-->
+<!--                        <label for="formInput#text">{{ form.name.label }} </label>-->
+<!--                    {{ form.name }}-->
+<!--                    </div>-->
 
+<!--                    &lt;!&ndash; Input:Text &ndash;&gt;-->
+<!--                    <div class="form__field">-->
+<!--                        <label for="formInput#text">{{ form.email.label }}</label>-->
+<!--                        {{ form.email }}-->
+<!--                    </div>-->
+<!--                    {%endif%}-->
                     <!-- Input:Text -->
                     <div class="form__field">
+<<<<<<< HEAD
                         <label for="formInput#text">{{ form.email.label }}</label>
                         {{ form.email }}
                     </div>
                     {%endif%}
                     <!-- Input:Text -->
                     <div class="form__field">
+=======
+>>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
                         <label for="formInput#text">{{ form.subject.label }}</label>
                      {{ form.subject }}
                     </div>
