@@ -10,8 +10,6 @@
     {% csrf_token %}
         <div class="b2">
             {{ form.user.label }}
-            {{ form.user }}
-            {{ form.user.label }}
             {{ form.user }}<br>
              {{ form.title.label }}
              {{ form.title }}
@@ -23,13 +21,13 @@
         <div class="b5">
             <div class="b3">
                  {{ form.memo.label }}
-                 {{ form.memo }}
+                 {{ form.memo|safe }}
                  {{ form.memo_images.label }}
                  {{ form.memo_images }}
              </div>
             <div class="b4">
                  {{ form.decision.label }}
-                 {{ form.decision }}
+                 {{ form.decision|safe  }}
                  {{ form.decision.label }}
                  {{ form.decision_images }}
              </div>

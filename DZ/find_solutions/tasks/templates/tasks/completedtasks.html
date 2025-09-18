@@ -27,10 +27,10 @@
     <li class="comp_task">
         <b>{{ task.title}}</b>
         {%  if task.memo %}
-        - {{ task.memo }}
+        - {{ task.memo|safe  }}
         {% endif %}
         {{ task.decision.label }}
-        {{ task.decision}}
+        {{ task.decision|safe }}
         {%  if task.decision_images  %}
         - {{ task.decision_images  }}
         {% endif %}
