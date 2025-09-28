@@ -1,6 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from users.models import User
+from .models import User, EmailVerification
 from django import forms
+import uuid
+from datetime import timedelta
+from django.utils.timezone import now
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -15,6 +18,13 @@ class UserRegistrationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control py-4'
+
+    def save(self, commit=True):
+        user = super().save(commit=True)
+        expiration = now() + timedelta(hours=45)
+        record = EmailVerification.objects.create(code=uuid.uuid4(), user=user, expiration=expiration)
+        record.send_verification_email()
+        return user
 
     class Meta:
         model = User
@@ -40,7 +50,7 @@ class UserLoginForm(AuthenticationForm):
 class UserProfileForm(UserChangeForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True}))
-    image = forms.ImageField(widget=forms.FileInput(),required=False)
+    image = forms.ImageField(widget=forms.FileInput(), required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
