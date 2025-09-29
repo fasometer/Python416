@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('login/', views.login, name='login'),
@@ -7,4 +8,23 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('logout/', views.logout, name='logout'),
     path('verify/<str:email>/<uuid:code>', views.EmailVerificationView.as_view(), name='email_verification'),
+
+    path('reset-password/', auth_views.PasswordResetView.as_view(template_name="users/reset_password.html"),
+         name='reset-password'),
+    # пользователь отправляет письмо для сброса пароля
+
+    path('reset_password_send/',
+         auth_views.PasswordResetDoneView.as_view(template_name="users/reset_password_sent.html"),
+         name='password_reset_done'),
+    # сообщение отправленно по электронной почте
+
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="users/reset.html"),
+         name='password_reset_confirm'),
+    # email со ссылкой и инструкциями для сброса пароля
+
+    path('reset_password_complete',
+         auth_views.PasswordResetCompleteView.as_view(template_name="users/reset_password_complete.html"),
+         name='password_reset_complete'),
+    # успешный сброс пароля
+
 ]
