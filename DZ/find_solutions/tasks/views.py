@@ -7,7 +7,7 @@ from .forms import TaskForm, MessageForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .utils import search_task
+from .utils import search_task, paginate_projects
 from django.contrib import messages
 
 
@@ -105,10 +105,12 @@ def complete_task(request, tasks_pk):
 @login_required
 def completed_tasks(request):
     search_query, ts = search_task(request)
+    custom_range, ts = paginate_projects(request, ts, 3)
     # tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
     contex = {
         'tasks': ts,
         'search_query': search_query,
+        'custom_range': custom_range,
     }
     return render(request, 'tasks/completedtasks.html', contex)
 
