@@ -34,63 +34,36 @@ body{
     background: lightgreen;
 } */
 
-.content .wrap{
+/* .content .wrap{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; 
+     align-items: center;
     justify-content: center;
     margin-top: 80px;
     
-}
+} */
 h1, h2{
     color: green;
 }
-/* .btn{
-    background: #008e56;
-    color: #fff;
-    } */
-.pagination {
-  margin-top: 8rem;
-  margin-bottom: 10rem;
-}
 
-.pagination > ul {
-  flex-wrap: wrap;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+.pagination li {
+   border: 1px solid#264b5d;
+    margin-bottom: 40px;
 }
-.container {
-  width: 92%;
-  max-width: 165rem;
-  margin: 0 auto;
-  box-sizing: border-box;
+.list-pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-.btn {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  background-color: var(--color-light);
-  font-weight: var(--font-medium);
-  color: var(--color-sub);
-  text-decoration: none;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  border: none;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  font-size: 1.6rem;
-  outline-width: 0;
-  outline-color: transparent;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transition: all 0.3s ease-in-out;
+.page-num-selected{
+    background: #81d4fa;
+    padding: 20px;
+}
+.list-pages a{
+    background: #264b5d;
+    padding: 20px;
+    display: block;
+    color: #FFC;
 }
 button{
     border-radius: 6px;
@@ -127,16 +100,16 @@ input{
     color: #fff;
     box-shadow: none;
 }
-.content ul{
+/* .content ul{
     list-style: none;
     padding: 0;
     margin: 0;
-}
-.content li{
+} */
+/* .content li{
     /* box-shadow: 0 2px 8px 2px #008e56; */
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     /* font-size: 20px; */
-}
+ */
 .comp_task{
     box-shadow: 0 2px 8px 2px #008e56;
     font-size: 20px;

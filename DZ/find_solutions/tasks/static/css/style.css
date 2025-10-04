@@ -143,12 +143,11 @@ a b{
  .but_1 select{
     font-size: 20px;
     width: 100%;
-<<<<<<< HEAD
-=======
+
  }
  .but_1 textarea{
     width: 100%;
->>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
+
  }
  .b5{
     display: flex;
@@ -156,13 +155,46 @@ a b{
     justify-content: space-between;
  
  }
-<<<<<<< HEAD
  .b4 , .b3{
     padding: 10px 5px 15px 0px;
     
-=======
+ }
  .b4 , .b5{
     margin-right: 10px;
     width: auto;
->>>>>>> 6fcd661abcad002074b4cebbc20c602abcd7c7ef
+
  }
+
+/* .pagination li {
+
+   border: 5px solid#264b5d;
+    margin-bottom: 40px;
+    
+} */
+
+.list-pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.page-num{
+    margin: 6px;
+    /* background:#FFF; */
+    font-weight: bold;
+}
+.page-num-selected{
+    background: #008e56;
+    color: #fff;
+    /* padding: 20px; */
+    
+}
+.list-pages a{
+   text-decoration: none;
+    padding: 20px;
+    display: block;
+    
+}
+
+.task_finish{
+    width: 75%;
+}

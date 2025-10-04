@@ -18,7 +18,6 @@
                 <li><a href="{% url 'currenttasks' %}">Актуальные</a></li>
                 <li><a href="{% url 'completedtasks' %}">Выполненные</a></li>
                 <li><a href="{% url 'inbox' %}">Сообщения</a></li>
-
                 <li>
                         <form action="{% url 'logoutuser' %}" method="post">
                          {% csrf_token %}
@@ -27,7 +26,6 @@
                 </li>
              {% else %}
                 <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
-
                 <li><a href="{% url 'loginuser' %}">Войти</a></li>
             {% endif %}
         </ul>

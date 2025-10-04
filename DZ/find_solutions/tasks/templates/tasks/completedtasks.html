@@ -22,7 +22,7 @@
       </div>
     </section>
 <h1>Завершено</h1>
-<ul>
+<ul class="task_finish">
     {% for task in tasks  %}
     <li class="comp_task">
         <b>{{ task.title}}</b>
@@ -42,45 +42,5 @@
 
 {% include 'tasks/pagination.html' with queryset=tasks %}
 
-<!--<div class="pagination">-->
-<!--      <ul class="container">-->
-<!--        <li><a href="#" class="btn btn&#45;&#45;disabled">&#10094; Prev</a></li>-->
-<!--        <li><a href="#" class="btn btn&#45;&#45;sub">01</a></li>-->
-<!--        <li><a href="#" class="btn">02</a></li>-->
-<!--        <li><a href="#" class="btn">03</a></li>-->
-<!--        <li><a href="#" class="btn">04</a></li>-->
-<!--        <li><a href="#" class="btn">05</a></li>-->
-<!--        <li><a href="#" class="btn">06</a></li>-->
-<!--        <li><a href="#" class="btn">07</a></li>-->
-<!--        <li><a href="#" class="btn">08</a></li>-->
-<!--        <li><a href="#" class="btn">09</a></li>-->
-<!--        <li><a href="#" class="btn">10</a></li>-->
-<!--        <li><a href="#" class="btn">Next &#10095;</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--{% for task in tasks %}-->
-
-<!--<table border="1">-->
-<!--      <tbody>-->
-<!--      <tr>-->
-<!--            <td class="td_1">{{ task.lines }}</td>-->
-<!--            <td class="td_2">-->
-<!--                  <a href="{% url 'viewtask' task.id %}">-->
-<!--                        {% if task.important %}-->
-<!--                        <b>{{ task.title}}</b>-->
-<!--                        {% else %}-->
-<!--                        {{ task.title}}-->
-<!--                        {% endif %}-->
-<!--                        </a>-->
-<!--            </td>-->
-<!--            <td class="td_3">-->
-<!--                  {% if task.memo %}-->
-<!--                  {{ task.memo|striptags|truncatechars:200   }}-->
-<!--                  {% endif %}-->
-<!--            </td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--</table>-->
-<!--{% endfor %}-->
 
       {% endblock %}
