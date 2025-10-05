@@ -6,10 +6,11 @@ from django import forms
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'user','data_complete', 'lines', 'place', 'memo', 'memo_images', 'decision', 'decision_images', 'important']
+        fields = ['title', 'user', 'data_complete', 'lines', 'place', 'memo', 'memo_images', 'decision',
+                  'decision_images', 'important']
         widgets = {
             'lines': forms.Select(attrs={'class': 'form-input'}),
-            'place':forms.Select(attrs={'class': 'form-input'}),
+            'place': forms.Select(attrs={'class': 'form-input'}),
             'memo': forms.Textarea(attrs={'rows': 4}),
             'decision': forms.Textarea(attrs={'rows': 4}),
         }
@@ -24,4 +25,5 @@ class MessageForm(ModelForm):
 
     class Meta:
         model = Message
-        fields = ['name', 'email', 'subject', 'body']
+        fields = ['name', 'email', 'subject', 'body', 'recipient']
+        # widgets = {'name': forms.Select(), }

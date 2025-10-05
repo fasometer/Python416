@@ -129,6 +129,7 @@ def inbox(request):
     message_request = profile.messages.all()
     unread_count = message_request.filter(is_read=False).count()
 
+    # recipient = User.objects.all()
     recipient = User.username
     form = MessageForm()
 

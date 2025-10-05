@@ -171,7 +171,10 @@ a b{
     margin-bottom: 40px;
     
 } */
-
+.form__field select {
+font-size: 20px;
+    width: 100%;
+}
 .list-pages {
     display: flex;
     flex-direction: row;
