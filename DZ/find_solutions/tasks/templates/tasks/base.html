@@ -12,6 +12,12 @@
 <div class="menu">
     <div class="wrap">
         <ul>
+                    <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'tasks/resilux.png' %}" alt="">
+            </a>
+        </div>
+
              {% if user.is_authenticated %}
                 <li class="logo">Пользователь: {{ user.username}}</li>
                 <li><a href="{% url 'createtask' %}">Создать</a></li>
@@ -37,6 +43,7 @@
 <div class="content">
   <div class="wrap">
       {% block content %}
+
       {% endblock %}
   </div>
 </div>
