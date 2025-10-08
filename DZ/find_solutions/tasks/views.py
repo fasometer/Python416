@@ -63,8 +63,9 @@ def current_tasks(request):
 
 @login_required
 def create_task(request):
+    title = "Создать задачу"
     if request.method == "GET":
-        return render(request, 'tasks/createtask.html', {'form': TaskForm()})
+        return render(request, 'tasks/createtask.html', {'form': TaskForm(), 'title': title})
     else:
         try:
             form = TaskForm(request.POST, request.FILES)
@@ -75,7 +76,8 @@ def create_task(request):
             new_task.save()
             return redirect('currenttasks')
         except ValueError:
-            return render(request, 'tasks/createtask.html', {'form': TaskForm(), 'error': 'Переданы неверные данные'})
+            return render(request, 'tasks/createtask.html',
+                          {'form': TaskForm(), 'error': 'Переданы неверные данные', 'title': title})
 
 
 @login_required

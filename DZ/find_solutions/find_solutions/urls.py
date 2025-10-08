@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from tasks import views
 from django.conf.urls.static import static  # подключение изо
-from django.conf import settings  # подключение изо
+from django.conf import settings  # подключение settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('tasks/', include('tasks.urls')),
+    path('blog/', include('blog.urls')),
     path('', views.home, name='home'),
 ]
 
