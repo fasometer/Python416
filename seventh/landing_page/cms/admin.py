@@ -1,7 +1,20 @@
 from django.contrib import admin
 from .models import CmsSlider
+from django.utils.safestring import mark_safe
+
 
 # Register your models here.
 
-admin.site.register(CmsSlider)
+class CmsAdmin(admin.ModelAdmin):
+    list_display = ('cms_title', 'cms_text', 'cms_css', 'get_img')  # вывод табличный в админке
+    list_editable = ('cms_css',)  # редактируемое поле
+    fields = ('cms_title', 'cms_text', 'cms_css', 'cms_img', 'get_img')
+    readonly_fields = ('get_img',)
 
+    def get_img(self, obj):
+        return mark_safe(f"<img src='{obj.cms_img.url}' width='80'>")
+
+    get_img.short_description = 'Миниатюра'
+
+
+admin.site.register(CmsSlider, CmsAdmin)
