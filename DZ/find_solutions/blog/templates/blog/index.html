@@ -2,9 +2,9 @@
 {% load blog_tags %}
 
  {% block content %}
+<div class="info">
 
-<h1>Главная страница</h1>
-<div class="sidebar">
+      <div class="sidebar">
 <ul>
       {% if cat_selected == 0 %}
       <li class="selected">Все категории</li>
@@ -14,9 +14,9 @@
       {% show_categories cat_selected=cat_selected%}
 </ul>
 </div>
-<div class="main">
+      <div class="main">
 
-<ul>
+<ul><h1>Главная страница</h1>
       {% for p in posts %}
       <li>
             <p class="first">Категория: {{ p.cat }}</p>
@@ -33,5 +33,6 @@
 </ul>
 
 
+</div>
 </div>
  {% endblock %}

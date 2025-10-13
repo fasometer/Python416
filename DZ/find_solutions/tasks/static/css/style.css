@@ -50,6 +50,9 @@ body{
 h1, h2{
     color: green;
 }
+.info{
+    display: flex;
+}
 .btn{
     background: #008e56;
     color: #fff;
@@ -208,4 +211,57 @@ font-size: 20px;
 
 .task_finish{
     width: 75%;
+}
+.sidebar ul{
+    width: 320px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.sidebar a{
+    padding: 20px;
+    display: block;
+    bottom: 1px solid black;
+    background: #00f291;
+    font-weight: bold;
+    font-size: 18px;
+}
+.sidebar a:hover{
+    color: #fff;
+}
+.selected{
+    font-size: 18px;
+    padding: 20px;
+    bottom: 1px solid black;
+    background: #bdfeca;
+}
+.main li{
+    border: 1px solid teal;
+    margin-bottom: 40px;
+}
+.first, .date{
+    padding: 10px 20px;
+    background: #bdfeca;
+    font-size: 18px;
+    margin: 0;
+}
+.image{
+    max-width: 30%;
+    
+    float: left;
+    margin-right: 20px;
+}
+.text{
+    padding: 20px 20px 0;
+}
+.text h2{
+    margin-top: 0;
+}
+.text a{
+    padding-left: 0;
+}
+.post h2{
+    margin-top: 0;
+}
+.post{
+    font-size: 16px;
 }

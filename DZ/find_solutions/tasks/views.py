@@ -14,7 +14,7 @@ from django.contrib import messages
 # Create your views here.
 
 def home(request):
-    return render(request, 'tasks/home.html')
+    return render(request, 'blog/index.html')
 
 
 def signup_user(request):
