@@ -132,7 +132,7 @@ def inbox(request):
     unread_count = message_request.filter(is_read=False).count()
 
     # recipient = User.objects.all()
-    recipient = User.username
+
     form = MessageForm()
 
     try:
@@ -142,6 +142,7 @@ def inbox(request):
 
     if request.method == "POST":
         form = MessageForm(request.POST)
+        recipient = request.POST['recipient']
 
         if form.is_valid():
             message = form.save(commit=False)
@@ -164,7 +165,7 @@ def inbox(request):
     context = {
         'message_request': message_request,
         'unread_count': unread_count,
-        'recipient': recipient,
+        # 'recipient': recipient,
         'form': form,
         # 'message': message
     }
