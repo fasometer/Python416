@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView  # вывод в цикле
+from django.views.generic import ListView, DetailView, CreateView  # вывод в цикле
+from django.urls import reverse_lazy
+from .forms import *
 from .models import *
 
 
@@ -46,3 +48,13 @@ class BlogCategory(ListView):
         context['cat_selected'] = context['posts'][0].cat_id
         return context
 
+
+class AddPage(CreateView):
+    form_class = AddPostForm
+    template_name = "blog/addpage.html"
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Добавить статью"
+        return context
