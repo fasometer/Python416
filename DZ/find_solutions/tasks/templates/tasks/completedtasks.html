@@ -29,13 +29,14 @@
         {%  if task.memo %}
         - {{ task.memo|safe  }}
         {% endif %}
-        {{ task.decision.label }}
-        {{ task.decision|safe }}
-        {%  if task.decision_images  %}
-        - {{ task.decision_images  }}
+        {%  if task.memo_images %}
+        <a href="{{ task.memo_images.url }}"><img src="{{ task.memo_images.url }}" width="300" alt=""></a>
         {% endif %}
-        <p></p>
-
+        <br>
+        <b>Решение: </b> {{ task.decision|safe }}
+        {%  if task.decision_images %}
+        <a href="{{ task.decision_images.url }}"><img src="{{ task.decision_images.url }}" width="300" alt=""></a>
+        {% endif %}
     </li>
     {% endfor %}
 </ul>

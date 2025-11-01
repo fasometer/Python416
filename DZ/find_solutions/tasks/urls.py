@@ -15,4 +15,5 @@ urlpatterns = [
     path('tasks/<int:tasks_pk>/delete', views.delete_task, name='deletetask'),
     path('tasks/inbox.html', views.inbox, name='inbox'),
     path('message/<str:pk>', views.veiw_message, name='message'),
+    path('create-message/<str:pk>', views.create_message, name='create-message'),
     ]

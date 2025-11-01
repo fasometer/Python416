@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Task, Lines, Place, Message
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from .models import *
 from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class TaskAdminForm(forms.ModelForm):
@@ -15,7 +15,10 @@ class TaskAdminForm(forms.ModelForm):
 
 class TaskAdmin(admin.ModelAdmin):
     form = TaskAdminForm
-    readonly_fields = ('created',)
+    list_display = ('id', 'title', 'lines', 'created', 'data_complete')
+    list_display_links = ('id', 'title')
+    readonly_fields = ('created', 'data_complete')
+    save_on_top = True
 
 
 admin.site.register(Task, TaskAdmin)

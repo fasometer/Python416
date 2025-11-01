@@ -14,12 +14,12 @@ from django.contrib import messages
 # Create your views here.
 
 def home(request):
-    return render(request, 'tasks/home.html')
+    return render(request, 'tasks/home.html', {'title': "Главная страница"})
 
 
 def signup_user(request):
     if request.method == "GET":
-        return render(request, "tasks/signupuser.html", {'form': UserCreationForm()})
+        return render(request, "tasks/signupuser.html", {'form': UserCreationForm(), 'title': "Регистрация"})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
@@ -37,7 +37,7 @@ def signup_user(request):
 
 def login_user(request):
     if request.method == "GET":
-        return render(request, 'tasks/loginuser.html', {'form': AuthenticationForm()})
+        return render(request, 'tasks/loginuser.html', {'form': AuthenticationForm(), 'title': "Вход"})
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
@@ -58,7 +58,12 @@ def logout_user(request):
 @login_required
 def current_tasks(request):
     tasks = Task.objects.filter(user=request.user, data_complete__isnull=True)
-    return render(request, 'tasks/currenttasks.html', {'tasks': tasks})
+    title = "Актуальные задачи"
+    context = {
+        'tasks': tasks,
+        'title': title,
+    }
+    return render(request, 'tasks/currenttasks.html', context)
 
 
 @login_required
@@ -72,7 +77,6 @@ def create_task(request):
             new_task = form.save(commit=False)
             # new_task.user = request.user
             new_task.decision = ''
-
             new_task.save()
             return redirect('currenttasks')
         except ValueError:
@@ -83,16 +87,23 @@ def create_task(request):
 @login_required
 def view_task(request, tasks_pk):
     task = get_object_or_404(Task, pk=tasks_pk)
+    title = "Задача"
     if request.method == "GET":
         form = TaskForm(instance=task)
-        return render(request, 'tasks/viewtask.html', {'task': task, 'form': form})
+        contex = {
+            'task': task,
+            'form': form,
+            'title': title,
+        }
+        return render(request, 'tasks/viewtask.html', contex)
     else:
         try:
             form = TaskForm(request.POST, instance=task)
             form.save()
             return redirect('currenttasks')
         except ValueError:
-            return render(request, 'tasks/viewtask.html', {'task': task, 'form': form, 'error': "Неверные данные"})
+            return render(request, 'tasks/viewtask.html',
+                          {'task': task, 'form': form, 'error': "Неверные данные"})
 
 
 @login_required
@@ -104,15 +115,15 @@ def complete_task(request, tasks_pk):
         return redirect('completedtasks')
 
 
-@login_required
 def completed_tasks(request):
     search_query, ts = search_task(request)
     custom_range, ts = paginate_projects(request, ts, 3)
-    # tasks = Task.objects.filter(user=request.user, data_complete__isnull=False).order_by('-data_complete')
+    title = "Завершенные задачи"
     contex = {
         'tasks': ts,
         'search_query': search_query,
         'custom_range': custom_range,
+        'title': title,
     }
     return render(request, 'tasks/completedtasks.html', contex)
 
@@ -130,44 +141,13 @@ def inbox(request):
     profile = request.user
     message_request = profile.messages.all()
     unread_count = message_request.filter(is_read=False).count()
-
-    # recipient = User.objects.all()
-
-    form = MessageForm()
-
-    try:
-        sender = request.user
-    except:
-        sender = None
-
-    if request.method == "POST":
-        form = MessageForm(request.POST)
-        recipient = request.POST['recipient']
-
-        if form.is_valid():
-            message = form.save(commit=False)
-            message.sender = sender
-            message.recipient = recipient
-
-            if sender:
-                message.name = sender.name
-                message.email = sender.email
-            message.save()
-
-            messages.success(request, "Yuor message was send")
-            return redirect('inbox')
-    #
-    # context = {
-    #     'recipient': recipient,
-    #     'form': form,
-    #     'message': message
-    # }
+    users = User.objects.all()
+    title = "Все сообщения"
     context = {
         'message_request': message_request,
         'unread_count': unread_count,
-        # 'recipient': recipient,
-        'form': form,
-        # 'message': message
+        'users': users,
+        'title': title,
     }
     return render(request, 'tasks/inbox.html', context)
 
@@ -176,39 +156,34 @@ def inbox(request):
 def veiw_message(request, pk):
     profile = request.user
     message = profile.messages.get(id=pk)
+    title = "Сообщение"
     if message.is_read is False:
         message.is_read = True
         message.save()
     context = {
-        'message': message
+        'message': message,
+        'title': title,
     }
-
-    # recipient = User.objects.get(id=pk)
-    # form = MessageForm()
-    #
-    # try:
-    #     sender = request.user.profile
-    # except:
-    #     sender = None
-    #
-    # if request.method == "POST":
-    #     form = MessageForm(request.POST)
-    #     if form.is_valid():
-    #         message = form.save(commit=False)
-    #         message.sender = sender
-    #         message.recipient = recipient
-    #
-    #         if sender:
-    #             message.name = sender.name
-    #             message.email = sender.email
-    #         message.save()
-    #
-    #         messages.success(request, "Yuor message was send")
-    #         return redirect('user_profile', pk=recipient.id)
-    #
-    # context = {
-    #     'recipient': recipient,
-    #     'form': form,
-    #     'message': message
-    # }
     return render(request, 'tasks/message.html', context)
+
+
+def create_message(request, pk):
+    recipient = User.objects.get(username=pk)
+    form = MessageForm()
+    sender = request.user
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+            message.name = sender
+            # message.email = sender.email
+            message.save()
+            messages.success(request, "Сообщение отправлено")
+            return redirect('inbox')
+    context = {
+        'recipient': recipient,
+        'form': form,
+    }
+    return render(request, 'tasks/message_form.html', context)

@@ -71,8 +71,9 @@ button{
     width: 75%;
     font-size: 20px;
 }
-.bg select{
+.bg select {
     font-size: 20px;
+    margin-bottom: 10px;
 }
 .center{
     text-align: center;
@@ -99,7 +100,7 @@ input{
 }
 .content li{
     /* box-shadow: 0 2px 8px 2px #008e56; */
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     /* font-size: 20px; */
 }
 .comp_task{
@@ -126,7 +127,6 @@ input{
     display: flex;
     align-items: flex-end;
     font-size: 20px;
-
 }
 
 .good{
@@ -200,7 +200,7 @@ font-size: 20px;
 .page-num-selected{
     background: #008e56;
     color: #fff;
-    /* padding: 20px; */
+    padding: 20px;
     
 }
 .list-pages a{
@@ -283,4 +283,68 @@ font-size: 20px;
 }
 form label{
     font-size: 18px;
+}
+.inbox{
+    width: 75%;
+}
+.inbox__title span {
+  color: var(--color-main);
+}
+
+.messages {
+  list-style: none;
+  background: var(--color-white);
+  /* padding: 0.5rem 3rem; */
+  border: 2px solid green;
+  border-radius: 0.7rem;
+}
+
+.message {
+  padding: 2px 0;
+}
+
+/*.message > a span {
+  font-size: 1.45rem;
+  font-weight: 500;
+}*/
+
+.message.message--unread a span {
+  font-weight: bold;
+  /* color: var(--color-sub); */
+}
+
+.message:not(:last-child) {
+  border-bottom: 2px solid var(--color-green-light);
+}
+
+.message > a {
+  display: flex;
+  gap: 3rem;
+  padding: 10px;
+}
+
+.message__author,
+.message__date {
+  flex-basis: 25%;
+}
+
+.message__subject {
+  flex-basis: 50%;
+}
+
+.message__date {
+  text-align: right;
+}
+.messagePage {
+    width: 75%;
+}
+.messagePage .message {
+  list-style: none;
+  background: var(--color-white);
+  padding: 3.5rem 5rem;
+  border: 2px solid green;
+  border-radius: 0.7rem;
+}
+.send {
+    display: flex;
 }

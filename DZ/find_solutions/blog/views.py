@@ -1,28 +1,29 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView  # вывод в цикле
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from .models import *
+from .utils import *
 
 
 # Create your views here.
 
-class BlogHome(ListView):
+class BlogHome(DataMixin, ListView):
     model = Blog
     template_name = "blog/index.html"
     context_object_name = 'posts'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Главная страница"
-        context['cat_selected'] = 0
-        return context
+        c_def = self.get_user_context(title="Интересная информация")
+        return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
         return Blog.objects.filter(is_published=True).select_related('cat')
 
 
-class ShowPost(DetailView):
+class ShowPost(DataMixin, DetailView):
     model = Blog
     template_name = "blog/post.html"
     slug_url_kwarg = 'post_slug'
@@ -30,11 +31,11 @@ class ShowPost(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = [context['post']]
-        return context
+        c_def = self.get_user_context(title=context['post'])
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-class BlogCategory(ListView):
+class BlogCategory(DataMixin, ListView):
     model = Blog
     template_name = "blog/index.html"
     context_object_name = 'posts'
@@ -44,17 +45,18 @@ class BlogCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Категория - " + str(context['posts'][0].cat)
-        context['cat_selected'] = context['posts'][0].cat_id
-        return context
+        c = Category.objects.get(slug=self.kwargs['cat_slug'])
+        c_def = self.get_user_context(title="Категория - " + str(c.name), cat_selected=c.pk)
+        return dict(list(context.items()) + list(c_def.items()))
 
 
-class AddPage(CreateView):
+class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = "blog/addpage.html"
     success_url = reverse_lazy('index')
+    login_url = reverse_lazy('index')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Добавить статью"
-        return context
+        c_def = self.get_user_context(title="Добавить статью")
+        return dict(list(context.items()) + list(c_def.items()))

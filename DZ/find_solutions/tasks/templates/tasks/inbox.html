@@ -3,11 +3,11 @@
 {% block content %}
 
   <!-- Main Section -->
-  <main class="inbox my-xl">
-      {{ form.subject.label }}
-      <a href="#" class="btn btn--sub btn--lg">Send Message </a>
+  <main class="inbox">
+<!--      {{ form.subject.label }}-->
+<!--      <a href="#" class="btn btn&#45;&#45;sub btn&#45;&#45;lg">Send Message </a>-->
     <div class="content-box">
-      <h3 class="inbox__title">New Messages(<span>{{ unread_count }}</span>)</h3>
+      <h3 class="inbox__title">Новые сообщения(<span>{{ unread_count }}</span>)</h3>
       <ul class="messages">
         {% for message in message_request %}
         {% if message.is_read == False %}
@@ -25,36 +25,14 @@
       </ul>
     </div>
 
-
-     <div class="content-box">
-            <div class="formWrapper">
-
-                <form class="form" method="POST">
-                    {% csrf_token %}
-                    <p></p>
-                    <div class="form__field">
-
-                        <label for="formInput#text">{{ form.recipient.label }}</label>
-                        {{ form.recipient }}
-                    </div>
-
-                    <!-- Input:Text -->
-                    <div class="form__field">
-
-
-                        <label for="formInput#text">{{ form.subject.label }}</label>
-                     {{ form.subject }}
-                    </div>
-                    <div class="form__field">
-                        <label for="formInput#text">{{ form.body.label }}</label>
-                     {{ form.body }}
-                    </div>
-                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
-                </form>
-            </div>
-        </div>
   </main>
+<h3>Написать пользователю</h3>
+<div class="send">
+       {% for i in users %}
+<a href="{% url 'create-message' i.username %}">{{ i.username }}</a>
 
-<a href="#">{{form.recipient}}</a>
+      {% endfor %}
+</div>
+
 
 {% endblock %}

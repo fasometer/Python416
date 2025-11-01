@@ -3,16 +3,14 @@
 {% load static %}
 {% block content %}
   <!-- Main Section -->
-  <main class="messagePage my-xl">
+  <main class="messagePage">
     <div class="content-box">
       <div class="message">
-        <a class="backButton" href="{% url 'inbox'%}"><img src="{% static 'images/left.png' %}" alt="left"></a>
-        <h2 class="message__subject"> {{ message.subject }}  </h2>
-          <a href="profile.html" class="message__author">{{ message.name }} </a>
-          <p class="message__date">{{ message.created }} </p>
-          <div class="message__body">
-          {{ message.body|linebreaksbr }}
-          </div>
+        <a class="backButton" href="{% url 'inbox'%}"><img src="{% static 'tasks/left.png' %}" alt="left"></a>
+        <h3 class="message__subject"> {{ message.subject }}  </h3>
+        <h4 class="message__author">{{ message.name }} </h4>
+        <p class="message__date">{{ message.created }} </p>
+        <div > {{ message.body|linebreaksbr }}  </div>
       </div>
     </div>
   </main>

@@ -185,7 +185,6 @@ def veiw_message(request, pk):
     profile = request.user.profile
     message = profile.messages.get(id=pk)
 
-
     if message.is_read is False:
         message.is_read = True
         message.save()
