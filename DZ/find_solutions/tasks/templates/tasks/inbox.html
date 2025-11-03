@@ -2,36 +2,52 @@
 {% load static %}
 {% block content %}
 
-  <!-- Main Section -->
-  <main class="inbox">
-<!--      {{ form.subject.label }}-->
-<!--      <a href="#" class="btn btn&#45;&#45;sub btn&#45;&#45;lg">Send Message </a>-->
+<section class="hero-section text-center">
+    <div class="container container--narrow">
+        <div class="hero-section__box">
+            <h2>--- Найдется все --- </h2>
+        </div>
+        <div class="hero-section__search">
+            <form class="form" action="#" method="get">
+                <div class="form__field">
+                    <label for="formInput#search">Поиск сообщений</label>
+                    <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                           value="{{ search_query }}"
+                           placeholder="Поиск сообщений"/>
+                </div>
+                <input class="btn btn--sub btn--lg" type="submit" value="Поиск"/>
+            </form>
+        </div>
+    </div>
+</section>
+
+<main class="inbox">
     <div class="content-box">
-      <h3 class="inbox__title">Новые сообщения(<span>{{ unread_count }}</span>)</h3>
-      <ul class="messages">
-        {% for message in message_request %}
-        {% if message.is_read == False %}
-        <li class="message message--unread">
-        {% else %}
-        <li class="message">
-        {% endif %}
-          <a href="{% url 'message' message.id %}">
-            <span class="message__author">{{ message.name }}</span>
-            <span class="message__subject">{{ message.subject }}</span>
-            <span class="message__date">{{ message.created }}</span>
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
+        <h3 class="inbox__title">Новые сообщения(<span>{{ unread_count }}</span>)</h3>
+        <ul class="messages">
+            {% for message in message_request %}
+            {% if message.is_read == False %}
+            <li class="message message--unread">
+                {% else %}
+            <li class="message">
+                {% endif %}
+                <a href="{% url 'message' message.id %}">
+                    <span class="message__author">{{ message.name }}</span>
+                    <span class="message__subject">{{ message.subject }}</span>
+                    <span class="message__date">{{ message.created }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
-  </main>
+</main>
 <h3>Написать пользователю</h3>
 <div class="send">
-       {% for i in users %}
-<a href="{% url 'create-message' i.username %}">{{ i.username }}</a>
+    {% for i in users %}
+    <a href="{% url 'create-message' i.username %}">{{ i.username }}</a>
 
-      {% endfor %}
+    {% endfor %}
 </div>
 
 

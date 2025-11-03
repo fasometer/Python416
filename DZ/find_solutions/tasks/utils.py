@@ -1,15 +1,27 @@
-from .models import Task
+from .models import Task, Message
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-def search_task(request):
+def search_messages(request):
     search_query = ''
-
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
 
-    ts = Task.objects.filter(
+    ms = Message.objects.order_by('-created').filter(recipient=request.user).filter(
+        # Q(sender__icontains=search_query) |
+        Q(body__icontains=search_query) |
+        Q(subject__icontains=search_query)
+    )
+    return search_query, ms
+
+
+def search_task(request):
+    search_query = ''
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+
+    ts = Task.objects.filter(data_complete__isnull=False).order_by('-data_complete').filter(
         Q(title__icontains=search_query) |
         Q(memo__icontains=search_query) |
         Q(lines__line__icontains=search_query)

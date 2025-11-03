@@ -7,7 +7,7 @@ from .forms import TaskForm, MessageForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .utils import search_task, paginate_projects
+from .utils import search_task, paginate_projects, search_messages
 from django.contrib import messages
 
 
@@ -66,7 +66,6 @@ def current_tasks(request):
     return render(request, 'tasks/currenttasks.html', context)
 
 
-@login_required
 def create_task(request):
     title = "Создать задачу"
     if request.method == "GET":
@@ -98,7 +97,7 @@ def view_task(request, tasks_pk):
         return render(request, 'tasks/viewtask.html', contex)
     else:
         try:
-            form = TaskForm(request.POST, instance=task)
+            form = TaskForm(request.POST, request.FILES, instance=task)
             form.save()
             return redirect('currenttasks')
         except ValueError:
@@ -119,6 +118,7 @@ def completed_tasks(request):
     search_query, ts = search_task(request)
     custom_range, ts = paginate_projects(request, ts, 3)
     title = "Завершенные задачи"
+
     contex = {
         'tasks': ts,
         'search_query': search_query,
@@ -138,14 +138,20 @@ def delete_task(request, tasks_pk):
 
 @login_required(login_url='login')
 def inbox(request):
-    profile = request.user
-    message_request = profile.messages.all()
-    unread_count = message_request.filter(is_read=False).count()
+    # profile = request.user
+    # message_request = profile.messages.all().order_by('-created')
+    # unread_count = message_request.filter(is_read=False).count()
+
+    search_query, ms = search_messages(request)
+    message_request = ms
+    unread_count = ms.filter(is_read=False).count()
     users = User.objects.all()
     title = "Все сообщения"
     context = {
-        'message_request': message_request,
+        # 'message_request': message_request,
+        'message_request': ms,
         'unread_count': unread_count,
+        'search_query': search_query,
         'users': users,
         'title': title,
     }
