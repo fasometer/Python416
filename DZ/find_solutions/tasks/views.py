@@ -7,7 +7,7 @@ from .forms import TaskForm, MessageForm
 from .models import Task
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .utils import search_task, paginate_projects, search_messages
+from .utils import search_task, paginate_projects, search_messages, paginate_messages
 from django.contrib import messages
 
 
@@ -143,8 +143,10 @@ def inbox(request):
     # unread_count = message_request.filter(is_read=False).count()
 
     search_query, ms = search_messages(request)
-    message_request = ms
     unread_count = ms.filter(is_read=False).count()
+    custom_range, ms = paginate_messages(request, ms, 3)
+    message_request = ms
+
     users = User.objects.all()
     title = "Все сообщения"
     context = {
@@ -152,6 +154,7 @@ def inbox(request):
         'message_request': ms,
         'unread_count': unread_count,
         'search_query': search_query,
+        'custom_range': custom_range,
         'users': users,
         'title': title,
     }

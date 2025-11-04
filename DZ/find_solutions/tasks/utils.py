@@ -52,3 +52,28 @@ def paginate_projects(request, ts, results):
 
     custom_range = range(left_index, right_index)
     return custom_range, ts
+
+
+def paginate_messages(request, ms, results):
+    page = request.GET.get('page')
+    # results = 3
+    paginator = Paginator(ms, results)
+
+    try:
+        ms = paginator.page(page)
+    except PageNotAnInteger:  # http://127.0.0.1:8000/projects/?page=assa
+        page = 1
+        ms = paginator.page(page)
+    except EmptyPage:  # http://127.0.0.1:8000/projects/?page=100000
+        page = paginator.num_pages  # последняя страница
+        ms = paginator.page(page)
+
+    left_index = int(page) - 4
+    if left_index < 1:
+        left_index = 1
+    right_index = int(page) + 5
+    if right_index > paginator.num_pages:
+        right_index = paginator.num_pages + 1
+
+    custom_range = range(left_index, right_index)
+    return custom_range, ms
