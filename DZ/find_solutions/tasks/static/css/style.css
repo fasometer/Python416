@@ -49,6 +49,7 @@ body{
 }
 h1, h2{
     color: green;
+    margin: 15px 0;
 }
 .info{
     display: flex;
@@ -237,7 +238,7 @@ font-size: 20px;
 }
 .main li{
     border: 1px solid teal;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 .first, .date{
     padding: 10px 20px;
